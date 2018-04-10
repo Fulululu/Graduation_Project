@@ -8,7 +8,6 @@ import time
 import sqlite3
 import struct
 
-
 class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     pass
 
@@ -27,18 +26,18 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
         self.soiltemp = self.data_unpack[5]
         self.soilhumi = self.data_unpack[6]
         self.co2 = self.data_unpack[7]
-        print(self.data_unpack)
+        self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         
     def doStore(self, data):
-        self.dataDispose(data)
-        conn = sqlite3.connect('/home/ygf/design/test.db')
+        self.dataDispose(data)        
+        conn = sqlite3.connect('/home/ygf/design/mysite/db.sqlite3')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO light (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.light))
-        cursor.execute('INSERT INTO airtemp (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.airtemp))
-        cursor.execute('INSERT INTO airhumi (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.airhumi))
-        cursor.execute('INSERT INTO soiltemp (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.soiltemp))
-        cursor.execute('INSERT INTO soilhumi (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.soilhumi))
-        cursor.execute('INSERT INTO co2 (UID, NODE, DATA) VALUES ({}, {}, {})'.format(self.UID, self.NODE, self.co2))
+        cursor.execute("INSERT INTO light (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.light, self.time))
+        cursor.execute("INSERT INTO airtemp (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airtemp, self.time))
+        cursor.execute("INSERT INTO airhumi (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airhumi, self.time))
+        cursor.execute("INSERT INTO soiltemp (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soiltemp, self.time))
+        cursor.execute("INSERT INTO soilhumi (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soilhumi, self.time))
+        cursor.execute("INSERT INTO co2 (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.co2, self.time))
         cursor.close()
         conn.commit()
         conn.close()
@@ -60,7 +59,6 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                 self.data = self.request.recv(1024)
                 if self.data:
                     self.doStore(self.data)
-                    self.dataDispose(self.data)
                     print("{}: Client({}:{}): {}".format(self.cur_thread.name,self.ip,self.port,self.data))
                     response = bytes("server got", 'utf-8')
                     self.request.sendall(response)
