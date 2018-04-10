@@ -1,0 +1,51 @@
+<!doctype html>
+{% load static %}
+<html lang="cn">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+	  <!--"https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'style_login.css' %}">
+	
+	<title>用户登录(゜-゜)つロ </title>
+  </head>
+  
+  <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-horizontal" action="">
+					<span class="heading">用户登录</span>
+					<div class="form-group">
+						<input type="email" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件">
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="form-group help">
+						<input type="password" class="form-control" id="inputPassword3" placeholder="密　码">
+						<i class="fa fa-lock"></i>
+						<a href="#" class="fa fa-question-circle"></a>
+					</div>
+					<div class="form-group">
+						<div class="main-checkbox">
+							<input type="checkbox" value="None" id="checkbox1" name="check"/>
+							<label for="checkbox1"></label>
+						</div>
+						<span class="text">记住我</span>
+						<button type="submit" class="btn btn-default">登录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

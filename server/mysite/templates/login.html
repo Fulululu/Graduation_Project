@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>欢迎(゜-゜)つロ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'index/my-login.css' %}">
+</head>
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+				  	{% if message %}
+				      	<div class="alert alert-warning">{{ message }}</div>
+				  	{% endif %}
+
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">用户登录</h4>
+							<form action="/login/" method="POST">
+							  {% csrf_token %}
+							 
+								<div class="form-group">
+									<label for="account">帐号：</label>
+
+									<input id="account" type="text" class="form-control" name="account" placeholder="Account" value="" autofocus>
+								</div>
+
+								<div class="form-group">
+									<label for="password">密码：
+									</label>
+									<input id="password" type="password" class="form-control" placeholder="Password" name="password">
+								</div>
+                                                             
+								<div class="form-group">
+									<label>
+										<input type="checkbox" name="remember"> 记住我
+										<a href="{% url 'index:forgot' %}" class="float-right">
+											忘记密码?
+										</a>
+									</label>
+								</div>
+
+								<div class="form-group no-margin">
+									<button type="submit" class="btn btn-primary btn-block">
+										登录
+									</button>
+								</div>
+								<div class="margin-top20 text-center">
+									没有帐号? <a href="{% url 'index:register' %}">注册</a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2018 &mdash; TianC304@FAFU 
+					</div>
+					<!--
+					<div>
+					  <h1>user show(display when debug)</h1>
+					  <table border="1">
+					    <thead>
+					      <th>username</th>
+					      <th>password</th>
+					    </thead>
+					    <tbody>
+					      {% for item in item_list %}
+					      <tr>
+						<td>{{ item.ACCOUNT }}</td>
+						<td>{{ item.PASSWORD }}</td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					    </table>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'index/my-login.js' %}"></script>
+</body>
+</html>

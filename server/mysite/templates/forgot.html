@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>忘记密码(╯°口°)╯(┴—┴</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'index/my-login.css' %}">
+</head>
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center align-items-center h-100">
+				<div class="card-wrapper">
+					{% if message %}
+				      	<div class="alert alert-warning">{{ message }}</div>
+				  	{% endif %}
+					
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">忘记密码</h4>
+							<form action="/forgot/" method="POST">
+							  {% csrf_token %}
+							        
+								<div class="form-group">
+									<label for="account">帐号：</label>
+									<input id="account" type="text" class="form-control" name="account" placeholder="Account" value="" required autofocus>
+								</div>
+
+								<div class="form-group">
+									<label for="email">邮箱地址：</label>
+									<input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address" value="" required>
+									<div class="form-text text-muted">
+										点击“重置密码”我们将给您的邮箱发送重置密码的链接
+									</div>
+								</div>
+
+								<div class="form-group no-margin">
+									<button type="submit" class="btn btn-primary btn-block">
+										重置密码
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2018 &mdash; TianC304@FAFU 
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
