@@ -14,33 +14,36 @@ class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
 class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
     def dataDispose(self, data):
-        try:
-            self.data_unpack = struct.unpack('!2bhfbfbf', data)
-        except struct.error as e:
-            print(e)
-        self.UID = self.data_unpack[0]
-        self.NODE = self.data_unpack[1]
-        self.light = self.data_unpack[2]
-        self.airtemp = self.data_unpack[3]
-        self.airhumi = self.data_unpack[4]
-        self.soiltemp = self.data_unpack[5]
-        self.soilhumi = self.data_unpack[6]
-        self.co2 = self.data_unpack[7]
-        self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        if len(data) == 14: 
+            try:
+                self.data_unpack = struct.unpack('!2bhfbfb', data)
+                if(self.data_unpack):
+                    self.UID = self.data_unpack[0]
+                    self.NODE = self.data_unpack[1]
+                    self.light = self.data_unpack[2]
+                    self.airtemp = self.data_unpack[3]
+                    self.airhumi = self.data_unpack[4]
+                    self.soiltemp = self.data_unpack[5]
+                    self.soilhumi = self.data_unpack[6]
+                    self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                    return 0
+            except struct.error as e:
+                print(e)
+        else:
+            return 1
         
     def doStore(self, data):
-        self.dataDispose(data)        
-        conn = sqlite3.connect('/home/ygf/design/mysite/db.sqlite3')
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO light (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.light, self.time))
-        cursor.execute("INSERT INTO airtemp (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airtemp, self.time))
-        cursor.execute("INSERT INTO airhumi (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airhumi, self.time))
-        cursor.execute("INSERT INTO soiltemp (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soiltemp, self.time))
-        cursor.execute("INSERT INTO soilhumi (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soilhumi, self.time))
-        cursor.execute("INSERT INTO co2 (UID, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.co2, self.time))
-        cursor.close()
-        conn.commit()
-        conn.close()
+        if(not self.dataDispose(data)):
+            conn = sqlite3.connect('/home/ygf/design/mysite/db.sqlite3')
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO index_light (UID_id, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.light, self.time))
+            cursor.execute("INSERT INTO index_airtemp (UID_id, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airtemp, self.time))
+            cursor.execute("INSERT INTO index_airhumi (UID_id, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.airhumi, self.time))
+            cursor.execute("INSERT INTO index_soiltemp (UID_id, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soiltemp, self.time))
+            cursor.execute("INSERT INTO index_soilhumi (UID_id, NODE, DATA, CREATETIME) VALUES ({}, {}, {}, '{}')".format(self.UID, self.NODE, self.soilhumi, self.time))
+            cursor.close()
+            conn.commit()
+            conn.close()
 
     def setup(self):
         self.ip = self.client_address[0].strip()     

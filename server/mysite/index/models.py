@@ -54,8 +54,8 @@ class soilhumi(models.Model):
     DATA = models.IntegerField()
     CREATETIME = models.DateTimeField(auto_now=True)
 
-class co2(models.Model):
-    UID = models.ForeignKey(user, on_delete=models.CASCADE)
-    NODE = models.IntegerField()
-    DATA = models.FloatField(max_length=5)
-    CREATETIME = models.DateTimeField(auto_now=True)
+#class co2(models.Model):
+#    UID = models.ForeignKey(user, on_delete=models.CASCADE)
+#    NODE = models.IntegerField()
+#    DATA = models.FloatField(max_length=5)
+#    CREATETIME = models.DateTimeField(auto_now=True)
