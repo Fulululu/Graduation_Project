@@ -5,7 +5,9 @@ from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 import random
 import sqlite3
-import time
+from django.utils import timezone
+from django.views.decorators.csrf import requires_csrf_token
+import json
 
 # Build-in function  
 
@@ -17,7 +19,7 @@ def rstcode_keygen(account):
     for i in range(0,codelen):
         idx = random.randint(0, length)
         code += chars[idx]
-        now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        now = timezone.now()#.strftime("%Y-%m-%d %H:%M:%S")
     resetcode = models.resetcode.objects.create()
     resetcode.ACCOUNT = account
     resetcode.RESETCODE = code
@@ -39,8 +41,31 @@ def send_email(emailto, code):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
+def logout(request):
+    if not request.session.get('is_login', None):
+        return redirect("/login")
+    request.session.flush()
+    return redirect("/index/")
 
+def update(request):
+    if request.session.get('is_login', None):
+        newest_data = models.summary.objects.filter(UID_id=request.session['user_id'])[0]
+        data_dict = {'UID_id':newest_data.UID_id,\
+                     'NODE':newest_data.NODE,\
+                     'LIGHT':newest_data.LIGHT,\
+                     'AIRTEMP':newest_data.AIRTEMP,\
+                     'AIRHUMI':newest_data.AIRHUMI,\
+                     'SOILTEMP':newest_data.SOILTEMP,\
+                     'SOILHUMI':newest_data.SOILHUMI}
+        data_list = []
+        data_list.append(data_dict)
+        retjson = json.dumps(data_list)
+        response = HttpResponse()
+        response['Content-Type'] = "text/javascript"
+        response.write(retjson)
+        return response
     
+
 # Create your views here.
 
 def index(request):
@@ -48,6 +73,8 @@ def index(request):
     return HttpResponse("This the main page")
 
 def login(request):
+    if request.session.get('is_login',None):
+        return redirect("/mydata/")
     if request.method == "POST":
         account = request.POST.get("account", None)
         password = request.POST.get("password", None)
@@ -56,7 +83,11 @@ def login(request):
             try:
                 user = models.user.objects.get(ACCOUNT=account)
                 if user.PASSWORD == password:
-                    return redirect('/sensor/')
+                    request.session['is_login'] = True
+                    request.session['user_id'] = user.UID
+                    request.session['user_account'] = user.ACCOUNT
+                    request.session.set_expiry(0)
+                    return redirect('/mydata/')
                 else:
                     message = "密码不正确,请重新输入！"
             except:
@@ -97,6 +128,11 @@ def register(request):
         user.PASSWORD = password
         user.EMAIL = email
         user.save()
+        device = models.device.objects.create()
+        device.UID_id = user.UID
+        device.LAMP = False
+        device.PUMP = False
+        device.save()
         models.invitation.objects.filter(CODE=code).delete()
         
         return redirect('/login/')
@@ -120,7 +156,7 @@ def forgot(request):
 
         send_email(email, rstcode_keygen(account))
         return redirect('/reset/')
-    
+
     return render(request, 'forgot.html')
 
 def reset(request):
@@ -147,6 +183,18 @@ def reset(request):
     
     return render(request, 'reset.html')
 
-def sensor(request):
-    pass
-    return HttpResponse("This is sensor data page!")
+def mydata(request):
+    if request.session.get('is_login', None):
+        devices = models.device.objects.get(UID_id=request.session['user_id'])
+        summary_list = models.summary.objects.filter(UID_id=request.session['user_id'])
+        realtime_data = summary_list[0]
+        light_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','LIGHT')
+        airtemp_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRTEMP')
+        airhumi_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRHUMI')
+        soiltemp_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','SOILTEMP')
+        soilhumi_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','SOILHUMI')
+        return render(request, 'data.html',locals())
+    
+    return render(request, 'tologin.html')
+
+

@@ -1,0 +1,28 @@
+body.my-sensor-page{
+}
+
+.my-sensor-page .mynavbar{
+	border-radius: 5px;
+}
+
+.my-sensor-page .mysidebar{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.my-sensor-page .mytable{
+	margin-top: 20px;
+	margin-bottom:20px;
+}
+
+.my-sensor-page .myfooter{
+	margin: 60px 0;
+	color: #888;
+	text-align: center;
+}
+
+.my-sensor-page .mynavcolor
+{
+	background-color:#FFFFFF;
+	color:#007BFF;
+}

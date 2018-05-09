@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+{% load static %}
+{% load el_pagination_tags %}
+<html lang="zh-CN">
+<head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    	<!--link rel="icon" type="image/x-icon" href="{% static 'index/favicon.ico' %}"-->
+    	<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'index/data.css' %}">
+
+    	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    	<script src="{% static 'jquery.min.js' %}"></script>
+    	<script src="{% static 'bootstrap.min.js' %}"></script>
+
+   	<!-- Optional JavaScript -->
+   	<script src="{% static 'index/data.js' %}"></script>
+
+    	<title>传感器数据(゜-゜)つロ</title>
+</head>
+  
+<body class=my-sensor-page>
+	<div class=container-fluid>
+		<nav class="navbar navbar-light mynavbar" style="background-color: #e3f2fd;">			
+			<a href="http://www.fafu.edu.cn/">
+				<img src="{% static 'index/FAFUlogoblue.png' %}" class="img-responsive" alt=FAFU />
+			</a>
+			<ul class="nav masthead-nav">
+				<li>当前在线：<a href="#">{{ request.session.user_account }}</a></li>
+                  		<li>&emsp;&emsp;<a href="/logout/" style="color:blue">退出登录</a></li>
+			</ul>
+		</nav>
+	</div>
+			
+	<div class=container-fluid>
+		<div class="row">
+			<div class="col-2 mysidebar">
+				<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<a class="nav-link mynavcolor active" id="v-pills-present-data-tab" data-toggle="pill" href="#v-pills-present-data" role="tab" aria-controls="v-pills-present-data" aria-selected="true">当前数据</a>
+					<a class="nav-link" id="v-pills-history-data-tab" data-toggle="collapse" href="#collapse-history-data" role="tab" aria-controls="v-pills-history-data" aria-selected="false">历史数据</a>
+					<div class="collapse" id="collapse-history-data">
+						<div class="nav flex-column nav-pills" id="v-collapse-pills-tab" role="tablist" aria-orientation="vertical">
+							<a class="nav-link mynavcolor" id="v-pills-all-data-tab" data-toggle="pill" href="#v-pills-all-data" role="tab" aria-controls="v-pills-all-data" aria-selected="false">&emsp;全部数据</a>
+							<a class="nav-link mynavcolor" id="v-pills-light-tab" data-toggle="pill" href="#v-pills-light" role="tab" aria-controls="v-pills-light" aria-selected="false">&emsp;光照强度</a>
+							<a class="nav-link mynavcolor" id="v-pills-air-tempture-tab" data-toggle="pill" href="#v-pills-air-tempture" role="tab" aria-controls="v-pills-air-tempture" aria-selected="false">&emsp;空气温度</a>
+							<a class="nav-link mynavcolor" id="v-pills-air-humidity-tab" data-toggle="pill" href="#v-pills-air-humidity" role="tab" aria-controls="v-pills-air-humidity" aria-selected="false">&emsp;相对空气湿度</a>
+							<a class="nav-link mynavcolor" id="v-pills-soil-tempture-tab" data-toggle="pill" href="#v-pills-soil-tempture" role="tab" aria-controls="v-pills-soil-tempture" aria-selected="false">&emsp;土壤温度</a>
+							<a class="nav-link mynavcolor" id="v-pills-soil-humidity-tab" data-toggle="pill" href="#v-pills-soil-humidity" role="tab" aria-controls="v-pills-soil-humidity" aria-selected="false">&emsp;相对土壤湿度</a>
+						</div>
+					</div>
+					<a class="nav-link mynavcolor" id="v-pills-device-manage-tab" data-toggle="pill" href="#v-pills-device-manage" role="tab" aria-controls="v-pills-device-manage" aria-selected="false">设备管理</a>
+					<a class="nav-link mynavcolor" id="v-pills-about-system-tab" data-toggle="pill" href="#v-pills-about-system" role="tab" aria-controls="v-pills-about-system" aria-selected="false">关于系统</a>
+				</div>
+			</div>
+				
+			<div class="col-10">
+				<div class="tab-content" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="v-pills-present-data" role="tabpanel" aria-labelledby="v-pills-present-data-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">用户ID</th>
+								  <th>传感器节点</th>
+								  <th>光照强度(lx)</th>
+								  <th>空气温度(℃)</th>
+								  <th>相对空气湿度(%)</th>
+								  <th>土壤温度(℃)</th>
+								  <th>相对土壤湿度(%)</th>
+								  
+								</tr>
+							</thead>
+							<tbody>
+								<tr id=showdata>
+									<td scope="col">{{realtime_data.UID_id}}</td>
+									<td>{{realtime_data.NODE}}</td>
+									<td>{{realtime_data.LIGHT}}</td>
+									<td>{{realtime_data.AIRTEMP}}</td>
+									<td>{{realtime_data.AIRHUMI}}</td>
+									<td>{{realtime_data.SOILTEMP}}</td>
+									<td>{{realtime_data.SOILHUMI}}</td>				  
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="v-pills-all-data" role="tabpanel" aria-labelledby="v-pills-all-data-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>光照强度(lx)</th>
+								  <th>空气温度(℃)</th>
+								  <th>相对空气湿度(%)</th>
+								  <th>土壤温度(℃)</th>
+								  <th>相对土壤湿度(%)</th>
+								  
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate summary_list %}
+								{% for item in summary_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.LIGHT}}</td>
+								  <td>{{item.AIRTEMP}}</td>
+								  <td>{{item.AIRHUMI}}</td>
+								  <td>{{item.SOILTEMP}}</td>
+								  <td>{{item.SOILHUMI}}</td>				  
+								</tr>
+								{% endfor %}
+								
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-light" role="tabpanel" aria-labelledby="v-pills-light-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>光照强度(lx)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate light_list %}
+								{% for item in light_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.LIGHT}}</td>		  
+								</tr>
+								{% endfor %}			
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-air-tempture" role="tabpanel" aria-labelledby="v-pills-air-tempture-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>空气温度(℃)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate airtemp_list %}
+								{% for item in airtemp_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.AIRTEMP}}</td>		  
+								</tr>
+								{% endfor %}	
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-air-humidity" role="tabpanel" aria-labelledby="v-pills-air-humidity-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>相对空气湿度(%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate airhumi_list %}
+								{% for item in airhumi_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.AIRHUMI}}</td>		  
+								</tr>
+								{% endfor %}	
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-soil-tempture" role="tabpanel" aria-labelledby="v-pills-soil-tempture-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>土壤温度(℃)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate soiltemp_list %}
+								{% for item in soiltemp_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.SOILTEMP}}</td>		  
+								</tr>
+								{% endfor %}			
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-soil-humidity" role="tabpanel" aria-labelledby="v-pills-soil-humidity-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">日期时间</th>
+								  <th>用户ID</th>
+								  <th>传感器节点</th>
+								  <th>相对土壤湿度(%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% paginate soilhumi_list %}
+								{% for item in soilhumi_list %}
+								<tr>
+								  <th scope="row">{{item.CREATETIME}}</th>
+								  <td>{{item.UID_id}}</td>
+								  <td>{{item.NODE}}</td>
+								  <td>{{item.SOILHUMI}}</td>		  
+								</tr>
+								{% endfor %}		
+							</tbody>
+						</table>
+						<div style="text-align: center;">{% show_pages %}</div>
+					</div>
+					<div class="tab-pane fade" id="v-pills-device-manage" role="tabpanel" aria-labelledby="v-pills-device-manage-tab">
+						<table class="table table-striped mytable">
+							<thead>
+								<tr>
+								  <th scope="col">水泵状态</th>
+								  <th>灯状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								  {% if devices.PUMP %}
+								  <th scope="row">ON</th>
+								  {% else %}
+								  <th scope="row">OFF</th>
+								  {% endif %}
+								  {% if devices.LAMP %}
+								  <th>ON</th>
+								  {% else %}
+								  <th>OFF</th>
+								  {% endif %}  
+								</tr>
+							</tbody>
+						</table>
+						<br/>
+						<div class="btn-group">
+						      <button class="btn btn-lg btn-default" id=pump_on>ON</button>
+						      <button class="btn btn-lg btn-primary" id=pump_off>OFF</button>
+						</div>
+						<div class="btn-group">
+						      <button class="btn btn-lg btn-default" id=lamp_on>ON</button>
+						      <button class="btn btn-lg btn-warning" id=lamp_off>OFF</button>
+						</div>
+						<!--button type="button" class="btn btn-primary">Primary</button>
+						<button type="button" class="btn btn-warning">Warning</button-->
+					</div>
+					<div class="tab-pane fade" id="v-pills-about-system" role="tabpanel" aria-labelledby="v-pills-about-system-tab">
+							<br/>&emsp;&emsp;欢迎使用远程温室智能监控系统!(版本号：V1.0)
+							<ul>
+								<li>如果您想提交一些漏洞或者意见,邮箱联系510924866@qq.com,这对我们非常有帮助!</li>
+								<li>如果您对该系统的开发感兴趣,也可以联系以上邮箱,我们十分欢迎您的加入。</li>
+								<li>我们的联系地址：福建省福州市仓山区福建农林大学田家炳C栋304。</li>		
+							</ul>
+					</div>						
+				</div>
+			</div>			
+		</div>
+	</div>
+	<div class=container-fluid>
+		<div class="myfooter">
+			Copyright &copy; 2018 &mdash; TianC304@FAFU 
+		</div>
+	</div>
+   <!--h1>Ajax Test</h1>  
+   <p id="time"></p>  
+   <div id="content"></div-->  
+</body>
+</html>

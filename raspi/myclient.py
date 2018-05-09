@@ -6,14 +6,20 @@ import sys
 import time
 import serial
 import threading
-#import struct
 
 class client:
+#private functions:
+    def calcu_checksum(self, buf): 
+        checksum = 0  
+        for item in buf:  
+            checksum += item
+            checksum &= 0xFFFF # cut down 
+        return checksum
+
     def open_serial(self):
         print("opening a port")
         try:
-            self.ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.5)   #UART to USB
-            #self.ser = serial.Serial("/dev/ttyAMA0", 115200, timeout=0.5)  #UART to UART
+            self.ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.5)
         except serial.SerialException as e:
             print(e)
             sys.exit(1)
@@ -26,7 +32,7 @@ class client:
         
     def serial_get(self):
         '''
-        #UART Frame from CC2530
+        #USB Frame from CC2530
         #bytes:  |   1   |  2  |   4   |   1   |    4   |    1   |   total:13 bytes
         #datas:  |NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|
         '''
@@ -35,11 +41,12 @@ class client:
             if self.buf:
                 print("{}: {}".format(self.ser.name,self.buf))
                 self.end = len(self.buf)
-                return self.buf[0:self.end]  #remove the end flag '\n',for example a[0:17] not contain a[17]
+                return self.buf[0:self.end]
         except serial.SerialException as e:
             print(e)
             sys.exit(1)
 
+#public functions:
     def connect(self):
         '''Create a socket (SOCK_STREAM means a TCP socket),Connect to server'''
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -66,16 +73,26 @@ class client:
     def send(self):
         '''Send data to the server
         #Frame
-        #bytes: | 1 |   1   |  2  |   4   |   1   |    4   |    1   |   total:14 bytes
-        #datas: |UID|NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|
+        #bytes: |  1 |   1   | 1 |   1   |  2  |   4   |   1   |    4   |    1   |    2   |  
+        total:18 bytes
+        #datas: |HEAD|COMMAND|UID|NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|checksum|
         '''
-        self.data = bytes(chr(UID),'utf-8')  #add UID to frame
         self.ser_data = self.serial_get()
         if(self.ser_data):
+            self.data = bytes(chr(HEAD),'utf-8')  #add HEAD to frame
+            self.data += bytes(chr(COMMAND),'utf-8')  #add COMMAND to frame
+            self.data += bytes(chr(UID),'utf-8')  #add UID to frame
             self.data += self.ser_data
-            if len(self.data) == 14:
-                #self.data_unpack = struct.unpack('!2bhfbfb', self.data)
-                #print(self.data_unpack)
+            if len(self.data) == 16:
+                #add checksum
+                checksum = bytes(chr(self.calcu_checksum(self.data)),'utf-8')
+                if(len(checksum) == 1):
+                    self.data += bytes(chr(0x00),'utf-8')
+                    self.data += checksum
+                else:
+                    self.data += checksum
+    
+                #send
                 try:
                     self.sock.sendall(self.data)
                     print("Sent: {}".format(self.data))
@@ -97,6 +114,8 @@ class client:
 
 if __name__ == "__main__": 
     HOST, PORT = "45.77.171.135", 37465
+    HEAD = 0x01
+    COMMAND = 0x07  #0x07:send data cmd; 0x05:get invitation cmd
     UID = 0x01
     myclient = client(HOST, PORT)
     myclient.connect()

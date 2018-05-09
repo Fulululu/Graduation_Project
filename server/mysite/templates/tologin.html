@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<title>ERROR! T_T</title>
+</head>
+<body>
+	<p style="text-align:center;"><img src="{% static 'index/emojixx.jpeg' %}" class="img-responsive" alt=ERROR /></p>
+	<h1 style="text-align:center;margin-top:20px;">您还未登录，无法查看数据!</h1>
+	<h1 style="text-align:center;"><a href="{% url 'index:login' %}">我要去登录</a></h1>
+	<div style="margin: 60px 0;color: #888;text-align: center;">
+		Copyright &copy; 2018 &mdash; TianC304@FAFU 
+	</div>
+</body>
+</html>

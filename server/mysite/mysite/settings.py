@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'index.apps.IndexConfig',
+    #'dj_pagination',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'dj_pagination.middleware.PaginationMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -62,7 +65,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -127,6 +129,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/css'),
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sina.com'
-EMAIL_PORT = 25
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 EMAIL_HOST_USER = 'ygfulululu@sina.com'
 EMAIL_HOST_PASSWORD = 'qwerasdf1234'
+
