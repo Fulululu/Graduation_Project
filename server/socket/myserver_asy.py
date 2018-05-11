@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 import socket
@@ -43,17 +43,28 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
             checksum += item
             checksum &= 0xFFFF # cut down 
         return checksum
-    
+
+    def recalculate(self, buf):
+        buflen = len(buf)
+        checksum = bytes(chr(self.calcu_checksum(buf[:buflen-2])),'utf-8')
+        if(len(checksum) == 1):
+            result = bytes(chr(0x00),'utf-8')
+            result += checksum
+            return result
+        else:
+            result = checksum
+            return result
+
     def dataDispose(self, data):
         datalen = len(data)
-        if datalen < 19:
-            if(bytes(chr(self.calcu_checksum(data[:datalen-2])),'utf-8') == data[datalen-2:]):
+        if datalen < 21:
+            if(self.recalculate(data) == data[datalen-2:]):
                 try:
                     head_unpack = struct.unpack('!2b', data[:2])
                     self.HEAD = head_unpack[0]
                     self.COMMAND = head_unpack[1]
                     if(self.COMMAND == 0x07):
-                        data_unpack = struct.unpack('!2bhfbfb', data[2:datalen-2])
+                        data_unpack = struct.unpack('!2bhfbf3b', data[2:datalen-2])
                         self.UID = data_unpack[0]
                         self.NODE = data_unpack[1]
                         self.light = data_unpack[2]
@@ -61,6 +72,8 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                         self.airhumi = data_unpack[4]
                         self.soiltemp = round(data_unpack[5], 2)
                         self.soilhumi = data_unpack[6]
+                        self.pump = data_unpack[7]
+                        self.lamp = data_unpack[8]
                         self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
                         return 0
                     elif(self.COMMAND == 0x05):
@@ -68,24 +81,79 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                 except struct.error as e:
                     print(e)
             else:
+                print('data:')
+                print(data)
+                print('checkdata:')
+                print(bytes(chr(self.calcu_checksum(data[:datalen-2])),'utf-8'))
+                print('recv_checksum:')
+                print(data[datalen-2:])
                 return 2 #checksum error
         else:
             return 1 #datalength error
-        
+
+    def get_devstate(self):
+        '''dev_state[0]--LAMP, dev_state[1]--PUMP, dev_state[2]--AUTO'''
+        conn = sqlite3.connect('../mysite/db.sqlite3')
+        cursor = conn.cursor()
+        obj = cursor.execute("select LAMP,PUMP,AUTO from index_device where UID_id={}".format(self.UID))
+        dev_state = obj.fetchone()
+        cursor.close()
+        conn.commit()
+        conn.close()
+        return dev_state
+
     def doStore(self):
         conn = sqlite3.connect('../mysite/db.sqlite3')
         cursor = conn.cursor()
         cursor.execute("INSERT INTO data_summary (UID_id, NODE, LIGHT, AIRTEMP, AIRHUMI, SOILTEMP, SOILHUMI, CREATETIME) VALUES ({}, {}, {}, {}, {}, {}, {}, '{}')".format(self.UID, self.NODE, self.light, self.airtemp, self.airhumi, self.soiltemp, self.soilhumi, self.time))
+        # Judging dev status is manualctl or autoctl(Priority: manualctl > autoctl)
+        obj = cursor.execute("select AUTO from index_device where UID_id={}".format(self.UID))
+        auto_flag = obj.fetchone()[0]
+        if(auto_flag == True):
+            cursor.execute("UPDATE index_device SET LAMP = {}, PUMP = {} WHERE UID_id = {}".format(self.lamp, self.pump, self.UID))
+
         cursor.close()
         conn.commit()
         conn.close()
+
+    def devicectl(self):
+        '''Send data to the server
+        #Frame
+        #bytes: |  1 |   1   |  1 |  1 |    2   |
+        #datas: |HEAD|COMMAND|PUMP|LAMP|checksum|
+        #total: 6 bytes
+        '''
+        fdbk_data = bytes(chr(HEAD),'utf-8')  #add HEAD to frame
+        fdbk_data += bytes(chr(COMMAND),'utf-8')  #add COMMAND to frame
+        dev_state = self.get_devstate()
+        if(dev_state[2] == True): #autoctl
+            if(self.soilhumi < 30):
+                fdbk_data += bytes(chr(0x01),'utf-8')  #set PUMP flag
+            else:
+                fdbk_data += bytes(chr(0x00),'utf-8')  #clear PUMP flag
+            if(self.light < 100):
+                fdbk_data += bytes(chr(0x01),'utf-8')  #set LAMP flag
+            else:
+                fdbk_data += bytes(chr(0x00),'utf-8')  #clear LAMP flag
+        else: #manualctl
+            fdbk_data += bytes(chr(dev_state[1]),'utf-8')  #set PUMP flag
+            fdbk_data += bytes(chr(dev_state[0]),'utf-8')  #set LAMP flag
+    
+        checksum = bytes(chr(self.calcu_checksum(fdbk_data)),'utf-8')
+        if(len(checksum) == 1):
+            fdbk_data += bytes(chr(0x00),'utf-8')
+            fdbk_data += checksum
+        else:
+            fdbk_data += checksum
+
+        return fdbk_data   
 
 #public functions:
     def setup(self):
         self.ip = self.client_address[0].strip()     
         self.port = self.client_address[1]
-        self.request.setblocking(True)  # Socket default Non-blocking
-        self.timeOut = 120  # 2min
+        self.request.setblocking(True)  # Set Blocking(Socket default Non-blocking)
+        self.timeOut = 300  # 5min
         self.request.settimeout(self.timeOut)
         self.cur_thread = threading.current_thread()
         print(self.cur_thread.name+": ["+self.ip+":"+str(self.port)+"] is connect!")  
@@ -95,24 +163,26 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
     def handle(self):
         while True:
             try:
-                data = self.request.recv(1024)
+                data = self.request.recv(1024)  # Blocking when no data
                 if data:
                     ret = self.dataDispose(data)
                     if(not ret):
                         if(self.COMMAND == 0x07):
                             self.doStore()
                             print("{}: Client({}:{}): {}".format(self.cur_thread.name,self.ip,self.port,data))
-                            response = bytes("server got", 'utf-8')
-                            self.request.sendall(response)
+                            response = self.devicectl()  # feedback control
+                            self.request.sendall(response) 
                         elif(self.COMMAND == 0x05):
-                            code = keygen()
+                            code = self.keygen()
                             if(code):
                                 response = bytes("Create invitation code: "+code, 'utf-8')
                                 self.request.sendall(response)
+                                break
                             else:
                                 response = bytes("Fail to create invitation code", 'utf-8')
                                 self.request.sendall(response)
-                                
+                                break
+
                     elif(ret == 2):
                         response = bytes("checksum error!", 'utf-8')
                         self.request.sendall(response)
@@ -141,6 +211,8 @@ if __name__ == "__main__":
     client_socket = []
     # Port 0 means to select an arbitrary unused port
     HOST, PORT = "0.0.0.0", 37465
+    HEAD = 0x01
+    COMMAND = 0x11  # 0x11:devices control
     
     with ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler) as server:
         ip, port = server.server_address

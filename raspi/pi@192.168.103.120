@@ -6,7 +6,6 @@ import sys
 import time
 import serial
 import threading
-import RPi.GPIO as GPIO
 
 class client:
 #private functions:
@@ -14,7 +13,7 @@ class client:
         checksum = 0  
         for item in buf:  
             checksum += item
-            checksum &= 0xFFFF # cut down
+            checksum &= 0xFFFF # cut down 
         return checksum
 
     def recalculate(self, buf):
@@ -32,21 +31,15 @@ class client:
         print("opening a port")
         try:
             self.ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.5)
-            print("port %s is opened!" % self.ser.name)
         except serial.SerialException as e:
             print(e)
-            GPIO.cleanup()
             sys.exit(1)
+        print("port %s is opened!" % self.ser.name)
 
     def __init__(self, host, port):
         self.host = host
         self.port = port
         self.open_serial()
-        GPIO.setwarnings(False)
-        GPIO.cleanup()
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(13, GPIO.OUT, initial=GPIO.HIGH)
-        GPIO.setup(15, GPIO.OUT, initial=GPIO.HIGH)
         
     def serial_get(self):
         '''
@@ -55,15 +48,13 @@ class client:
         #datas:  |NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|
         '''
         try:
-            #self.buf = self.ser.readline()
-            self.buf = self.ser.read(13)
+            self.buf = self.ser.readline()
             if self.buf:
                 print("{}: {}".format(self.ser.name,self.buf))
                 self.end = len(self.buf)
                 return self.buf[0:self.end]
         except serial.SerialException as e:
             print(e)
-            GPIO.cleanup()
             sys.exit(1)
 
 #public functions:
@@ -75,53 +66,40 @@ class client:
             print("connect to HOST %s successfully!" %HOST)
         except socket.gaierror as e:
             print("Address-related error connecting to server: %s" % e)
-            GPIO.cleanup()
             sys.exit(1)
         except socket.error as e:
             print("Connection error: %s" % e)
-            GPIO.cleanup()
             sys.exit(1)
-
+            
     def recv(self):
         '''Receive data from the server(blocking)'''
         try:
-            self.sock.setblocking(True)
             while True:
-                recvdata = self.sock.recv(1024)
-                if recvdata:
-                    recvlen = len(recvdata)
-                    print("Recv_Data: {}".format(recvdata))
-                    if(self.recalculate(recvdata) == recvdata[recvlen-2:]):
-                        if(recvdata[1] == 0x11):
-                            if(recvdata[2] == 0x01):
-                                GPIO.output(13, GPIO.LOW)
-                            else:
-                                GPIO.output(13, GPIO.HIGH)
-                            if(recvdata[3] == 0x01):
-                                GPIO.output(15, GPIO.LOW)
-                            else:
-                                GPIO.output(15, GPIO.HIGH)
+                received = self.sock.recv(1024)
+                if received:
+                    print("Received: {}".format(received))
+                    if(self.recalculate(received) == received[len(received)-2:]):
+                       if(received[1] == 0x11):
+                           print(int(received[2],int(received[3]))
+                    else:
+                       self.request.sendall(bytes("checksum error!", 'utf-8'))
         except socket.error as e:
             print("Connection error: %s" % e)
-            GPIO.cleanup()
-            sys.exit(1)
 
     def send(self):
         '''Send data to the server
         #Frame
-        #bytes: |  1 |   1   | 1 |   1   |  2  |   4   |   1   |    4   |    1   |  1 |  1 |    2   |  
-        #datas: |HEAD|COMMAND|UID|NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|PUMP|LAMP|checksum|
-        #total:20 bytes
+        #bytes: |  1 |   1   | 1 |   1   |  2  |   4   |   1   |    4   |    1   |    2   |  
+        #datas: |HEAD|COMMAND|UID|NODE_ID|light|airtemp|airhumi|soiltemp|soilhumi|checksum|
+        #total:18 bytes
         '''
         self.ser_data = self.serial_get()
         if(self.ser_data):
             self.data = bytes(chr(HEAD),'utf-8')  #add HEAD to frame
             self.data += bytes(chr(COMMAND),'utf-8')  #add COMMAND to frame
             self.data += bytes(chr(UID),'utf-8')  #add UID to frame
-            self.data += self.ser_data  # add sensor data to frame
-            self.data += bytes(chr(PUMP),'utf-8')  #add PUMP to frame
-            self.data += bytes(chr(LAMP),'utf-8')  #add LAMP to frame
-            if len(self.data) == 18:
+            self.data += self.ser_data
+            if len(self.data) == 16:
                 #add checksum
                 checksum = bytes(chr(self.calcu_checksum(self.data)),'utf-8')
                 if(len(checksum) == 1):
@@ -129,14 +107,13 @@ class client:
                     self.data += checksum
                 else:
                     self.data += checksum
-
+    
                 #send
                 try:
                     self.sock.sendall(self.data)
                     print("Sent: {}".format(self.data))
                 except socket.error as e:
                     print("Error sending data: %s" % e)
-                    GPIO.cleanup()
                     sys.exit(1)
             else:
                 pass
@@ -147,19 +124,15 @@ class client:
         '''Exit normally''' 
         print("Connection will close in a moment!")
         self.sock.close()
-        GPIO.cleanup()
         sys.exit(1)
 
 
 
 if __name__ == "__main__": 
     HOST, PORT = "45.77.171.135", 37465
-    HEAD = 0x01  #frame head
+    HEAD = 0x01
     COMMAND = 0x07  # 0x07:send data cmd; 0x05:get invitation cmd
-    UID = 0x01   #user ID
-    PUMP = 0x00  #pump status
-    LAMP = 0x00  #lamp status
-    
+    UID = 0x01
     myclient = client(HOST, PORT)
     myclient.connect()
     recv_thread = threading.Thread(target = myclient.recv)

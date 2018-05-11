@@ -13,5 +13,8 @@ urlpatterns = [
     path('reset/', views.reset, name='reset'),
     path('mydata/', views.mydata, name='mydata'),
     path('logout/', views.logout, name='logout'),
+
+    #AJAX functions
     path('update/', views.update, name='update'),
+    path('devctl/<int:dev_id>', views.devctl, name='devctl'),
 ]

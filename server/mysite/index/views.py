@@ -64,6 +64,24 @@ def update(request):
         response['Content-Type'] = "text/javascript"
         response.write(retjson)
         return response
+
+def devctl(request, dev_id):
+    if request.session.get('is_login', None):
+        dev_state = models.device.objects.get(UID_id=request.session['user_id'])
+        if(dev_id == 0):
+            dev_state.PUMP = not dev_state.PUMP
+            dev_dict = {'dev_state':dev_state.PUMP}
+        elif(dev_id == 1):
+            dev_state.LAMP = not dev_state.LAMP
+            dev_dict = {'dev_state':dev_state.LAMP}
+        dev_state.save()
+        dev_list = []
+        dev_list.append(dev_dict)
+        retjson = json.dumps(dev_list)
+        response = HttpResponse()
+        response['Content-Type'] = "text/javascript"
+        response.write(retjson)
+        return response
     
 
 # Create your views here.

@@ -26,7 +26,19 @@ function timeDown(limit, i){
 		timeDown(limit, i);
 		}, 1000)  
 	}  
-
+//dev_id = 0 is PUMP, 1 is LAMP.
+function devctl(dev_id){
+	$.getJSON('/devctl/'+dev_id, function(jsondata){
+		$.each(jsondata, function(){
+			if(dev_id == 0){
+				$('#content').html('<p>PUMP Status:'+this.dev_state+'</p>');  
+			}
+			else if(dev_id == 1){
+				$('#content').html('<p>LAMP Status:'+this.dev_state+'</p>');
+			}
+		});	
+	});
+}
 
 $(document).ready(function(){
 	/*
@@ -39,13 +51,16 @@ $(document).ready(function(){
 	$('.btn-group').click(function(){
 	    	var $this = $(this);
 
-	    	if($this.find('.btn-warning').length>0){
-	      		$this.find('.btn').toggleClass('btn-warning');
-	    	}
-
 	    	if($this.find('.btn-primary').length>0){
 	      		$this.find('.btn').toggleClass('btn-primary');
+			devctl(0);
 	    	}
+
+	    	if($this.find('.btn-warning').length>0){
+	      		$this.find('.btn').toggleClass('btn-warning');
+			devctl(1);
+	    	}
+
 	});
 	/*
 	 * 以下代码控制导航键切换效果

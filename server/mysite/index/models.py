@@ -23,6 +23,7 @@ class device(models.Model):
     UID = models.ForeignKey(user, on_delete=models.CASCADE)
     LAMP = models.BooleanField()
     PUMP = models.BooleanField()
+    AUTO = models.BooleanField(default=True)
 
 class summary(models.Model):
     UID = models.ForeignKey(user, on_delete=models.CASCADE)
