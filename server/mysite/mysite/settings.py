@@ -24,7 +24,7 @@ SECRET_KEY = '-^*&%sk1@^8)*z@n4z1ca&8=06kybgj0l0)gz$c$-^*pcb1c02'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['45.77.171.135','127.0.0.1']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'index.apps.IndexConfig',
-    #'dj_pagination',
     'el_pagination',
 ]
 
@@ -50,7 +49,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'dj_pagination.middleware.PaginationMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'

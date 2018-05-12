@@ -35,7 +35,7 @@ def send_email(emailto, code):
                     <p><a href="http://{}/reset" target=blank>密码重置链接</a></p>
                     <p>请点击站点链接完成重置！</p>
                     <p>此链接有效期为1天！</p>
-                    '''.format(code, '127.0.0.1:8000')
+                    '''.format(code, '45.77.171.135:8000')
 
     msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [emailto])
     msg.attach_alternative(html_content, "text/html")
@@ -49,31 +49,38 @@ def logout(request):
 
 def update(request):
     if request.session.get('is_login', None):
-        newest_data = models.summary.objects.filter(UID_id=request.session['user_id'])[0]
-        data_dict = {'UID_id':newest_data.UID_id,\
-                     'NODE':newest_data.NODE,\
-                     'LIGHT':newest_data.LIGHT,\
-                     'AIRTEMP':newest_data.AIRTEMP,\
-                     'AIRHUMI':newest_data.AIRHUMI,\
-                     'SOILTEMP':newest_data.SOILTEMP,\
-                     'SOILHUMI':newest_data.SOILHUMI}
-        data_list = []
-        data_list.append(data_dict)
-        retjson = json.dumps(data_list)
-        response = HttpResponse()
-        response['Content-Type'] = "text/javascript"
-        response.write(retjson)
-        return response
+        obj = models.summary.objects.filter(UID_id=request.session['user_id'])
+        if(obj):
+            newest_data = obj[0]
+            data_dict = {'UID_id':newest_data.UID_id,\
+                         'NODE':newest_data.NODE,\
+                         'LIGHT':newest_data.LIGHT,\
+                         'AIRTEMP':newest_data.AIRTEMP,\
+                         'AIRHUMI':newest_data.AIRHUMI,\
+                         'SOILTEMP':newest_data.SOILTEMP,\
+                         'SOILHUMI':newest_data.SOILHUMI}
+            data_list = []
+            data_list.append(data_dict)
+            retjson = json.dumps(data_list)
+            response = HttpResponse()
+            response['Content-Type'] = "text/javascript"
+            response.write(retjson)
+            return response
+        return 1
 
 def devctl(request, dev_id):
     if request.session.get('is_login', None):
         dev_state = models.device.objects.get(UID_id=request.session['user_id'])
         if(dev_id == 0):
             dev_state.PUMP = not dev_state.PUMP
-            dev_dict = {'dev_state':dev_state.PUMP}
+            dev_state.AUTO_PUMP = not dev_state.AUTO_PUMP
+            dev_dict = {'pump_state':dev_state.PUMP}
         elif(dev_id == 1):
             dev_state.LAMP = not dev_state.LAMP
-            dev_dict = {'dev_state':dev_state.LAMP}
+            dev_state.AUTO_LAMP = not dev_state.AUTO_LAMP
+            dev_dict = {'lamp_state':dev_state.LAMP}
+        elif(dev_id == 2):
+            dev_dict = {'pump_state':dev_state.PUMP, 'lamp_state':dev_state.LAMP}
         dev_state.save()
         dev_list = []
         dev_list.append(dev_dict)
@@ -88,7 +95,7 @@ def devctl(request, dev_id):
 
 def index(request):
     pass
-    return HttpResponse("This the main page")
+    return render(request, 'index.html')
 
 def login(request):
     if request.session.get('is_login',None):
@@ -141,16 +148,9 @@ def register(request):
             message = "该邀请码无效"
             return render(request, 'register.html', locals())
             
-        user = models.user.objects.create()
-        user.ACCOUNT = account
-        user.PASSWORD = password
-        user.EMAIL = email
-        user.save()
-        device = models.device.objects.create()
-        device.UID_id = user.UID
-        device.LAMP = False
-        device.PUMP = False
-        device.save()
+        models.user.objects.create(ACCOUNT=account, PASSWORD=password, EMAIL=email)
+        new_UID = models.user.objects.order_by('-CREATETIME')[0].UID
+        models.device.objects.create(UID_id=new_UID, LAMP=False, PUMP=False, AUTO_LAMP=True, AUTO_PUMP=True)
         models.invitation.objects.filter(CODE=code).delete()
         
         return redirect('/login/')
@@ -205,7 +205,8 @@ def mydata(request):
     if request.session.get('is_login', None):
         devices = models.device.objects.get(UID_id=request.session['user_id'])
         summary_list = models.summary.objects.filter(UID_id=request.session['user_id'])
-        realtime_data = summary_list[0]
+        if(summary_list):
+            realtime_data = summary_list[0]
         light_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','LIGHT')
         airtemp_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRTEMP')
         airhumi_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRHUMI')

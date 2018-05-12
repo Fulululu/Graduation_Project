@@ -11,14 +11,15 @@ function update(){
 			});	
 		});
 	}
-function timeDown(limit, i){  
+function timeDown(limit, i, f){  
 	limit--;  
 	if (i > 60){  
 		i = 0;  
 	}  
 	if (limit < 0){  
-		limit = 60;  
-		update(i);  
+		limit = 60;
+		if(f == 0)  update();
+		else if(f == 1) devctl(2);  
 		i++;  
 	}  
 	//$('#time').text(limit + '秒后刷新');  
@@ -31,10 +32,25 @@ function devctl(dev_id){
 	$.getJSON('/devctl/'+dev_id, function(jsondata){
 		$.each(jsondata, function(){
 			if(dev_id == 0){
-				$('#content').html('<p>PUMP Status:'+this.dev_state+'</p>');  
+				//$('#content').html('<p>PUMP Status:'+this.pump_state+'</p>');  
 			}
 			else if(dev_id == 1){
-				$('#content').html('<p>LAMP Status:'+this.dev_state+'</p>');
+				//$('#content').html('<p>LAMP Status:'+this.lamp_state+'</p>');
+			}
+			else if(dev_id == 2){ //update device_state
+				//$('#content').html('<p>PUMP Status:'+this.pump_state+'</p>'+'<p>LAMP Status:'+this.lamp_state+'</p>');				
+				if(this.pump_state){
+					obj = document.getElementById("pump_on");
+					obj.className='btn btn-lg btn-primary';
+					obj = document.getElementById("pump_off");
+					obj.className='btn btn-lg btn-default';
+				}	
+				if(this.lamp_state){
+					obj = document.getElementById("lamp_on");
+					obj.className='btn btn-lg btn-warning';
+					obj = document.getElementById("lamp_off");
+					obj.className='btn btn-lg btn-default';
+				}
 			}
 		});	
 	});
@@ -44,7 +60,15 @@ $(document).ready(function(){
 	/*
 	 * Start update real time data 
 	 */
-	timeDown(60, 0) 
+	timeDown(60, 0, 0)
+	/*
+	 * Start update real time device_state 
+	 */
+	timeDown(2, 0, 1)
+	/*
+	 * get device states for device button 
+	 */
+	devctl(2); 
 	/*
 	 * 以下代码控制按钮切换效果
  	 */

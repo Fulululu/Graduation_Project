@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<title>Welcome!!! (>ε<)</title>
+</head>
+<body>
+	<p style="text-align:center;"><img src="{% static 'index/smile_half.jpeg' %}" class="img-responsive" alt=LOGO /></p>
+	<h1 style="text-align:center;margin-top:20px;">
+		欢迎使用远程温室智能监控系统!(版本号：V1.0)
+		<br />如果您想提交一些漏洞或者意见,邮箱联系510924866@qq.com,这对我们非常有帮助!
+		<br />如果您对该系统的开发感兴趣,也可以联系以上邮箱,我们十分欢迎您的加入。
+	</h1>
+	<h1 style="text-align:center;"><a href="{% url 'index:login' %}">点我跳转到登录页面</a></h1>
+	<div style="margin: 60px 0;color: #888;text-align: center;">
+		Copyright &copy; 2018 &mdash; TianC304@FAFU 
+	</div>
+</body>
+</html>
