@@ -1,0 +1,1548 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.1.3056 for 8051               22/May/2018  20:40:31
+// Copyright 2004-2015 IAR Systems AB.
+// Standalone license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+//    Command line       =  
+//        -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+//        -DREJOIN_POLL_RATE=1000
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D
+//        xMT_ZDO_FUNC -D xLCD_SUPPORTED=DEBUG -D POWER_SAVING -lC
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+//        --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -On --require_prototypes
+//    List file          =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\ZE03.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME ZE03
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__iar_require _formatted_write", "widths"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?MOVE_LONG8_XDATA_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?US_SWITCH_SPARSE
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+
+        PUBLIC `??ZE03_CheckACK::?relay`
+        FUNCTION `??ZE03_CheckACK::?relay`,0203H
+        PUBLIC `??ZE03_Init::?relay`
+        FUNCTION `??ZE03_Init::?relay`,0203H
+        PUBLIC `??ZE03_Read::?relay`
+        FUNCTION `??ZE03_Read::?relay`,0203H
+        PUBLIC `??ZE03_Read_Str::?relay`
+        FUNCTION `??ZE03_Read_Str::?relay`,0203H
+        PUBLIC `??ZE03_buildframe::?relay`
+        FUNCTION `??ZE03_buildframe::?relay`,0203H
+        PUBLIC `??ZE03_control::?relay`
+        FUNCTION `??ZE03_control::?relay`,0203H
+        PUBLIC `??ZE03_recdata::?relay`
+        FUNCTION `??ZE03_recdata::?relay`,0203H
+        PUBLIC ZE03_CheckACK
+        FUNCTION ZE03_CheckACK,021203H
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 18, STACK
+        PUBLIC ZE03_Init
+        FUNCTION ZE03_Init,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC ZE03_Read
+        FUNCTION ZE03_Read,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 21, STACK
+        PUBLIC ZE03_Read_Str
+        FUNCTION ZE03_Read_Str,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        PUBLIC ZE03_buildframe
+        FUNCTION ZE03_buildframe,080203H
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC ZE03_control
+        FUNCTION ZE03_control,0a1203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 19, STACK
+        PUBLIC ZE03_recdata
+        FUNCTION ZE03_recdata,0a1203H
+        ARGFRAME XSTACK, 21, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 12, STACK
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+HalUARTRead         SYMBOL "HalUARTRead"
+`??HalUARTRead::?relay` SYMBOL "?relay", HalUARTRead
+HalUARTWrite        SYMBOL "HalUARTWrite"
+`??HalUARTWrite::?relay` SYMBOL "?relay", HalUARTWrite
+sprintf             SYMBOL "sprintf"
+`??sprintf::?relay` SYMBOL "?relay", sprintf
+ZE03_CheckACK       SYMBOL "ZE03_CheckACK"
+`??ZE03_CheckACK::?relay` SYMBOL "?relay", ZE03_CheckACK
+ZE03_Init           SYMBOL "ZE03_Init"
+`??ZE03_Init::?relay` SYMBOL "?relay", ZE03_Init
+ZE03_Read           SYMBOL "ZE03_Read"
+`??ZE03_Read::?relay` SYMBOL "?relay", ZE03_Read
+ZE03_Read_Str       SYMBOL "ZE03_Read_Str"
+`??ZE03_Read_Str::?relay` SYMBOL "?relay", ZE03_Read_Str
+ZE03_buildframe     SYMBOL "ZE03_buildframe"
+`??ZE03_buildframe::?relay` SYMBOL "?relay", ZE03_buildframe
+ZE03_control        SYMBOL "ZE03_control"
+`??ZE03_control::?relay` SYMBOL "?relay", ZE03_control
+ZE03_recdata        SYMBOL "ZE03_recdata"
+`??ZE03_recdata::?relay` SYMBOL "?relay", ZE03_recdata
+
+        EXTERN `??HalUARTRead::?relay`
+        FUNCTION `??HalUARTRead::?relay`,00H
+        EXTERN `??HalUARTWrite::?relay`
+        FUNCTION `??HalUARTWrite::?relay`,00H
+        EXTERN `??sprintf::?relay`
+        FUNCTION `??sprintf::?relay`,00H
+        EXTERN HalUARTRead
+        FUNCTION HalUARTRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 18, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalUARTWrite
+        FUNCTION HalUARTWrite,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN sprintf
+        FUNCTION sprintf,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+//    1 //=====================================================================
+//    2 //文件名称：ZE03.c
+//    3 //功能概要：氧气浓度传感器ZE03构件源文件
+//    4 //=====================================================================
+//    5 
+//    6 #include "ZE03.h"
+//    7 
+//    8 //SET------3.3V
+//    9 //RST------3.3V
+//   10 
+//   11 //=====================================================================
+//   12 //传感器命令协议：
+//   13 //特征字节    地址    指令字节  通讯模式            校验字节
+//   14 // 0xFF      0x01      CMD      STATE    0 0 0 0    0x84
+//   15 //=====================================================================
+//   16 
+//   17 //=========================================================================
+//   18 //函数名称：ZE03_init
+//   19 //函数参数：无
+//   20 //函数返回：无
+//   21 //功能概要：初始化SET、RST引脚
+//   22 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   23 void ZE03_Init(void)
+ZE03_Init:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function ZE03_Init
+        CODE
+//   24 {
+        FUNCALL ZE03_Init, ZE03_control
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH    DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   25     ZE03_control(ZE03_MODE_PASSTIVE);
+        ; Setup parameters for call to function ZE03_control
+        MOV     R2,#0x4
+        MOV     R3,#0x0
+        LCALL   `??ZE03_control::?relay`; Banked call to: ZE03_control
+        MOV     A,R1
+//   26 }
+        POP     DPH
+          CFI DPH0 SameValue
+          CFI CFA_SP SP+-4
+        POP     DPL
+          CFI DPL0 SameValue
+          CFI CFA_SP SP+-3
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock0
+//   27 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   28 unsigned char ZE03_CheckACK(void)
+ZE03_CheckACK:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function ZE03_CheckACK
+        CODE
+//   29 {
+        FUNCALL ZE03_CheckACK, HalUARTRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 18, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 18, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 9
+        MOV     A,#-0x9
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 18)
+//   30   unsigned char flag = 0, timeout;
+        MOV     R6,#0x0
+//   31   unsigned char ackbuf[ZE03_LENTH_DATA];
+//   32   
+//   33   for(timeout=0;timeout<10;timeout++)
+        MOV     R7,#0x0
+??ZE03_CheckACK_0:
+        MOV     A,R7
+        CLR     C
+        SUBB    A,#0xa
+        JNC     ??ZE03_CheckACK_1
+//   34   {
+//   35     flag = HalUARTRead(0, ackbuf, ZE03_LENTH_DATA);
+        ; Setup parameters for call to function HalUARTRead
+        MOV     R4,#0x9
+        MOV     R5,#0x0
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        MOV     R1,#0x0
+        LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+        MOV     A,R2
+        MOV     R6,A
+//   36     if(flag != 0)
+        MOV     A,R6
+        JNZ     ??ZE03_CheckACK_1
+//   37     {
+//   38       break;
+//   39     }
+//   40   }
+        INC     R7
+        SJMP    ??ZE03_CheckACK_0
+//   41   
+//   42   if(timeout >= 10)
+??ZE03_CheckACK_1:
+        MOV     A,R7
+        CLR     C
+        SUBB    A,#0xa
+        JC      ??ZE03_CheckACK_2
+//   43   {
+//   44     return ZE03_ERR_NOACK;
+        MOV     R1,#0x42
+        SJMP    ??ZE03_CheckACK_3
+//   45   }
+//   46   else
+//   47   {
+//   48     if(ackbuf[0]==0xff && ackbuf[1]==0x78 && ackbuf[0]==0x01 && ackbuf[8]==0x84)
+??ZE03_CheckACK_2:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        XRL     A,#0xff
+        JNZ     ??ZE03_CheckACK_4
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,#0x78
+        JNZ     ??ZE03_CheckACK_4
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??ZE03_CheckACK_4
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,#0x84
+        JNZ     ??ZE03_CheckACK_4
+//   49     {
+//   50       return 0;
+        MOV     R1,#0x0
+        SJMP    ??ZE03_CheckACK_3
+//   51     }
+//   52     else
+//   53     {
+//   54       return ZE03_ERR_ACKCHECKFAIL;
+??ZE03_CheckACK_4:
+        MOV     R1,#0x43
+??ZE03_CheckACK_3:
+        MOV     A,#0x9
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 9)
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+//   55     }
+//   56   }
+//   57   
+//   58 }
+          CFI EndBlock cfiBlock1
+//   59 
+//   60 //=========================================================================
+//   61 //函数名称：ZE03_control
+//   62 //函数参数：cmd:控制命令
+//   63 //函数返回：命令发送成功：0；命令发送失败：0x11
+//   64 //功能概要：通过命令控制传感器工作状态
+//   65 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   66 unsigned char ZE03_control(unsigned int cmd)
+ZE03_control:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function ZE03_control
+        CODE
+//   67 {
+        FUNCALL ZE03_control, ZE03_buildframe
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL ZE03_control, HalUARTWrite
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL ZE03_control, ZE03_CheckACK
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 9
+        MOV     A,#-0x9
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 19)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+//   68 	unsigned char flag;
+//   69 	//初始化命令帧
+//   70 	unsigned char command[ZE03_LENTH_CMD] = {0};
+        MOV     DPTR,#`?<Constant {0, 0, 0, 0, 0, 0, 0, 0, 0}>`
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     A,#0x9
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//   71 
+//   72 	ZE03_buildframe(cmd,command);
+        ; Setup parameters for call to function ZE03_buildframe
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     R2,?V0
+        MOV     R3,?V1
+        LCALL   `??ZE03_buildframe::?relay`; Banked call to: ZE03_buildframe
+//   73 	flag = HalUARTWrite(0, command, ZE03_LENTH_CMD);
+        ; Setup parameters for call to function HalUARTWrite
+        MOV     R4,#0x9
+        MOV     R5,#0x0
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        MOV     R1,#0x0
+        LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+        MOV     A,R2
+        MOV     R6,A
+//   74 
+//   75 	//如果发送命令错误，返回错误码
+//   76 	if(!flag)
+        MOV     A,R6
+        JNZ     ??ZE03_control_0
+//   77 	{
+//   78 		return ZE03_ERR_CMDSENDFAIL;
+        MOV     R1,#0x41
+        SJMP    ??ZE03_control_1
+//   79 	}
+//   80         
+//   81         flag = ZE03_CheckACK();
+??ZE03_control_0:
+        ; Setup parameters for call to function ZE03_CheckACK
+        LCALL   `??ZE03_CheckACK::?relay`; Banked call to: ZE03_CheckACK
+        MOV     A,R1
+        MOV     R6,A
+//   82         if(flag!=ZE03_ERR_NOACK || flag!=ZE03_ERR_ACKCHECKFAIL)
+        MOV     A,#0x42
+        XRL     A,R6
+        JNZ     ??ZE03_control_2
+        MOV     A,#0x43
+        XRL     A,R6
+        JZ      ??ZE03_control_3
+//   83         {
+//   84           return ZE03_ERR_CHECKFAIL;
+??ZE03_control_2:
+        MOV     R1,#0x44
+        SJMP    ??ZE03_control_1
+//   85         }
+//   86         
+//   87 	return 0;
+??ZE03_control_3:
+        MOV     R1,#0x0
+??ZE03_control_1:
+        MOV     A,#0x9
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+//   88 }
+          CFI EndBlock cfiBlock2
+//   89 
+//   90 //=========================================================================
+//   91 //函数名称：ZE03_buildframe
+//   92 //函数参数：cmd:控制命令
+//   93 //		 *frame：命令帧数组
+//   94 //函数返回：无
+//   95 //功能概要：将命令组成命令帧
+//   96 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   97 void ZE03_buildframe(unsigned int cmd,unsigned char *frame)
+ZE03_buildframe:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Function ZE03_buildframe
+        CODE
+//   98 {
+        REQUIRE ?V0
+        REQUIRE ?V1
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+//   99 	switch(cmd)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+        MOV     R0,#?V0
+        LCALL   ?US_SWITCH_SPARSE
+`?<Jumptable for ZE03_buildframe>_0`:
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        0
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        3
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        3
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??ZE03_buildframe_0
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        4
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??ZE03_buildframe_1
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        134
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??ZE03_buildframe_2
+        DATA
+        DATA16
+        DATA
+        DATA16
+        DW        ??ZE03_buildframe_3
+        CODE
+//  100 	{
+//  101 	case ZE03_MODE_ACTIVE:
+//  102 		frame[0] = 0xff;
+??ZE03_buildframe_0:
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOV     A,#-0x1
+        MOVX    @DPTR,A
+//  103 		frame[1] = 0x01;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  104 		frame[2] = ZE03_CMD_MODE_CHANGE;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x78
+        MOVX    @DPTR,A
+//  105 		frame[3] = ZE03_MODE_ACTIVE;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  106 		frame[4] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  107 		frame[5] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  108 		frame[6] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  109 		frame[7] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  110 		frame[8] = 0x84;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#-0x7c
+        MOVX    @DPTR,A
+//  111 		break;
+        LJMP    ??ZE03_buildframe_3 & 0xFFFF
+//  112 	case ZE03_MODE_PASSTIVE:
+//  113 		frame[0] = 0xff;
+??ZE03_buildframe_1:
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOV     A,#-0x1
+        MOVX    @DPTR,A
+//  114 		frame[1] = 0x01;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  115 		frame[2] = ZE03_CMD_MODE_CHANGE;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x78
+        MOVX    @DPTR,A
+//  116 		frame[3] = ZE03_MODE_PASSTIVE;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x4
+        MOVX    @DPTR,A
+//  117 		frame[4] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  118 		frame[5] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  119 		frame[6] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  120 		frame[7] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  121 		frame[8] = 0x83;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#-0x7d
+        MOVX    @DPTR,A
+//  122 		break;
+        SJMP    ??ZE03_buildframe_3
+//  123 	case ZE03_CMD_READ:
+//  124 		frame[0] = 0xff;
+??ZE03_buildframe_2:
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOV     A,#-0x1
+        MOVX    @DPTR,A
+//  125 		frame[1] = 0x01;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  126 		frame[2] = ZE03_CMD_READ;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#-0x7a
+        MOVX    @DPTR,A
+//  127 		frame[3] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  128 		frame[4] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  129 		frame[5] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  130 		frame[6] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  131 		frame[7] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  132 		frame[8] = 0x79;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x79
+        MOVX    @DPTR,A
+//  133 		break;
+//  134 	default:
+//  135 		break;
+//  136 	}
+//  137 }
+??ZE03_buildframe_3:
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock3
+//  138 
+//  139 //======================================================================
+//  140 //函数名称：ZE03_datarec
+//  141 //函数参数：databuf:数据接收缓存
+//  142 //函数返回：接收成功：0 ；接收失败：0x12
+//  143 //功能概要：接收传感器原始读数
+//  144 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  145 unsigned char ZE03_recdata(unsigned char *databuf)
+ZE03_recdata:
+          CFI Block cfiBlock4 Using cfiCommon0
+          CFI Function ZE03_recdata
+        CODE
+//  146 {
+        FUNCALL ZE03_recdata, ZE03_control
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL ZE03_recdata, HalUARTRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     ?V2,R2
+        MOV     ?V3,R3
+//  147 	unsigned char lrc, i;
+//  148 	unsigned int datasum = 0;
+        MOV     ?V0,#0x0
+        MOV     ?V1,#0x0
+//  149         ZE03_control(ZE03_CMD_READ);
+        ; Setup parameters for call to function ZE03_control
+        MOV     R2,#-0x7a
+        MOV     R3,#0x0
+        LCALL   `??ZE03_control::?relay`; Banked call to: ZE03_control
+        MOV     A,R1
+//  150 	//接收传感器的数据
+//  151         i=HalUARTRead(0, databuf, ZE03_LENTH_DATA);
+        ; Setup parameters for call to function HalUARTRead
+        MOV     R4,#0x9
+        MOV     R5,#0x0
+        MOV     R2,?V2
+        MOV     R3,?V3
+        MOV     R1,#0x0
+        LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+        MOV     A,R2
+        MOV     R6,A
+//  152 
+//  153 	//计算校验和
+//  154 	for(i = 0; i < (ZE03_LENTH_DATA -1) ; i++)
+        MOV     R6,#0x0
+??ZE03_recdata_0:
+        MOV     A,R6
+        CLR     C
+        SUBB    A,#0x8
+        JNC     ??ZE03_recdata_1
+//  155 	{
+//  156 		datasum += databuf[i];
+        MOV     A,R6
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V2
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,?V3
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V0
+        ADD     A,R0
+        MOV     ?V0,A
+        MOV     A,?V1
+        ADDC    A,R1
+        MOV     ?V1,A
+//  157 	}
+        INC     R6
+        SJMP    ??ZE03_recdata_0
+//  158         
+//  159         lrc = databuf[i];
+??ZE03_recdata_1:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V2
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,?V3
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R7,A
+//  160 	//如果校验错误，返回错误码
+//  161 	if(datasum != lrc)
+        MOV     A,R7
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R0
+        XRL     A,?V0
+        JNZ     ??ZE03_recdata_2
+        MOV     A,R1
+        XRL     A,?V1
+??ZE03_recdata_2:
+        JZ      ??ZE03_recdata_3
+//  162         {
+//  163 		return ZE03_ERR_READFAIL;
+        MOV     R1,#0x45
+        SJMP    ??ZE03_recdata_4
+//  164         }
+//  165 
+//  166 	return 0;
+??ZE03_recdata_3:
+        MOV     R1,#0x0
+??ZE03_recdata_4:
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+//  167 }
+          CFI EndBlock cfiBlock4
+//  168 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  169 unsigned char ZE03_Read_Str(unsigned char *buf)
+ZE03_Read_Str:
+          CFI Block cfiBlock5 Using cfiCommon0
+          CFI Function ZE03_Read_Str
+        CODE
+//  170 {
+        FUNCALL ZE03_Read_Str, ZE03_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 21, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 21, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL ZE03_Read_Str, sprintf
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 9
+        MOV     A,#-0x9
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 21)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+//  171   unsigned char tmp[ZE03_LENTH_DATA];
+//  172   unsigned int o2;//浓度百分比
+//  173   unsigned int cnt = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+//  174   while(ZE03_recdata(tmp) == ZE03_ERR_READFAIL)
+??ZE03_Read_Str_0:
+        ; Setup parameters for call to function ZE03_recdata
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??ZE03_recdata::?relay`; Banked call to: ZE03_recdata
+        MOV     A,R1
+        XRL     A,#0x45
+        JNZ     ??ZE03_Read_Str_1
+//  175   {
+//  176     if(++cnt > 100)
+        INC     R6
+        MOV     A,R6
+        JNZ     ??ZE03_Read_Str_2
+        INC     R7
+??ZE03_Read_Str_2:
+        CLR     C
+        MOV     A,R6
+        SUBB    A,#0x65
+        MOV     A,R7
+        SUBB    A,#0x0
+        JC      ??ZE03_Read_Str_0
+//  177       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        SJMP    ??ZE03_Read_Str_3
+//  178   }
+//  179   o2 = (tmp[2]<<8) + tmp[3];
+??ZE03_Read_Str_1:
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V2,R0
+        MOV     ?V3,R1
+//  180       
+//  181   if(o2>0 && o2<25)     //0%~25%
+        MOV     A,?V2
+        ORL     A,?V3
+        JZ      ??ZE03_Read_Str_4
+        CLR     C
+        MOV     A,?V2
+        SUBB    A,#0x19
+        MOV     A,?V3
+        SUBB    A,#0x0
+        JNC     ??ZE03_Read_Str_4
+//  182   {
+//  183     sprintf((char*)buf, "%3d", o2);
+        ; Setup parameters for call to function sprintf
+        MOV     R0,#?V2
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 23)
+        MOV     R4,#`?<Constant "%3d">` & 0xff
+        MOV     R5,#(`?<Constant "%3d">` >> 8) & 0xff
+        MOV     R2,?V0
+        MOV     R3,?V1
+        LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 21)
+//  184     return 0;
+        MOV     R1,#0x0
+        SJMP    ??ZE03_Read_Str_3
+//  185   }
+//  186   return 1;              //should not arrive here
+??ZE03_Read_Str_4:
+        MOV     R1,#0x1
+??ZE03_Read_Str_3:
+        MOV     A,#0x9
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 12)
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+//  187 }
+          CFI EndBlock cfiBlock5
+//  188 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  189 unsigned char ZE03_Read(unsigned char *buf)
+ZE03_Read:
+          CFI Block cfiBlock6 Using cfiCommon0
+          CFI Function ZE03_Read
+        CODE
+//  190 {
+        FUNCALL ZE03_Read, ZE03_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 21, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 21, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 9
+        MOV     A,#-0x9
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 21)
+        MOV     ?V2,R2
+        MOV     ?V3,R3
+//  191   unsigned char tmp[ZE03_LENTH_DATA];
+//  192   unsigned int o2;//浓度百分比
+//  193   unsigned int cnt = 0;
+        MOV     ?V0,#0x0
+        MOV     ?V1,#0x0
+//  194   while(ZE03_recdata(tmp) == ZE03_ERR_READFAIL)
+??ZE03_Read_0:
+        ; Setup parameters for call to function ZE03_recdata
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??ZE03_recdata::?relay`; Banked call to: ZE03_recdata
+        MOV     A,R1
+        XRL     A,#0x45
+        JNZ     ??ZE03_Read_1
+//  195   {
+//  196     if(++cnt > 100)
+        INC     ?V0
+        MOV     A,?V0
+        JNZ     ??ZE03_Read_2
+        INC     ?V1
+??ZE03_Read_2:
+        CLR     C
+        MOV     A,?V0
+        SUBB    A,#0x65
+        MOV     A,?V1
+        SUBB    A,#0x0
+        JC      ??ZE03_Read_0
+//  197       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        SJMP    ??ZE03_Read_3
+//  198   }
+//  199   o2 = (tmp[2]<<8) + tmp[3];
+??ZE03_Read_1:
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+//  200       
+//  201   if(o2>0 && o2<25)     //0%~25%
+        MOV     A,R6
+        ORL     A,R7
+        JZ      ??ZE03_Read_4
+        CLR     C
+        MOV     A,R6
+        SUBB    A,#0x19
+        MOV     A,R7
+        SUBB    A,#0x0
+        JNC     ??ZE03_Read_4
+//  202   {
+//  203     buf[0]=o2 >> 8;
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        CLR     A
+        XCH     A,R1
+        MOV     R0,A
+        MOV     A,R0
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  204     buf[1]=o2;
+        MOV     A,R6
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  205     return 0;
+        MOV     R1,#0x0
+        SJMP    ??ZE03_Read_3
+//  206   }
+//  207   return 1;              //should not arrive here
+??ZE03_Read_4:
+        MOV     R1,#0x1
+??ZE03_Read_3:
+        MOV     A,#0x9
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 12)
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+//  208 }
+          CFI EndBlock cfiBlock6
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_Init::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_CheckACK::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_CheckACK
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_control::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_control
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_buildframe::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_buildframe
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_recdata::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_recdata
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_Read_Str::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_Read_Str
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??ZE03_Read::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    ZE03_Read
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0, 0, 0, 0, 0, 0, 0, 0}>`:
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+`?<Constant "%3d">`:
+        DB "%3d"
+
+        END
+//  209 
+// 
+// 955 bytes in segment BANKED_CODE
+//  42 bytes in segment BANK_RELAYS
+//  13 bytes in segment XDATA_ROM_C
+// 
+// 997 bytes of CODE  memory
+//  13 bytes of CONST memory
+//
+//Errors: none
+//Warnings: none

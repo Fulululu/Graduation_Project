@@ -1,0 +1,521 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         31/Mar/2017  15:04:31 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\Source\MQ2.c               #
+#    Command line       =  -f D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools #
+#                          \CC2530DB\f8wEndev.cfg (-DCPU32MHZ                 #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC #
+#                          2530DB\f8wConfig.cfg (-DZIGBEEPRO -DSECURE=0       #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0x333;                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=TRUE -DPOLL_RATE=1000         #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 D:\Zigbeespace\20170317_3\Z #
+#                          Stack-2.5.1a\Projects\zstack\Samples\SampleApp\Sou #
+#                          rce\MQ2.c -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK  #
+#                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D                   #
+#                          LCD_SUPPORTED=DEBUG -lC D:\Zigbeespace\20170317_3\ #
+#                          ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC #
+#                          2530DB\EndDeviceEB\List\ -lA                       #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\ #
+#                           --diag_suppress Pe001,Pa010 -o                    #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\  #
+#                          -e --no_cse --no_unroll --no_inline                #
+#                          --no_code_motion --no_tbaa --debug --core=plain    #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I D:\Zigbeespace\20170317_3\ #
+#                          ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC #
+#                          2530DB\ -I D:\Zigbeespace\20170317_3\ZStack-2.5.1a #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\Sou #
+#                          rce\ -I D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Pr #
+#                          ojects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ #
+#                          ZMain\TI2530DB\ -I D:\Zigbeespace\20170317_3\ZStac #
+#                          k-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530D #
+#                          B\..\..\..\..\..\Components\hal\include\ -I        #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\hal\target\CC2530EB\ -I                   #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\mac\include\ -I                           #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\mac\high_level\ -I                        #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\mac\low_level\srf04\ -I                   #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\mac\low_level\srf04\single_chip\ -I       #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\mt\ -I D:\Zigbeespace\20170317_3\ZStack-2 #
+#                          .5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\. #
+#                          .\..\..\..\..\Components\osal\include\ -I          #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\services\saddr\ -I                        #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\services\sdata\ -I                        #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\stack\af\ -I D:\Zigbeespace\20170317_3\ZS #
+#                          tack-2.5.1a\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\Components\stack\nwk\ -I       #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\stack\sapi\ -I D:\Zigbeespace\20170317_3\ #
+#                          ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC #
+#                          2530DB\..\..\..\..\..\Components\stack\sec\ -I     #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\stack\sys\ -I D:\Zigbeespace\20170317_3\Z #
+#                          Stack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\Components\stack\zdo\ -I      #
+#                          D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Co #
+#                          mponents\zmac\ -I D:\Zigbeespace\20170317_3\ZStack #
+#                          -2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB #
+#                          \..\..\..\..\..\Components\zmac\f8w\ -On           #
+#                          --require_prototypes                               #
+#    List file          =  D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\ #
+#                          MQ2.lst                                            #
+#    Object file        =  D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\M #
+#                          Q2.r51                                             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\Zigbeespace\20170317_3\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\MQ2.c
+      1          #include"MQ2.h"
+
+   \                                 In  segment SFR_AN, at 0x88
+   \   union <unnamed> volatile __sfr _A_TCON
+   \                     _A_TCON:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb6
+   \   unsigned char volatile __sfr ADCCON3
+   \                     ADCCON3:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xba
+   \   unsigned char volatile __sfr ADCL
+   \                     ADCL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xbb
+   \   unsigned char volatile __sfr ADCH
+   \                     ADCH:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include"OnBoard.h"
+      3          #include"hal_adc.h"
+      4          
+      5          #define HAL_ADC_DEC_064     0x00    /* Decimate by 64 : 8-bit resolution */
+      6          #define HAL_ADC_DEC_128     0x10    /* Decimate by 128 : 10-bit resolution */
+      7          #define HAL_ADC_DEC_256     0x20    /* Decimate by 256 : 12-bit resolution */
+      8          #define HAL_ADC_DEC_512     0x30    /* Decimate by 512 : 14-bit resolution */
+      9          #define HAL_ADC_DEC_BITS    0x30    /* Bits [5:4] */
+     10          
+     11          
+     12          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     13          uint16 ReadGasData( void )
+   \                     ReadGasData:
+     14          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     15            uint16 reading = 0;
+   \   000004   7A00         MOV     R2,#0x0
+   \   000006   7B00         MOV     R3,#0x0
+     16            
+     17            P0DIR &= ~0x40;  // 设置P0.6为输入方式
+   \   000008   53FDBF       ANL     0xfd,#0xbf
+     18            //asm("NOP");asm("NOP");
+     19            
+     20            /* Clear ADC interrupt flag */
+     21            ADCIF = 0;
+   \   00000B   C28D         CLR     0x88.5
+     22            
+     23            //64抽取率,即7位有效分辨率(AD转换出的电压范围0~128,对应传感器浓度范围),通道6
+     24            ADCCON3 = (0x40 | HAL_ADC_DEC_064 | HAL_ADC_CHANNEL_6);
+   \   00000D   75B646       MOV     0xb6,#0x46
+     25            
+     26            /* Wait for the conversion to finish */
+     27            while ( !ADCIF );
+   \                     ??ReadGasData_0:
+   \   000010   A28D         MOV     C,0x88.5
+   \   000012   50FC         JNC     ??ReadGasData_0
+     28            
+     29            asm("NOP");asm("NOP");
+   \   000014   00           NOP
+   \   000015   00           NOP
+     30            
+     31            /* Read the result */
+     32            reading = ADCL;
+   \   000016   A8BA         MOV     R0,0xba
+   \   000018   8882         MOV     DPL,R0
+   \   00001A   758300       MOV     DPH,#0x0
+   \   00001D   AA82         MOV     R2,DPL
+   \   00001F   AB83         MOV     R3,DPH
+     33            reading |= (int16) (ADCH << 8);
+   \   000021   E5BB         MOV     A,0xbb
+   \   000023   F8           MOV     R0,A
+   \   000024   7900         MOV     R1,#0x0
+   \   000026   E4           CLR     A
+   \   000027   C8           XCH     A,R0
+   \   000028   F9           MOV     R1,A
+   \   000029   E8           MOV     A,R0
+   \   00002A   4A           ORL     A,R2
+   \   00002B   FA           MOV     R2,A
+   \   00002C   E9           MOV     A,R1
+   \   00002D   4B           ORL     A,R3
+   \   00002E   FB           MOV     R3,A
+     34            reading >>= 8;
+   \   00002F   E4           CLR     A
+   \   000030   CB           XCH     A,R3
+   \   000031   FA           MOV     R2,A
+     35              
+     36            return reading;
+   \   000032   D083         POP     DPH
+   \   000034   D082         POP     DPL
+   \   000036   02....       LJMP    ?BRET
+   \   000039                REQUIRE P0DIR
+   \   000039                REQUIRE _A_TCON
+   \   000039                REQUIRE ADCCON3
+   \   000039                REQUIRE ADCL
+   \   000039                REQUIRE ADCH
+     37          }
+     38          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     39          char mq2_value(char* GasData)
+   \                     mq2_value:
+     40          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+     41            uint16 nGasData=0;
+   \   000009   7E00         MOV     R6,#0x0
+   \   00000B   7F00         MOV     R7,#0x0
+     42            nGasData = ReadGasData();
+   \   00000D                ; Setup parameters for call to function ReadGasData
+   \   00000D   12....       LCALL   ??ReadGasData?relay
+   \   000010   8A..         MOV     ?V0 + 2,R2
+   \   000012   8B..         MOV     ?V0 + 3,R3
+   \   000014   AE..         MOV     R6,?V0 + 2
+   \   000016   AF..         MOV     R7,?V0 + 3
+     43              if(nGasData / 100 == 0)
+   \   000018   EE           MOV     A,R6
+   \   000019   F8           MOV     R0,A
+   \   00001A   EF           MOV     A,R7
+   \   00001B   F9           MOV     R1,A
+   \   00001C   7A64         MOV     R2,#0x64
+   \   00001E   7B00         MOV     R3,#0x0
+   \   000020   12....       LCALL   ?US_DIV_MOD
+   \   000023   88..         MOV     ?V0 + 2,R0
+   \   000025   89..         MOV     ?V0 + 3,R1
+   \   000027   E5..         MOV     A,?V0 + 2
+   \   000029   45..         ORL     A,?V0 + 3
+   \   00002B   7027         JNZ     ??mq2_value_0
+     44              {
+     45                GasData[0] = ' ';//当等于0时，防止除的结果是乱码
+   \   00002D   85..82       MOV     DPL,?V0 + 0
+   \   000030   85..83       MOV     DPH,?V0 + 1
+   \   000033   7420         MOV     A,#0x20
+   \   000035   F0           MOVX    @DPTR,A
+     46              }
+     47                else        //三位数时
+     48                { 
+     49                  GasData[0] = nGasData / 100 + '0';
+     50                  //电压十位
+     51                  GasData[1] = nGasData / 10%10 + '0';      
+     52                  //电压个位
+     53                  GasData[2] = nGasData % 10 + '0'; 
+     54                  GasData[3] = '\0';
+     55                  return 3;//返回位数
+     56                }   
+     57              
+     58                            //无三位数，则判断十位
+     59              if(nGasData / 10%10 == 0)
+   \   000036   EE           MOV     A,R6
+   \   000037   F8           MOV     R0,A
+   \   000038   EF           MOV     A,R7
+   \   000039   F9           MOV     R1,A
+   \   00003A   7A0A         MOV     R2,#0xa
+   \   00003C   7B00         MOV     R3,#0x0
+   \   00003E   12....       LCALL   ?US_DIV_MOD
+   \   000041   7A0A         MOV     R2,#0xa
+   \   000043   7B00         MOV     R3,#0x0
+   \   000045   12....       LCALL   ?US_DIV_MOD
+   \   000048   8A..         MOV     ?V0 + 2,R2
+   \   00004A   8B..         MOV     ?V0 + 3,R3
+   \   00004C   E5..         MOV     A,?V0 + 2
+   \   00004E   45..         ORL     A,?V0 + 3
+   \   000050   707D         JNZ     ??mq2_value_1
+   \   000052   805A         SJMP    ??mq2_value_2
+   \                     ??mq2_value_0:
+   \   000054   EE           MOV     A,R6
+   \   000055   F8           MOV     R0,A
+   \   000056   EF           MOV     A,R7
+   \   000057   F9           MOV     R1,A
+   \   000058   7A64         MOV     R2,#0x64
+   \   00005A   7B00         MOV     R3,#0x0
+   \   00005C   12....       LCALL   ?US_DIV_MOD
+   \   00005F   E8           MOV     A,R0
+   \   000060   2430         ADD     A,#0x30
+   \   000062   85..82       MOV     DPL,?V0 + 0
+   \   000065   85..83       MOV     DPH,?V0 + 1
+   \   000068   F0           MOVX    @DPTR,A
+   \   000069   EE           MOV     A,R6
+   \   00006A   F8           MOV     R0,A
+   \   00006B   EF           MOV     A,R7
+   \   00006C   F9           MOV     R1,A
+   \   00006D   7A0A         MOV     R2,#0xa
+   \   00006F   7B00         MOV     R3,#0x0
+   \   000071   12....       LCALL   ?US_DIV_MOD
+   \   000074   7A0A         MOV     R2,#0xa
+   \   000076   7B00         MOV     R3,#0x0
+   \   000078   12....       LCALL   ?US_DIV_MOD
+   \   00007B   EA           MOV     A,R2
+   \   00007C   2430         ADD     A,#0x30
+   \   00007E   85..82       MOV     DPL,?V0 + 0
+   \   000081   85..83       MOV     DPH,?V0 + 1
+   \   000084   A3           INC     DPTR
+   \   000085   F0           MOVX    @DPTR,A
+   \   000086   EE           MOV     A,R6
+   \   000087   F8           MOV     R0,A
+   \   000088   EF           MOV     A,R7
+   \   000089   F9           MOV     R1,A
+   \   00008A   7A0A         MOV     R2,#0xa
+   \   00008C   7B00         MOV     R3,#0x0
+   \   00008E   12....       LCALL   ?US_DIV_MOD
+   \   000091   EA           MOV     A,R2
+   \   000092   2430         ADD     A,#0x30
+   \   000094   85..82       MOV     DPL,?V0 + 0
+   \   000097   85..83       MOV     DPH,?V0 + 1
+   \   00009A   A3           INC     DPTR
+   \   00009B   A3           INC     DPTR
+   \   00009C   F0           MOVX    @DPTR,A
+   \   00009D   85..82       MOV     DPL,?V0 + 0
+   \   0000A0   85..83       MOV     DPH,?V0 + 1
+   \   0000A3   A3           INC     DPTR
+   \   0000A4   A3           INC     DPTR
+   \   0000A5   A3           INC     DPTR
+   \   0000A6   7400         MOV     A,#0x0
+   \   0000A8   F0           MOVX    @DPTR,A
+   \   0000A9   7903         MOV     R1,#0x3
+   \   0000AB   02....       LJMP    ??mq2_value_3 & 0xFFFF
+     60              {
+     61                GasData[1] = ' '; 
+   \                     ??mq2_value_2:
+   \   0000AE   85..82       MOV     DPL,?V0 + 0
+   \   0000B1   85..83       MOV     DPH,?V0 + 1
+   \   0000B4   A3           INC     DPTR
+   \   0000B5   7420         MOV     A,#0x20
+   \   0000B7   F0           MOVX    @DPTR,A
+     62              }
+     63                else        //两位数时
+     64                { //电压十位
+     65                  GasData[1] = nGasData / 10%10 + '0';      
+     66                  //电压个位
+     67                  GasData[2] = nGasData % 10 + '0'; 
+     68                  GasData[3] = '\0';
+     69                  return 2;
+     70                }
+     71              
+     72                            //无两位数，则判断个位    
+     73              if(nGasData % 10 == 0)
+   \   0000B8   EE           MOV     A,R6
+   \   0000B9   F8           MOV     R0,A
+   \   0000BA   EF           MOV     A,R7
+   \   0000BB   F9           MOV     R1,A
+   \   0000BC   7A0A         MOV     R2,#0xa
+   \   0000BE   7B00         MOV     R3,#0x0
+   \   0000C0   12....       LCALL   ?US_DIV_MOD
+   \   0000C3   8A..         MOV     ?V0 + 2,R2
+   \   0000C5   8B..         MOV     ?V0 + 3,R3
+   \   0000C7   E5..         MOV     A,?V0 + 2
+   \   0000C9   45..         ORL     A,?V0 + 3
+   \   0000CB   7055         JNZ     ??mq2_value_4
+   \   0000CD   8044         SJMP    ??mq2_value_5
+   \                     ??mq2_value_1:
+   \   0000CF   EE           MOV     A,R6
+   \   0000D0   F8           MOV     R0,A
+   \   0000D1   EF           MOV     A,R7
+   \   0000D2   F9           MOV     R1,A
+   \   0000D3   7A0A         MOV     R2,#0xa
+   \   0000D5   7B00         MOV     R3,#0x0
+   \   0000D7   12....       LCALL   ?US_DIV_MOD
+   \   0000DA   7A0A         MOV     R2,#0xa
+   \   0000DC   7B00         MOV     R3,#0x0
+   \   0000DE   12....       LCALL   ?US_DIV_MOD
+   \   0000E1   EA           MOV     A,R2
+   \   0000E2   2430         ADD     A,#0x30
+   \   0000E4   85..82       MOV     DPL,?V0 + 0
+   \   0000E7   85..83       MOV     DPH,?V0 + 1
+   \   0000EA   A3           INC     DPTR
+   \   0000EB   F0           MOVX    @DPTR,A
+   \   0000EC   EE           MOV     A,R6
+   \   0000ED   F8           MOV     R0,A
+   \   0000EE   EF           MOV     A,R7
+   \   0000EF   F9           MOV     R1,A
+   \   0000F0   7A0A         MOV     R2,#0xa
+   \   0000F2   7B00         MOV     R3,#0x0
+   \   0000F4   12....       LCALL   ?US_DIV_MOD
+   \   0000F7   EA           MOV     A,R2
+   \   0000F8   2430         ADD     A,#0x30
+   \   0000FA   85..82       MOV     DPL,?V0 + 0
+   \   0000FD   85..83       MOV     DPH,?V0 + 1
+   \   000100   A3           INC     DPTR
+   \   000101   A3           INC     DPTR
+   \   000102   F0           MOVX    @DPTR,A
+   \   000103   85..82       MOV     DPL,?V0 + 0
+   \   000106   85..83       MOV     DPH,?V0 + 1
+   \   000109   A3           INC     DPTR
+   \   00010A   A3           INC     DPTR
+   \   00010B   A3           INC     DPTR
+   \   00010C   7400         MOV     A,#0x0
+   \   00010E   F0           MOVX    @DPTR,A
+   \   00010F   7902         MOV     R1,#0x2
+   \   000111   8034         SJMP    ??mq2_value_3
+     74              {
+     75                GasData[2] = ' ';
+   \                     ??mq2_value_5:
+   \   000113   85..82       MOV     DPL,?V0 + 0
+   \   000116   85..83       MOV     DPH,?V0 + 1
+   \   000119   A3           INC     DPTR
+   \   00011A   A3           INC     DPTR
+   \   00011B   7420         MOV     A,#0x20
+   \   00011D   F0           MOVX    @DPTR,A
+     76              }
+     77                else        //一位数时
+     78                {
+     79                  GasData[2] = nGasData % 10 + '0';
+     80                  GasData[3] = '\0';
+     81                  return 1;
+     82                } 
+     83          //  }
+     84            return 0;
+   \   00011E   7900         MOV     R1,#0x0
+   \   000120   8025         SJMP    ??mq2_value_3
+   \                     ??mq2_value_4:
+   \   000122   EE           MOV     A,R6
+   \   000123   F8           MOV     R0,A
+   \   000124   EF           MOV     A,R7
+   \   000125   F9           MOV     R1,A
+   \   000126   7A0A         MOV     R2,#0xa
+   \   000128   7B00         MOV     R3,#0x0
+   \   00012A   12....       LCALL   ?US_DIV_MOD
+   \   00012D   EA           MOV     A,R2
+   \   00012E   2430         ADD     A,#0x30
+   \   000130   85..82       MOV     DPL,?V0 + 0
+   \   000133   85..83       MOV     DPH,?V0 + 1
+   \   000136   A3           INC     DPTR
+   \   000137   A3           INC     DPTR
+   \   000138   F0           MOVX    @DPTR,A
+   \   000139   85..82       MOV     DPL,?V0 + 0
+   \   00013C   85..83       MOV     DPH,?V0 + 1
+   \   00013F   A3           INC     DPTR
+   \   000140   A3           INC     DPTR
+   \   000141   A3           INC     DPTR
+   \   000142   7400         MOV     A,#0x0
+   \   000144   F0           MOVX    @DPTR,A
+   \   000145   7901         MOV     R1,#0x1
+   \                     ??mq2_value_3:
+   \   000147   7F04         MOV     R7,#0x4
+   \   000149   02....       LJMP    ?BANKED_LEAVE_XDATA
+     85          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ReadGasData?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ReadGasData
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??mq2_value?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    mq2_value
+
+   Maximum stack usage in bytes:
+
+     Function         ISTACK PSTACK XSTACK
+     --------         ------ ------ ------
+     ReadGasData          2      0     12
+     mq2_value            1      0     12
+       -> ReadGasData     0      0     24
+
+
+   Segment part sizes:
+
+     Function/Label      Bytes
+     --------------      -----
+     _A_TCON                1
+     ADCCON3                1
+     ADCL                   1
+     ADCH                   1
+     P0DIR                  1
+     ReadGasData           57
+     mq2_value            332
+     ??ReadGasData?relay    6
+     ??mq2_value?relay      6
+
+ 
+ 389 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
+   5 bytes in segment SFR_AN
+ 
+ 401 bytes of CODE memory
+   0 bytes of DATA memory (+ 5 bytes shared)
+
+Errors: none
+Warnings: none

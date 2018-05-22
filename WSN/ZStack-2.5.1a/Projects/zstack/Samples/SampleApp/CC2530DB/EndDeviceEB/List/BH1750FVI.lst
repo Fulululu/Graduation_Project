@@ -1,0 +1,490 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                22/May/2018  20:40:12
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750FVI.c
+#    Command line       =  
+#        -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+#        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750FVI.c
+#        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D
+#        xMT_ZDO_FUNC -D xLCD_SUPPORTED=DEBUG -D POWER_SAVING -lC
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+#        -lA
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+#        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --debug
+#        --core=plain --dptr=16,1 --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\ -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -On --require_prototypes
+#    List file          =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\BH1750FVI.lst
+#    Object file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\BH1750FVI.r51
+#
+###############################################################################
+
+D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750FVI.c
+      1          /*
+      2          * Copyright (c) 2017,FAFU
+      3          * All rights reserved.
+      4          *
+      5          * File Name£ºBH1750FVI.c
+      6          * Abstract£ºBH1750 driver for CC2530
+      7          *
+      8          * Current Version£º1.0
+      9          * Author£ºygf
+     10          * Finish Date£º20171024
+     11          *
+     12          * Superseded Version£º1.0
+     13          * Authorship £ºygf
+     14          * Finish Date£º20171024
+     15          */ 
+     16          
+     17          #include "BH1750FVI.h"
+     18          
+     19          //A0------GND
+     20          
+     21          /*Private functions*/
+     22          
+     23          /*Exported functions*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     24          void BH1750_Init(void)
+   \                     BH1750_Init:
+     25          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     26             I2C_ISendByte(BH1750ADDR,POWER); 
+   \   000004                ; Setup parameters for call to function I2C_ISendByte
+   \   000004   7A01         MOV     R2,#0x1
+   \   000006   7946         MOV     R1,#0x46
+   \   000008   12....       LCALL   `??I2C_ISendByte::?relay`; Banked call to: I2C_ISendByte
+   \   00000B   E9           MOV     A,R1
+     27             I2C_ISendByte(BH1750ADDR,CHMODE);
+   \   00000C                ; Setup parameters for call to function I2C_ISendByte
+   \   00000C   7A10         MOV     R2,#0x10
+   \   00000E   7946         MOV     R1,#0x46
+   \   000010   12....       LCALL   `??I2C_ISendByte::?relay`; Banked call to: I2C_ISendByte
+   \   000013   E9           MOV     A,R1
+     28             Delay_ms(180);
+   \   000014                ; Setup parameters for call to function Delay_ms
+   \   000014   7AB4         MOV     R2,#-0x4c
+   \   000016   7B00         MOV     R3,#0x0
+   \   000018   12....       LCALL   `??Delay_ms::?relay` ; Banked call to: Delay_ms
+     29          }
+   \   00001B   D083         POP     DPH
+   \   00001D   D082         POP     DPL
+   \   00001F   02....       LJMP    ?BRET
+     30          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     31          unsigned char BH1750_Read_Str(unsigned char *buf)
+   \                     BH1750_Read_Str:
+     32          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0,R2
+   \   00000C   8B..         MOV     ?V1,R3
+     33             unsigned char I2C_buf[2];
+     34             unsigned int bh1750sum = 0;
+   \   00000E   7E00         MOV     R6,#0x0
+   \   000010   7F00         MOV     R7,#0x0
+     35             unsigned char timeout = 0;
+   \   000012   75..00       MOV     ?V2,#0x0
+     36             while(I2C_IRcvStrExt(0x46,I2C_buf,2) == 0)      //16bit data in total
+   \                     ??BH1750_Read_Str_0:
+   \   000015                ; Setup parameters for call to function I2C_IRcvStrExt
+   \   000015   7C02         MOV     R4,#0x2
+   \   000017   AA..         MOV     R2,?XSP + 0
+   \   000019   AB..         MOV     R3,?XSP + 1
+   \   00001B   7946         MOV     R1,#0x46
+   \   00001D   12....       LCALL   `??I2C_IRcvStrExt::?relay`; Banked call to: I2C_IRcvStrExt
+   \   000020   E9           MOV     A,R1
+   \   000021   700E         JNZ     ??BH1750_Read_Str_1
+     37             {
+     38                if(++timeout >= 10) return 1;              //timeout,sensor no response
+   \   000023   05..         INC     ?V2
+   \   000025   E5..         MOV     A,?V2
+   \   000027   C3           CLR     C
+   \   000028   940A         SUBB    A,#0xa
+   \   00002A   40E9         JC      ??BH1750_Read_Str_0
+   \   00002C   7901         MOV     R1,#0x1
+   \   00002E   02....       LJMP    ??BH1750_Read_Str_2 & 0xFFFF
+     39             }
+     40             Delay_ms(180);
+   \                     ??BH1750_Read_Str_1:
+   \   000031                ; Setup parameters for call to function Delay_ms
+   \   000031   7AB4         MOV     R2,#-0x4c
+   \   000033   7B00         MOV     R3,#0x0
+   \   000035   12....       LCALL   `??Delay_ms::?relay` ; Banked call to: Delay_ms
+     41             bh1750sum=I2C_buf[0];                      //data conbine
+   \   000038   85..82       MOV     DPL,?XSP + 0
+   \   00003B   85..83       MOV     DPH,?XSP + 1
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   F8           MOV     R0,A
+   \   000040   7900         MOV     R1,#0x0
+   \   000042   E8           MOV     A,R0
+   \   000043   FE           MOV     R6,A
+   \   000044   E9           MOV     A,R1
+   \   000045   FF           MOV     R7,A
+     42             bh1750sum=(bh1750sum<<8)+I2C_buf[1];
+   \   000046   E4           CLR     A
+   \   000047   CE           XCH     A,R6
+   \   000048   FF           MOV     R7,A
+   \   000049   7401         MOV     A,#0x1
+   \   00004B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00004E   E0           MOVX    A,@DPTR
+   \   00004F   F8           MOV     R0,A
+   \   000050   7900         MOV     R1,#0x0
+   \   000052   EE           MOV     A,R6
+   \   000053   28           ADD     A,R0
+   \   000054   FE           MOV     R6,A
+   \   000055   EF           MOV     A,R7
+   \   000056   39           ADDC    A,R1
+   \   000057   FF           MOV     R7,A
+     43             
+     44             buf[0]=bh1750sum/10000+0x30;               //to string
+   \   000058   EE           MOV     A,R6
+   \   000059   F8           MOV     R0,A
+   \   00005A   EF           MOV     A,R7
+   \   00005B   F9           MOV     R1,A
+   \   00005C   7A10         MOV     R2,#0x10
+   \   00005E   7B27         MOV     R3,#0x27
+   \   000060   12....       LCALL   ?US_DIV_MOD
+   \   000063   E8           MOV     A,R0
+   \   000064   2430         ADD     A,#0x30
+   \   000066   C0E0         PUSH    A
+   \   000068   85..82       MOV     DPL,?V0
+   \   00006B   85..83       MOV     DPH,?V1
+   \   00006E   D0E0         POP     A
+   \   000070   F0           MOVX    @DPTR,A
+     45             bh1750sum=bh1750sum%10000;
+   \   000071   EE           MOV     A,R6
+   \   000072   F8           MOV     R0,A
+   \   000073   EF           MOV     A,R7
+   \   000074   F9           MOV     R1,A
+   \   000075   7A10         MOV     R2,#0x10
+   \   000077   7B27         MOV     R3,#0x27
+   \   000079   12....       LCALL   ?US_DIV_MOD
+   \   00007C   8A..         MOV     ?V4,R2
+   \   00007E   8B..         MOV     ?V5,R3
+   \   000080   AE..         MOV     R6,?V4
+   \   000082   AF..         MOV     R7,?V5
+     46             buf[1]=bh1750sum/1000+0x30;
+   \   000084   EE           MOV     A,R6
+   \   000085   F8           MOV     R0,A
+   \   000086   EF           MOV     A,R7
+   \   000087   F9           MOV     R1,A
+   \   000088   7AE8         MOV     R2,#-0x18
+   \   00008A   7B03         MOV     R3,#0x3
+   \   00008C   12....       LCALL   ?US_DIV_MOD
+   \   00008F   E8           MOV     A,R0
+   \   000090   2430         ADD     A,#0x30
+   \   000092   C0E0         PUSH    A
+   \   000094   85..82       MOV     DPL,?V0
+   \   000097   85..83       MOV     DPH,?V1
+   \   00009A   A3           INC     DPTR
+   \   00009B   D0E0         POP     A
+   \   00009D   F0           MOVX    @DPTR,A
+     47             bh1750sum=bh1750sum%1000;
+   \   00009E   EE           MOV     A,R6
+   \   00009F   F8           MOV     R0,A
+   \   0000A0   EF           MOV     A,R7
+   \   0000A1   F9           MOV     R1,A
+   \   0000A2   7AE8         MOV     R2,#-0x18
+   \   0000A4   7B03         MOV     R3,#0x3
+   \   0000A6   12....       LCALL   ?US_DIV_MOD
+   \   0000A9   8A..         MOV     ?V4,R2
+   \   0000AB   8B..         MOV     ?V5,R3
+   \   0000AD   AE..         MOV     R6,?V4
+   \   0000AF   AF..         MOV     R7,?V5
+     48             buf[2]=bh1750sum/100+0x30;
+   \   0000B1   EE           MOV     A,R6
+   \   0000B2   F8           MOV     R0,A
+   \   0000B3   EF           MOV     A,R7
+   \   0000B4   F9           MOV     R1,A
+   \   0000B5   7A64         MOV     R2,#0x64
+   \   0000B7   7B00         MOV     R3,#0x0
+   \   0000B9   12....       LCALL   ?US_DIV_MOD
+   \   0000BC   E8           MOV     A,R0
+   \   0000BD   2430         ADD     A,#0x30
+   \   0000BF   C0E0         PUSH    A
+   \   0000C1   85..82       MOV     DPL,?V0
+   \   0000C4   85..83       MOV     DPH,?V1
+   \   0000C7   A3           INC     DPTR
+   \   0000C8   A3           INC     DPTR
+   \   0000C9   D0E0         POP     A
+   \   0000CB   F0           MOVX    @DPTR,A
+     49             bh1750sum=bh1750sum%100;
+   \   0000CC   EE           MOV     A,R6
+   \   0000CD   F8           MOV     R0,A
+   \   0000CE   EF           MOV     A,R7
+   \   0000CF   F9           MOV     R1,A
+   \   0000D0   7A64         MOV     R2,#0x64
+   \   0000D2   7B00         MOV     R3,#0x0
+   \   0000D4   12....       LCALL   ?US_DIV_MOD
+   \   0000D7   8A..         MOV     ?V4,R2
+   \   0000D9   8B..         MOV     ?V5,R3
+   \   0000DB   AE..         MOV     R6,?V4
+   \   0000DD   AF..         MOV     R7,?V5
+     50             buf[3]=bh1750sum/10+0x30;
+   \   0000DF   EE           MOV     A,R6
+   \   0000E0   F8           MOV     R0,A
+   \   0000E1   EF           MOV     A,R7
+   \   0000E2   F9           MOV     R1,A
+   \   0000E3   7A0A         MOV     R2,#0xa
+   \   0000E5   7B00         MOV     R3,#0x0
+   \   0000E7   12....       LCALL   ?US_DIV_MOD
+   \   0000EA   E8           MOV     A,R0
+   \   0000EB   2430         ADD     A,#0x30
+   \   0000ED   C0E0         PUSH    A
+   \   0000EF   85..82       MOV     DPL,?V0
+   \   0000F2   85..83       MOV     DPH,?V1
+   \   0000F5   A3           INC     DPTR
+   \   0000F6   A3           INC     DPTR
+   \   0000F7   A3           INC     DPTR
+   \   0000F8   D0E0         POP     A
+   \   0000FA   F0           MOVX    @DPTR,A
+     51             buf[4]=bh1750sum%10+0x30;
+   \   0000FB   EE           MOV     A,R6
+   \   0000FC   F8           MOV     R0,A
+   \   0000FD   EF           MOV     A,R7
+   \   0000FE   F9           MOV     R1,A
+   \   0000FF   7A0A         MOV     R2,#0xa
+   \   000101   7B00         MOV     R3,#0x0
+   \   000103   12....       LCALL   ?US_DIV_MOD
+   \   000106   EA           MOV     A,R2
+   \   000107   2430         ADD     A,#0x30
+   \   000109   C0E0         PUSH    A
+   \   00010B   85..82       MOV     DPL,?V0
+   \   00010E   85..83       MOV     DPH,?V1
+   \   000111   A3           INC     DPTR
+   \   000112   A3           INC     DPTR
+   \   000113   A3           INC     DPTR
+   \   000114   A3           INC     DPTR
+   \   000115   D0E0         POP     A
+   \   000117   F0           MOVX    @DPTR,A
+     52             Delay_ms(180);
+   \   000118                ; Setup parameters for call to function Delay_ms
+   \   000118   7AB4         MOV     R2,#-0x4c
+   \   00011A   7B00         MOV     R3,#0x0
+   \   00011C   12....       LCALL   `??Delay_ms::?relay` ; Banked call to: Delay_ms
+     53             return 0;
+   \   00011F   7900         MOV     R1,#0x0
+   \                     ??BH1750_Read_Str_2:
+   \   000121   7402         MOV     A,#0x2
+   \   000123   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000126   7F06         MOV     R7,#0x6
+   \   000128   02....       LJMP    ?BANKED_LEAVE_XDATA
+     54          }
+     55          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     56          unsigned char BH1750_Read(unsigned char buf[])
+   \                     BH1750_Read:
+     57          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+     58             unsigned char I2C_buf[2];
+     59             unsigned char timeout = 0;
+   \   00000E   75..00       MOV     ?V0,#0x0
+     60             while(I2C_IRcvStrExt(0x46,I2C_buf,2) == 0)      //16bit data in total
+   \                     ??BH1750_Read_0:
+   \   000011                ; Setup parameters for call to function I2C_IRcvStrExt
+   \   000011   7C02         MOV     R4,#0x2
+   \   000013   AA..         MOV     R2,?XSP + 0
+   \   000015   AB..         MOV     R3,?XSP + 1
+   \   000017   7946         MOV     R1,#0x46
+   \   000019   12....       LCALL   `??I2C_IRcvStrExt::?relay`; Banked call to: I2C_IRcvStrExt
+   \   00001C   E9           MOV     A,R1
+   \   00001D   700D         JNZ     ??BH1750_Read_1
+     61             {
+     62                if(++timeout >= 10) return 1;              //timeout,sensor no response
+   \   00001F   05..         INC     ?V0
+   \   000021   E5..         MOV     A,?V0
+   \   000023   C3           CLR     C
+   \   000024   940A         SUBB    A,#0xa
+   \   000026   40E9         JC      ??BH1750_Read_0
+   \   000028   7901         MOV     R1,#0x1
+   \   00002A   8030         SJMP    ??BH1750_Read_2
+     63             }
+     64             Delay_ms(180);
+   \                     ??BH1750_Read_1:
+   \   00002C                ; Setup parameters for call to function Delay_ms
+   \   00002C   7AB4         MOV     R2,#-0x4c
+   \   00002E   7B00         MOV     R3,#0x0
+   \   000030   12....       LCALL   `??Delay_ms::?relay` ; Banked call to: Delay_ms
+     65             buf[0]=I2C_buf[0];                      //data conbine
+   \   000033   85..82       MOV     DPL,?XSP + 0
+   \   000036   85..83       MOV     DPH,?XSP + 1
+   \   000039   E0           MOVX    A,@DPTR
+   \   00003A   C0E0         PUSH    A
+   \   00003C   8E82         MOV     DPL,R6
+   \   00003E   8F83         MOV     DPH,R7
+   \   000040   D0E0         POP     A
+   \   000042   F0           MOVX    @DPTR,A
+     66             buf[1]=I2C_buf[1];
+   \   000043   7401         MOV     A,#0x1
+   \   000045   12....       LCALL   ?XSTACK_DISP0_8
+   \   000048   E0           MOVX    A,@DPTR
+   \   000049   C0E0         PUSH    A
+   \   00004B   8E82         MOV     DPL,R6
+   \   00004D   8F83         MOV     DPH,R7
+   \   00004F   A3           INC     DPTR
+   \   000050   D0E0         POP     A
+   \   000052   F0           MOVX    @DPTR,A
+     67          
+     68             Delay_ms(180);
+   \   000053                ; Setup parameters for call to function Delay_ms
+   \   000053   7AB4         MOV     R2,#-0x4c
+   \   000055   7B00         MOV     R3,#0x0
+   \   000057   12....       LCALL   `??Delay_ms::?relay` ; Banked call to: Delay_ms
+     69             return 0;
+   \   00005A   7900         MOV     R1,#0x0
+   \                     ??BH1750_Read_2:
+   \   00005C   7402         MOV     A,#0x2
+   \   00005E   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000061   7F01         MOV     R7,#0x1
+   \   000063   02....       LJMP    ?BANKED_LEAVE_XDATA
+     70          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??BH1750_Init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BH1750_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??BH1750_Read_Str::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BH1750_Read_Str
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??BH1750_Read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BH1750_Read
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      2      0   BH1750_Init
+        2      0   -> Delay_ms
+        2      0   -> I2C_ISendByte
+      1     11   BH1750_Read
+        0     11   -> Delay_ms
+        0     11   -> I2C_IRcvStrExt
+      1     16   BH1750_Read_Str
+        0     16   -> Delay_ms
+        0     16   -> I2C_IRcvStrExt
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      34  BH1750_Init
+       6  BH1750_Init::?relay
+     102  BH1750_Read
+       6  BH1750_Read::?relay
+     299  BH1750_Read_Str
+       6  BH1750_Read_Str::?relay
+
+ 
+ 435 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+ 
+ 453 bytes of CODE memory
+
+Errors: none
+Warnings: none

@@ -72,15 +72,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id=showdata>
-									<td scope="col">{{realtime_data.UID_id}}</td>
-									<td>{{realtime_data.NODE}}</td>
-									<td>{{realtime_data.LIGHT}}</td>
-									<td>{{realtime_data.AIRTEMP}}</td>
-									<td>{{realtime_data.AIRHUMI}}</td>
-									<td>{{realtime_data.SOILTEMP}}</td>
-									<td>{{realtime_data.SOILHUMI}}</td>				  
+								{% for item in node_list %}
+								<tr id={{item.NODE}}>
+									<td scope="col">{{item.UID_id}}</td>
+									<td>{{item.NODE}}</td>
+									<td>{{item.LIGHT}}</td>
+									<td>{{item.AIRTEMP}}</td>
+									<td>{{item.AIRHUMI}}</td>
+									<td>{{item.SOILTEMP}}</td>
+									<td>{{item.SOILHUMI}}</td>				  
 								</tr>
+								{% endfor %}
 							</tbody>
 						</table>
 					</div>
@@ -100,8 +102,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate summary_list %}
-								{% for item in summary_list %}
+								{% paginate summary_objs %}
+								{% for item in summary_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -129,8 +131,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate light_list %}
-								{% for item in light_list %}
+								{% paginate light_objs %}
+								{% for item in light_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -153,8 +155,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate airtemp_list %}
-								{% for item in airtemp_list %}
+								{% paginate airtemp_objs %}
+								{% for item in airtemp_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -177,8 +179,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate airhumi_list %}
-								{% for item in airhumi_list %}
+								{% paginate airhumi_objs %}
+								{% for item in airhumi_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -201,8 +203,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate soiltemp_list %}
-								{% for item in soiltemp_list %}
+								{% paginate soiltemp_objs %}
+								{% for item in soiltemp_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -225,8 +227,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% paginate soilhumi_list %}
-								{% for item in soilhumi_list %}
+								{% paginate soilhumi_objs %}
+								{% for item in soilhumi_objs %}
 								<tr>
 								  <th scope="row">{{item.CREATETIME}}</th>
 								  <td>{{item.UID_id}}</td>
@@ -281,8 +283,10 @@
 			Copyright &copy; 2018 &mdash; TianC304@FAFU 
 		</div>
 	</div>
-   <!--h1>Ajax Test</h1>  
-   <p id="time"></p-->  
-   <div id="content"></div>  
+	<!--h1>Ajax Test</h1>  
+	<p id="time"></p>  
+	<p id="content1"></p>
+	<p id="content2"></p>
+	<p id="content3"></p-->  
 </body>
 </html>

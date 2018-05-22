@@ -1,0 +1,1660 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.1.3056 for 8051               25/Jun/2017  13:11:09
+// Copyright 2004-2015 IAR Systems AB.
+// Standalone license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c
+//    Command line       =  
+//        -f
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=TRUE
+//        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+//        -DREJOIN_POLL_RATE=440
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC
+//        -D LCD_SUPPORTED=DEBUG -lC
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+//        --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -On --require_prototypes
+//    List file          =  
+//        F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\dht22.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME dht22
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?V4
+        EXTERN ?V5
+        EXTERN ?V6
+        EXTERN ?V7
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?US_DIV_MOD
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+
+        PUBLIC `??dht22_delay_10us::?relay`
+        FUNCTION `??dht22_delay_10us::?relay`,0203H
+        PUBLIC `??dht22_delay_ms::?relay`
+        FUNCTION `??dht22_delay_ms::?relay`,0203H
+        PUBLIC `??dht22_delay_nus::?relay`
+        FUNCTION `??dht22_delay_nus::?relay`,0203H
+        PUBLIC `??dht22_read_byte::?relay`
+        FUNCTION `??dht22_read_byte::?relay`,0203H
+        PUBLIC `??dht22_value::?relay`
+        FUNCTION `??dht22_value::?relay`,0203H
+        PUBWEAK P0DIR
+        PUBWEAK _A_P0
+        PUBLIC dht22_delay_10us
+        FUNCTION dht22_delay_10us,021203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC dht22_delay_ms
+        FUNCTION dht22_delay_ms,0a1203H
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC dht22_delay_nus
+        FUNCTION dht22_delay_nus,021203H
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC dht22_read_byte
+        FUNCTION dht22_read_byte,0a1203H
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC dht22_value
+        FUNCTION dht22_value,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 25, STACK
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+Onboard_wait        SYMBOL "Onboard_wait"
+`??Onboard_wait::?relay` SYMBOL "?relay", Onboard_wait
+dht22_delay_10us    SYMBOL "dht22_delay_10us"
+`??dht22_delay_10us::?relay` SYMBOL "?relay", dht22_delay_10us
+dht22_delay_ms      SYMBOL "dht22_delay_ms"
+`??dht22_delay_ms::?relay` SYMBOL "?relay", dht22_delay_ms
+dht22_delay_nus     SYMBOL "dht22_delay_nus"
+`??dht22_delay_nus::?relay` SYMBOL "?relay", dht22_delay_nus
+dht22_read_byte     SYMBOL "dht22_read_byte"
+`??dht22_read_byte::?relay` SYMBOL "?relay", dht22_read_byte
+dht22_value         SYMBOL "dht22_value"
+`??dht22_value::?relay` SYMBOL "?relay", dht22_value
+
+        EXTERN `??Onboard_wait::?relay`
+        FUNCTION `??Onboard_wait::?relay`,00H
+        EXTERN Onboard_wait
+        FUNCTION Onboard_wait,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// F:\Zigbeespace\20170624\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c
+//    1 #include "dht22.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+//    2 #include"OnBoard.h"
+//    3 //32MHZ us延时函数；
+//    4 //#pragma optimize=none
+//    5 //延时函数
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//    6 void dht22_delay_nus(unsigned short n) //n us延时
+dht22_delay_nus:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function dht22_delay_nus
+        CODE
+//    7 {
+        FUNCALL dht22_delay_nus, Onboard_wait
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//    8     MicroWait(n);   
+        ; Setup parameters for call to function Onboard_wait
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+//    9 }
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock0
+//   10 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   11 void dht22_delay_10us(void) //10 us延时
+dht22_delay_10us:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function dht22_delay_10us
+        CODE
+//   12 {
+        FUNCALL dht22_delay_10us, Onboard_wait
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH    DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   13    MicroWait(10);
+        ; Setup parameters for call to function Onboard_wait
+        MOV     R2,#0xa
+        MOV     R3,#0x0
+        LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+//   14 }
+        POP     DPH
+          CFI DPH0 SameValue
+          CFI CFA_SP SP+-4
+        POP     DPL
+          CFI DPL0 SameValue
+          CFI CFA_SP SP+-3
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock1
+//   15 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   16 void dht22_delay_ms(uint Time)//n ms延时
+dht22_delay_ms:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function dht22_delay_ms
+        CODE
+//   17 {
+        FUNCALL dht22_delay_ms, dht22_delay_10us
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//   18   unsigned char i;
+//   19   while(Time--)
+??dht22_delay_ms_0:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        MOV     R6,A
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??dht22_delay_ms_1
+//   20   {
+//   21     for(i=0;i<100;i++)
+        MOV     ?V0,#0x0
+??dht22_delay_ms_2:
+        MOV     A,?V0
+        CLR     C
+        SUBB    A,#0x64
+        JNC     ??dht22_delay_ms_0
+//   22      dht22_delay_10us();
+        ; Setup parameters for call to function dht22_delay_10us
+        LCALL   `??dht22_delay_10us::?relay`; Banked call to: dht22_delay_10us
+        INC     ?V0
+        SJMP    ??dht22_delay_ms_2
+//   23   }
+//   24 }
+??dht22_delay_ms_1:
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock2
+//   25 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   26 unsigned char dht22_read_byte(void)
+dht22_read_byte:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Function dht22_read_byte
+        CODE
+//   27 {
+        FUNCALL dht22_read_byte, dht22_delay_10us
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_read_byte, dht22_delay_10us
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_read_byte, dht22_delay_10us
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_read_byte, dht22_delay_10us
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+//   28     int count = 0;
+        MOV     ?V0,#0x0
+        MOV     ?V1,#0x0
+//   29     unsigned char r_val = 0; 
+        MOV     R6,#0x0
+//   30     unsigned char i;
+//   31     
+//   32     for(i = 0 ; i < 8 ; i++)
+        MOV     R7,#0x0
+??dht22_read_byte_0:
+        MOV     A,R7
+        CLR     C
+        SUBB    A,#0x8
+        JNC     ??dht22_read_byte_1
+//   33     { 
+//   34         //等待低电平50us
+//   35         while(!DHT22_PIN);
+??dht22_read_byte_2:
+        MOV     C,0x80.7
+        JNC     ??dht22_read_byte_2
+//   36         dht22_delay_10us();
+        ; Setup parameters for call to function dht22_delay_10us
+        LCALL   `??dht22_delay_10us::?relay`; Banked call to: dht22_delay_10us
+//   37         dht22_delay_10us();
+        ; Setup parameters for call to function dht22_delay_10us
+        LCALL   `??dht22_delay_10us::?relay`; Banked call to: dht22_delay_10us
+//   38         dht22_delay_10us();
+        ; Setup parameters for call to function dht22_delay_10us
+        LCALL   `??dht22_delay_10us::?relay`; Banked call to: dht22_delay_10us
+//   39         dht22_delay_10us();
+        ; Setup parameters for call to function dht22_delay_10us
+        LCALL   `??dht22_delay_10us::?relay`; Banked call to: dht22_delay_10us
+//   40         //高电平26~28us表示'0',70us表示'1'
+//   41         //经过延迟后，若DHT22_PIN仍为1，则为高电平
+//   42         if( DHT22_PIN == 1 )
+        MOV     C,0x80.7
+        JNC     ??dht22_read_byte_3
+//   43         {      
+//   44             r_val <<= 1;
+        MOV     A,R6
+        CLR     C
+        RLC     A
+        MOV     R6,A
+//   45             r_val |= 1;
+        SETB    C
+        MOV     A,R6
+        MOV     0xE0 /* A   */.0,C
+        MOV     R6,A
+        SJMP    ??dht22_read_byte_4
+//   46         }
+//   47         else
+//   48         {
+//   49             r_val <<= 1;
+??dht22_read_byte_3:
+        MOV     A,R6
+        CLR     C
+        RLC     A
+        MOV     R6,A
+//   50             continue;
+        SJMP    ??dht22_read_byte_5
+//   51         }             
+//   52         //当数据为1时，等待DHT22发送完这一位数据；      
+//   53         while( DHT22_PIN == 1)
+??dht22_read_byte_4:
+        MOV     C,0x80.7
+        JNC     ??dht22_read_byte_5
+//   54         {
+//   55           count++;
+        INC     ?V0
+        MOV     A,?V0
+        JNZ     ??dht22_read_byte_6
+        INC     ?V1
+//   56           if(count == 200)
+??dht22_read_byte_6:
+        MOV     A,#-0x38
+        XRL     A,?V0
+        JNZ     ??dht22_read_byte_7
+        MOV     A,#0x0
+        XRL     A,?V1
+??dht22_read_byte_7:
+        JNZ     ??dht22_read_byte_4
+//   57             return -1;
+        MOV     R1,#-0x1
+        SJMP    ??dht22_read_byte_8
+//   58         }
+//   59     }
+??dht22_read_byte_5:
+        INC     R7
+        SJMP    ??dht22_read_byte_0
+//   60     return r_val;  
+??dht22_read_byte_1:
+        MOV     A,R6
+        MOV     R1,A
+??dht22_read_byte_8:
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock3
+        REQUIRE _A_P0
+//   61 }
+//   62 
+//   63 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   64 char dht22_value(unsigned char *temp ,unsigned char *humi , unsigned char flag)
+dht22_value:
+          CFI Block cfiBlock4 Using cfiCommon0
+          CFI Function dht22_value
+        CODE
+//   65 {   
+        FUNCALL dht22_value, dht22_delay_ms
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_delay_nus
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_delay_nus
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_delay_nus
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_read_byte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_read_byte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_read_byte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_read_byte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL dht22_value, dht22_read_byte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 9
+        MOV     A,#-0x9
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 25)
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+        MOV     ?V4,R2
+        MOV     ?V5,R3
+        MOV     ?V2,R4
+        MOV     ?V3,R5
+//   66      unsigned char count=0;
+        MOV     ?V6,#0x0
+//   67      unsigned char humi_H = 0 , humi_L = 0;
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//   68      unsigned char temp_H = 0 , temp_L = 0;
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//   69      unsigned int tempture = 0, humidity = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+        MOV     ?V0,#0x0
+        MOV     ?V1,#0x0
+//   70      unsigned char check = 0,sum=0;
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//   71      unsigned char unit=0,hundred=0,decade=0;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     ?V7,#0x0
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//   72      
+//   73      DHT22_PIN_OUT();
+        ORL     0xfd,#0x80
+//   74      DHT22_PIN_L();  //输出低电平；   
+        CLR     0x80.7
+//   75 
+//   76      dht22_delay_ms(1);//主机低电平呼叫
+        ; Setup parameters for call to function dht22_delay_ms
+        MOV     R2,#0x1
+        MOV     R3,#0x0
+        LCALL   `??dht22_delay_ms::?relay`; Banked call to: dht22_delay_ms
+//   77      
+//   78      DHT22_PIN_IN();
+        ANL     0xfd,#0x7f
+//   79      while(DHT22_PIN != 1)
+??dht22_value_0:
+        MOV     C,0x80.7
+        JC      ??dht22_value_1
+//   80      {
+//   81         count++;
+        INC     ?V6
+//   82         if(count>30)
+        MOV     A,?V6
+        CLR     C
+        SUBB    A,#0x1f
+        JC      ??dht22_value_0
+//   83           return -1;
+        MOV     R1,#-0x1
+        LJMP    ??dht22_value_2 & 0xFFFF
+//   84      }
+//   85      count=0;
+??dht22_value_1:
+        MOV     ?V6,#0x0
+//   86      
+//   87      dht22_delay_nus(30);//等待主机释放总线时间
+        ; Setup parameters for call to function dht22_delay_nus
+        MOV     R2,#0x1e
+        MOV     R3,#0x0
+        LCALL   `??dht22_delay_nus::?relay`; Banked call to: dht22_delay_nus
+//   88      while(DHT22_PIN != 0)
+??dht22_value_3:
+        MOV     C,0x80.7
+        JNC     ??dht22_value_4
+//   89      {
+//   90         count++;
+        INC     ?V6
+//   91         if(count>50)
+        MOV     A,?V6
+        CLR     C
+        SUBB    A,#0x33
+        JC      ??dht22_value_3
+//   92           return -1;
+        MOV     R1,#-0x1
+        LJMP    ??dht22_value_2 & 0xFFFF
+//   93      }
+//   94      count=0;   
+??dht22_value_4:
+        MOV     ?V6,#0x0
+//   95        
+//   96      if(DHT22_PIN == 0) //正确的响应输出；
+        MOV     C,0x80.7
+        JNC     $+5
+        LJMP    ??dht22_value_5 & 0xFFFF
+//   97      {       
+//   98              dht22_delay_nus(80);//dht22响应呼叫低电平
+        ; Setup parameters for call to function dht22_delay_nus
+        MOV     R2,#0x50
+        MOV     R3,#0x0
+        LCALL   `??dht22_delay_nus::?relay`; Banked call to: dht22_delay_nus
+//   99              while(DHT22_PIN != 1)
+??dht22_value_6:
+        MOV     C,0x80.7
+        JC      ??dht22_value_7
+//  100              {
+//  101                 count++;
+        INC     ?V6
+//  102                 if(count>50)
+        MOV     A,?V6
+        CLR     C
+        SUBB    A,#0x33
+        JC      ??dht22_value_6
+//  103                   return -1;
+        MOV     R1,#-0x1
+        LJMP    ??dht22_value_2 & 0xFFFF
+//  104              }
+//  105              count=0;
+??dht22_value_7:
+        MOV     ?V6,#0x0
+//  106              
+//  107              dht22_delay_nus(80);//dht22响应呼叫高电平
+        ; Setup parameters for call to function dht22_delay_nus
+        MOV     R2,#0x50
+        MOV     R3,#0x0
+        LCALL   `??dht22_delay_nus::?relay`; Banked call to: dht22_delay_nus
+//  108              while(DHT22_PIN != 1)
+??dht22_value_8:
+        MOV     C,0x80.7
+        JC      ??dht22_value_9
+//  109              {
+//  110                 count++;
+        INC     ?V6
+//  111                 if(count>50)
+        MOV     A,?V6
+        CLR     C
+        SUBB    A,#0x33
+        JC      ??dht22_value_8
+//  112                   return -1;
+        MOV     R1,#-0x1
+        LJMP    ??dht22_value_2 & 0xFFFF
+//  113              }
+//  114              count=0;     
+??dht22_value_9:
+        MOV     ?V6,#0x0
+//  115 
+//  116             //DHT22发送
+//  117             humi_H = dht22_read_byte(); //湿度高八位；
+        ; Setup parameters for call to function dht22_read_byte
+        LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  118             humi_L = dht22_read_byte(); //湿度低八位；
+        ; Setup parameters for call to function dht22_read_byte
+        LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  119             temp_H = dht22_read_byte(); //温度高八位；
+        ; Setup parameters for call to function dht22_read_byte
+        LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  120             temp_L = dht22_read_byte(); //温度低八位；
+        ; Setup parameters for call to function dht22_read_byte
+        LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  121             check = dht22_read_byte(); //校验和；  
+        ; Setup parameters for call to function dht22_read_byte
+        LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+        MOV     A,R1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  122             sum = humi_H + humi_L + temp_H + temp_L;
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        ADD     A,R0
+        ADD     A,R1
+        ADD     A,R2
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  123        
+//  124             //校验和正确即表示获取成功！
+//  125             if(check == sum)
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,R0
+        JZ      $+5
+        LJMP    ??dht22_value_10 & 0xFFFF
+//  126             {            
+//  127                   //获取成功后根据参数类型存入参数中
+//  128                   tempture=temp_H;
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+//  129                   tempture=tempture<<8;
+        CLR     A
+        XCH     A,R6
+        MOV     R7,A
+//  130                   tempture+=temp_L;
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R6
+        ADD     A,R0
+        MOV     R6,A
+        MOV     A,R7
+        ADDC    A,R1
+        MOV     R7,A
+//  131                   //矫正
+//  132                   tempture-=40;
+        MOV     A,R6
+        ADD     A,#-0x28
+        MOV     R6,A
+        MOV     A,R7
+        ADDC    A,#-0x1
+        MOV     R7,A
+//  133                   
+//  134                   humidity=humi_H;
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     ?V0,R0
+        MOV     ?V1,R1
+//  135                   humidity=humidity<<8;
+        CLR     A
+        XCH     A,?V0
+        MOV     ?V1,A
+//  136                   humidity+=humi_L;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V0
+        ADD     A,R0
+        MOV     ?V0,A
+        MOV     A,?V1
+        ADDC    A,R1
+        MOV     ?V1,A
+//  137                   
+//  138                   if(flag == DHT22_STRING)//字符串类型 
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JZ      $+5
+        LJMP    ??dht22_value_11 & 0xFFFF
+//  139                   {     //0x30即'0'
+//  140                         hundred=tempture/100;
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     R2,#0x64
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R0
+        MOV     ?V7,A
+//  141                         unit=tempture%10;
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     R2,#0xa
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R2
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  142                         decade=(tempture-hundred*100-unit)/10;
+        MOV     R0,?V7
+        MOV     R1,#0x0
+        MOV     A,R0
+        MOV     B,#0x64
+        MUL     AB
+        XCH     A,R0
+        MOV     R2,B
+        MOV     B,#0x0
+        MUL     AB
+        ADD     A,R2
+        MOV     R2,A
+        MOV     B,#0x64
+        MOV     A,R1
+        MUL     AB
+        ADD     A,R2
+        MOV     R1,A
+        MOV     A,R6
+        CLR     C
+        SUBB    A,R0
+        MOV     R2,A
+        MOV     A,R7
+        SUBB    A,R1
+        MOV     R3,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R2
+        CLR     C
+        SUBB    A,R0
+        MOV     R0,A
+        MOV     A,R3
+        SUBB    A,R1
+        MOV     R1,A
+        MOV     R2,#0xa
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R0
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  143                         temp[0] = hundred+0x30;
+        MOV     A,#0x30
+        ADD     A,?V7
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  144                         temp[1] = decade+0x30;
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        ADD     A,#0x30
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  145                         temp[2] = '.';
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x2e
+        MOVX    @DPTR,A
+//  146                         temp[3] = unit+0x30;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        ADD     A,#0x30
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  147                         temp[4] = '\0';
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//  148                         
+//  149                         hundred=humidity/100;
+        MOV     R0,?V0
+        MOV     R1,?V1
+        MOV     R2,#0x64
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R0
+        MOV     ?V7,A
+//  150                         unit=humidity%10;
+        MOV     R0,?V0
+        MOV     R1,?V1
+        MOV     R2,#0xa
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R2
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  151                         decade=(humidity-hundred*100-unit)/10;                        
+        MOV     R0,?V7
+        MOV     R1,#0x0
+        MOV     A,R0
+        MOV     B,#0x64
+        MUL     AB
+        XCH     A,R0
+        MOV     R2,B
+        MOV     B,#0x0
+        MUL     AB
+        ADD     A,R2
+        MOV     R2,A
+        MOV     B,#0x64
+        MOV     A,R1
+        MUL     AB
+        ADD     A,R2
+        MOV     R1,A
+        MOV     A,?V0
+        CLR     C
+        SUBB    A,R0
+        MOV     R2,A
+        MOV     A,?V1
+        SUBB    A,R1
+        MOV     R3,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R2
+        CLR     C
+        SUBB    A,R0
+        MOV     R0,A
+        MOV     A,R3
+        SUBB    A,R1
+        MOV     R1,A
+        MOV     R2,#0xa
+        MOV     R3,#0x0
+        LCALL   ?US_DIV_MOD
+        MOV     A,R0
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  152                         humi[0] = hundred+0x30;
+        MOV     A,#0x30
+        ADD     A,?V7
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  153                         humi[1] = decade+0x30;
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        ADD     A,#0x30
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  154                         humi[2] = '.';
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x2e
+        MOVX    @DPTR,A
+//  155                         humi[3] = unit+0x30;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        ADD     A,#0x30
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  156                         humi[4] = '\0';
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        SJMP    ??dht22_value_12
+//  157                         //unit=0;//用于断电调试
+//  158                     
+//  159                   }
+//  160                   else//16位二进制数类型 
+//  161                   {
+//  162                       *temp = temp_H;
+??dht22_value_11:
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  163                       *humi = humi_H;
+        MOV     A,#0x3
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  164                   }                                                       
+//  165             }
+//  166             else//获取错误
+//  167             {          
+//  168                 if(flag == DHT22_STRING)
+//  169                 {
+//  170                     temp[0] = '\0';
+//  171                     temp[1] = '\0';
+//  172                     temp[2] = '\0';
+//  173                     temp[3] = '\0';
+//  174                     temp[4] = '\0';
+//  175                    
+//  176                     humi[0] = '\0';
+//  177                     humi[1] = '\0';
+//  178                     humi[2] = '\0';
+//  179                     humi[3] = '\0';
+//  180                     humi[4] = '\0';                    
+//  181                 }
+//  182                 else 
+//  183                 {
+//  184                     *temp = 0;
+//  185                     *humi = 0;
+//  186                 }     
+//  187     
+//  188                 return -1;
+//  189             }
+//  190      }
+//  191      else//不正确的响应输出；
+//  192      {
+//  193            if(flag == DHT22_STRING)
+//  194             {
+//  195                     temp[0] = '\0';
+//  196                     temp[1] = '\0';
+//  197                     temp[2] = '\0';
+//  198                     temp[3] = '\0';
+//  199                     temp[4] = '\0';
+//  200                    
+//  201                     humi[0] = '\0';
+//  202                     humi[1] = '\0';
+//  203                     humi[2] = '\0';
+//  204                     humi[3] = '\0';
+//  205                     humi[4] = '\0'; 
+//  206             }
+//  207             else 
+//  208             {
+//  209                 *temp = 0;
+//  210                 *humi = 0;
+//  211             }     
+//  212 
+//  213             return -1; 
+//  214      }  
+//  215      return 0;
+??dht22_value_12:
+        MOV     R1,#0x0
+        LJMP    ??dht22_value_2 & 0xFFFF
+??dht22_value_10:
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??dht22_value_13
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        SJMP    ??dht22_value_14
+??dht22_value_13:
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+??dht22_value_14:
+        MOV     R1,#-0x1
+        LJMP    ??dht22_value_2 & 0xFFFF
+??dht22_value_5:
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??dht22_value_15
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        SJMP    ??dht22_value_16
+??dht22_value_15:
+        MOV     DPL,?V4
+        MOV     DPH,?V5
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+        MOV     DPL,?V2
+        MOV     DPH,?V3
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+??dht22_value_16:
+        MOV     R1,#-0x1
+??dht22_value_2:
+        MOV     A,#0x9
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock4
+        REQUIRE P0DIR
+        REQUIRE _A_P0
+//  216 }
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??dht22_delay_nus::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    dht22_delay_nus
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??dht22_delay_10us::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    dht22_delay_10us
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??dht22_delay_ms::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    dht22_delay_ms
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??dht22_read_byte::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    dht22_read_byte
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??dht22_value::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    dht22_value
+
+        END
+//  217 
+//  218 
+//  219 
+//  220 
+// 
+// 1 349 bytes in segment BANKED_CODE
+//    30 bytes in segment BANK_RELAYS
+//     2 bytes in segment SFR_AN
+// 
+// 1 379 bytes of CODE memory
+//     0 bytes of DATA memory (+ 2 bytes shared)
+//
+//Errors: none
+//Warnings: none

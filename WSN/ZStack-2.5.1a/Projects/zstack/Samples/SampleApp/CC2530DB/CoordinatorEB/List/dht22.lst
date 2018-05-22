@@ -1,0 +1,884 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                19/Oct/2017  17:45:18
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c
+#    Command line       =  
+#        -f "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg"
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000 "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c"
+#        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+#        xLCD_SUPPORTED=DEBUG -lC "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List"
+#        -lA "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List"
+#        --diag_suppress Pe001,Pa010 -o "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj"
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\" -I
+#        "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\"
+#        -I "F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        -Ohz --require_prototypes
+#    List file          =  
+#        F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\dht22.lst
+#    Object file        =  
+#        F:\Zigbeespace\20170624 -
+#        副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj\dht22.r51
+#
+###############################################################################
+
+F:\Zigbeespace\20170624 - 副本\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\dht22.c
+      1          #include "dht22.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include"OnBoard.h"
+      3          //32MHZ us延时函数；
+      4          //#pragma optimize=none
+      5          //延时函数
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      6          void dht22_delay_nus(unsigned short n) //n us延时
+   \                     dht22_delay_nus:
+      7          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+      8              MicroWait(n);   
+   \   000004                ; Setup parameters for call to function Onboard_wait
+   \   000004                REQUIRE ?Subroutine0
+   \   000004                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+      9          }
+   \   000003   D083         POP     DPH
+   \   000005   D082         POP     DPL
+   \   000007   02....       LJMP    ?BRET
+     10          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     11          void dht22_delay_10us(void) //10 us延时
+   \                     dht22_delay_10us:
+     12          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     13             MicroWait(10);
+   \   000004                ; Setup parameters for call to function Onboard_wait
+   \   000004   7A0A         MOV     R2,#0xa
+   \   000006   7B00         MOV     R3,#0x0
+   \   000008   80..         SJMP    ?Subroutine0
+     14          }
+     15          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     16          void dht22_delay_ms(uint Time)//n ms延时
+   \                     dht22_delay_ms:
+     17          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     18            unsigned char i;
+     19            while(Time--)
+   \                     ??dht22_delay_ms_0:
+   \   000009   EE           MOV     A,R6
+   \   00000A   F8           MOV     R0,A
+   \   00000B   EF           MOV     A,R7
+   \   00000C   F9           MOV     R1,A
+   \   00000D   E8           MOV     A,R0
+   \   00000E   24FF         ADD     A,#-0x1
+   \   000010   1E           DEC     R6
+   \   000011   E9           MOV     A,R1
+   \   000012   34FF         ADDC    A,#-0x1
+   \   000014   FF           MOV     R7,A
+   \   000015   E8           MOV     A,R0
+   \   000016   49           ORL     A,R1
+   \   000017   6012         JZ      ??dht22_delay_ms_1
+     20            {
+     21              for(i=0;i<100;i++)
+   \   000019   75..64       MOV     ?V0,#0x64
+     22               dht22_delay_10us();
+   \                     ??dht22_delay_ms_2:
+   \   00001C                ; Setup parameters for call to function Onboard_wait
+   \   00001C   7A0A         MOV     R2,#0xa
+   \   00001E   7B00         MOV     R3,#0x0
+   \   000020   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+   \   000023   15..         DEC     ?V0
+   \   000025   E5..         MOV     A,?V0
+   \   000027   60E0         JZ      ??dht22_delay_ms_0
+   \   000029   80F1         SJMP    ??dht22_delay_ms_2
+     23            }
+     24          }
+   \                     ??dht22_delay_ms_1:
+   \   00002B   7F01         MOV     R7,#0x1
+   \   00002D   02....       LJMP    ?BANKED_LEAVE_XDATA
+     25          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     26          unsigned char dht22_read_byte(void)
+   \                     dht22_read_byte:
+     27          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+     28              int count = 0;
+   \   000005   7E00         MOV     R6,#0x0
+   \   000007   7F00         MOV     R7,#0x0
+     29              unsigned char r_val = 0; 
+   \   000009   75..00       MOV     ?V0,#0x0
+     30              unsigned char i;
+     31              
+     32              for(i = 0 ; i < 8 ; i++)
+   \   00000C   75..08       MOV     ?V1,#0x8
+     33              { 
+     34                  //等待低电平50us
+     35                  while(!DHT22_PIN);
+   \                     ??dht22_read_byte_0:
+   \   00000F   A287         MOV     C,0x80.7
+   \   000011   50FC         JNC     ??dht22_read_byte_0
+     36                  dht22_delay_10us();
+   \   000013                ; Setup parameters for call to function Onboard_wait
+   \   000013   7A0A         MOV     R2,#0xa
+   \   000015   7B00         MOV     R3,#0x0
+   \   000017   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+     37                  dht22_delay_10us();
+   \   00001A                ; Setup parameters for call to function Onboard_wait
+   \   00001A   7A0A         MOV     R2,#0xa
+   \   00001C   7B00         MOV     R3,#0x0
+   \   00001E   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+     38                  dht22_delay_10us();
+   \   000021                ; Setup parameters for call to function Onboard_wait
+   \   000021   7A0A         MOV     R2,#0xa
+   \   000023   7B00         MOV     R3,#0x0
+   \   000025   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+     39                  dht22_delay_10us();
+   \   000028                ; Setup parameters for call to function Onboard_wait
+   \   000028   7A0A         MOV     R2,#0xa
+   \   00002A   7B00         MOV     R3,#0x0
+   \   00002C   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+     40                  //高电平26~28us表示'0',70us表示'1'
+     41                  //经过延迟后，若DHT22_PIN仍为1，则为高电平
+     42                  if( DHT22_PIN == 1 )
+   \   00002F   A287         MOV     C,0x80.7
+   \   000031   E5..         MOV     A,?V0
+   \   000033   5019         JNC     ??dht22_read_byte_1
+     43                  {      
+     44                      r_val <<= 1;
+     45                      r_val |= 1;
+   \   000035   C3           CLR     C
+   \   000036   33           RLC     A
+   \   000037   4401         ORL     A,#0x1
+   \   000039   F5..         MOV     ?V0,A
+     46                  }
+     47                  else
+     48                  {
+     49                      r_val <<= 1;
+     50                      continue;
+     51                  }             
+     52                  //当数据为1时，等待DHT22发送完这一位数据；      
+     53                  while( DHT22_PIN == 1)
+   \                     ??dht22_read_byte_2:
+   \   00003B   A287         MOV     C,0x80.7
+   \   00003D   5013         JNC     ??dht22_read_byte_3
+     54                  {
+     55                    count++;
+   \   00003F   0E           INC     R6
+   \   000040   EE           MOV     A,R6
+   \   000041   7001         JNZ     ??dht22_read_byte_4
+   \   000043   0F           INC     R7
+     56                    if(count == 200)
+   \                     ??dht22_read_byte_4:
+   \   000044   74C8         MOV     A,#-0x38
+   \   000046   6E           XRL     A,R6
+   \   000047   4F           ORL     A,R7
+   \   000048   70F1         JNZ     ??dht22_read_byte_2
+     57                      return -1;
+   \   00004A   79FF         MOV     R1,#-0x1
+   \   00004C   800C         SJMP    ??dht22_read_byte_5
+     58                  }
+   \                     ??dht22_read_byte_1:
+   \   00004E   C3           CLR     C
+   \   00004F   33           RLC     A
+   \   000050   F5..         MOV     ?V0,A
+     59              }
+   \                     ??dht22_read_byte_3:
+   \   000052   15..         DEC     ?V1
+   \   000054   E5..         MOV     A,?V1
+   \   000056   70B7         JNZ     ??dht22_read_byte_0
+     60              return r_val;  
+   \   000058   A9..         MOV     R1,?V0
+   \                     ??dht22_read_byte_5:
+   \   00005A   7F02         MOV     R7,#0x2
+   \   00005C   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00005F                REQUIRE _A_P0
+     61          }
+     62          
+     63          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     64          char dht22_value(unsigned char *temp ,unsigned char *humi , unsigned char flag)
+   \                     dht22_value:
+     65          {   
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0,R2
+   \   000007   8B..         MOV     ?V1,R3
+   \   000009   EC           MOV     A,R4
+   \   00000A   FE           MOV     R6,A
+   \   00000B   ED           MOV     A,R5
+   \   00000C   FF           MOV     R7,A
+   \   00000D   89..         MOV     ?V6,R1
+     66               unsigned char count=0;
+     67               unsigned char humi_H = 0 , humi_L = 0;
+     68               unsigned char temp_H = 0 , temp_L = 0;
+     69               unsigned int tempture = 0, humidity = 0;
+     70               unsigned char check = 0,sum=0;
+     71               unsigned char unit=0,hundred=0,decade=0;
+     72               
+     73               DHT22_PIN_OUT();
+   \   00000F   43FD80       ORL     0xfd,#0x80
+     74               DHT22_PIN_L();  //输出低电平；   
+   \   000012   C287         CLR     0x80.7
+     75          
+     76               dht22_delay_ms(1);//主机低电平呼叫
+   \   000014                ; Setup parameters for call to function dht22_delay_ms
+   \   000014   7A01         MOV     R2,#0x1
+   \   000016   7B00         MOV     R3,#0x0
+   \   000018   12....       LCALL   `??dht22_delay_ms::?relay`; Banked call to: dht22_delay_ms
+     77               
+     78               DHT22_PIN_IN();
+   \   00001B   53FD7F       ANL     0xfd,#0x7f
+   \   00001E   741F         MOV     A,#0x1f
+     79               while(DHT22_PIN != 1)
+   \                     ??dht22_value_0:
+   \   000020   A287         MOV     C,0x80.7
+   \   000022   4008         JC      ??dht22_value_1
+     80               {
+     81                  count++;
+     82                  if(count>30)
+   \   000024   14           DEC     A
+   \   000025   7003         JNZ     $+5
+   \   000027   02....       LJMP    ??dht22_value_2 & 0xFFFF
+   \   00002A   80F4         SJMP    ??dht22_value_0
+     83                    return -1;
+     84               }
+     85               count=0;
+     86               
+     87               dht22_delay_nus(30);//等待主机释放总线时间
+   \                     ??dht22_value_1:
+   \   00002C                ; Setup parameters for call to function Onboard_wait
+   \   00002C   7A1E         MOV     R2,#0x1e
+   \   00002E   7B00         MOV     R3,#0x0
+   \   000030   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+   \   000033   7833         MOV     R0,#0x33
+     88               while(DHT22_PIN != 0)
+   \                     ??dht22_value_3:
+   \   000035   A287         MOV     C,0x80.7
+   \   000037   5009         JNC     ??dht22_value_4
+     89               {
+     90                  count++;
+     91                  if(count>50)
+   \   000039   18           DEC     R0
+   \   00003A   E8           MOV     A,R0
+   \   00003B   7003         JNZ     $+5
+   \   00003D   02....       LJMP    ??dht22_value_2 & 0xFFFF
+   \   000040   80F3         SJMP    ??dht22_value_3
+     92                    return -1;
+     93               }
+     94               count=0;   
+     95                 
+     96               if(DHT22_PIN == 0) //正确的响应输出；
+   \                     ??dht22_value_4:
+   \   000042   A287         MOV     C,0x80.7
+   \   000044   5003         JNC     $+5
+   \   000046   02....       LJMP    ??dht22_value_5 & 0xFFFF
+     97               {       
+     98                       dht22_delay_nus(80);//dht22响应呼叫低电平
+   \   000049                ; Setup parameters for call to function Onboard_wait
+   \   000049   7A50         MOV     R2,#0x50
+   \   00004B   7B00         MOV     R3,#0x0
+   \   00004D   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+   \   000050   7833         MOV     R0,#0x33
+     99                       while(DHT22_PIN != 1)
+   \                     ??dht22_value_6:
+   \   000052   A287         MOV     C,0x80.7
+   \   000054   4009         JC      ??dht22_value_7
+    100                       {
+    101                          count++;
+    102                          if(count>50)
+   \   000056   18           DEC     R0
+   \   000057   E8           MOV     A,R0
+   \   000058   7003         JNZ     $+5
+   \   00005A   02....       LJMP    ??dht22_value_2 & 0xFFFF
+   \   00005D   80F3         SJMP    ??dht22_value_6
+    103                            return -1;
+    104                       }
+    105                       count=0;
+    106                       
+    107                       dht22_delay_nus(80);//dht22响应呼叫高电平
+   \                     ??dht22_value_7:
+   \   00005F                ; Setup parameters for call to function Onboard_wait
+   \   00005F   7A50         MOV     R2,#0x50
+   \   000061   7B00         MOV     R3,#0x0
+   \   000063   12....       LCALL   `??Onboard_wait::?relay`; Banked call to: Onboard_wait
+   \   000066   7833         MOV     R0,#0x33
+    108                       while(DHT22_PIN != 1)
+   \                     ??dht22_value_8:
+   \   000068   A287         MOV     C,0x80.7
+   \   00006A   4009         JC      ??dht22_value_9
+    109                       {
+    110                          count++;
+    111                          if(count>50)
+   \   00006C   18           DEC     R0
+   \   00006D   E8           MOV     A,R0
+   \   00006E   7003         JNZ     $+5
+   \   000070   02....       LJMP    ??dht22_value_2 & 0xFFFF
+   \   000073   80F3         SJMP    ??dht22_value_8
+    112                            return -1;
+    113                       }
+    114                       count=0;     
+    115          
+    116                      //DHT22发送
+    117                      humi_H = dht22_read_byte(); //湿度高八位；
+   \                     ??dht22_value_9:
+   \   000075                ; Setup parameters for call to function dht22_read_byte
+   \   000075   12....       LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+   \   000078   E9           MOV     A,R1
+   \   000079   F5..         MOV     ?V4,A
+    118                      humi_L = dht22_read_byte(); //湿度低八位；
+   \   00007B                ; Setup parameters for call to function dht22_read_byte
+   \   00007B   12....       LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+   \   00007E   E9           MOV     A,R1
+   \   00007F   F5..         MOV     ?V2,A
+    119                      temp_H = dht22_read_byte(); //温度高八位；
+   \   000081                ; Setup parameters for call to function dht22_read_byte
+   \   000081   12....       LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+   \   000084   E9           MOV     A,R1
+   \   000085   F5..         MOV     ?V5,A
+    120                      temp_L = dht22_read_byte(); //温度低八位；
+   \   000087                ; Setup parameters for call to function dht22_read_byte
+   \   000087   12....       LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+   \   00008A   E9           MOV     A,R1
+   \   00008B   F5..         MOV     ?V3,A
+    121                      check = dht22_read_byte(); //校验和；  
+    122                      sum = humi_H + humi_L + temp_H + temp_L;
+    123                 
+    124                      //校验和正确即表示获取成功！
+    125                      if(check == sum)
+   \   00008D                ; Setup parameters for call to function dht22_read_byte
+   \   00008D   12....       LCALL   `??dht22_read_byte::?relay`; Banked call to: dht22_read_byte
+   \   000090   E9           MOV     A,R1
+   \   000091   F8           MOV     R0,A
+   \   000092   E5..         MOV     A,?V4
+   \   000094   25..         ADD     A,?V2
+   \   000096   25..         ADD     A,?V5
+   \   000098   25..         ADD     A,?V3
+   \   00009A   68           XRL     A,R0
+   \   00009B   6003         JZ      $+5
+   \   00009D   02....       LJMP    ??dht22_value_5 & 0xFFFF
+    126                      {            
+    127                            //获取成功后根据参数类型存入参数中
+    128                            tempture=temp_H;
+    129                            tempture=tempture<<8;
+    130                            tempture+=temp_L;
+    131                            //矫正
+    132                            tempture-=40;
+   \   0000A0   A9..         MOV     R1,?V5
+   \   0000A2   E5..         MOV     A,?V3
+   \   0000A4   24D8         ADD     A,#-0x28
+   \   0000A6   FC           MOV     R4,A
+   \   0000A7   E9           MOV     A,R1
+   \   0000A8   34FF         ADDC    A,#-0x1
+   \   0000AA   FD           MOV     R5,A
+    133                            
+    134                            humidity=humi_H;
+    135                            humidity=humidity<<8;
+    136                            humidity+=humi_L;
+   \   0000AB   E5..         MOV     A,?V4
+   \   0000AD   F5..         MOV     ?V3,A
+    137                            
+    138                            if(flag == DHT22_STRING)//字符串类型 
+   \   0000AF   7401         MOV     A,#0x1
+   \   0000B1   65..         XRL     A,?V6
+   \   0000B3   6003         JZ      $+5
+   \   0000B5   02....       LJMP    ??dht22_value_10 & 0xFFFF
+    139                            {     //0x30即'0'
+    140                                  hundred=tempture/100;
+   \   0000B8   EC           MOV     A,R4
+   \   0000B9   F8           MOV     R0,A
+   \   0000BA   ED           MOV     A,R5
+   \   0000BB   F9           MOV     R1,A
+   \   0000BC   7A64         MOV     R2,#0x64
+   \   0000BE   7B00         MOV     R3,#0x0
+   \   0000C0   12....       LCALL   ?US_DIV_MOD
+   \   0000C3   E8           MOV     A,R0
+   \   0000C4   F5..         MOV     ?V5,A
+    141                                  unit=tempture%10;
+   \   0000C6   EC           MOV     A,R4
+   \   0000C7   F8           MOV     R0,A
+   \   0000C8   ED           MOV     A,R5
+   \   0000C9   F9           MOV     R1,A
+   \   0000CA   7A0A         MOV     R2,#0xa
+   \   0000CC   7B00         MOV     R3,#0x0
+   \   0000CE   12....       LCALL   ?US_DIV_MOD
+   \   0000D1   EA           MOV     A,R2
+   \   0000D2   F5..         MOV     ?V4,A
+    142                                  decade=(tempture-hundred*100-unit)/10;
+    143                                  temp[0] = hundred+0x30;
+   \   0000D4   7430         MOV     A,#0x30
+   \   0000D6   25..         ADD     A,?V5
+   \   0000D8   85..82       MOV     DPL,?V0
+   \   0000DB   85..83       MOV     DPH,?V1
+   \   0000DE   12....       LCALL   ?Subroutine2 & 0xFFFF
+    144                                  temp[1] = decade+0x30;
+   \                     ??CrossCallReturnLabel_2:
+   \   0000E1   EC           MOV     A,R4
+   \   0000E2   98           SUBB    A,R0
+   \   0000E3   FA           MOV     R2,A
+   \   0000E4   ED           MOV     A,R5
+   \   0000E5   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_0:
+   \   0000E8   12....       LCALL   ?US_DIV_MOD
+   \   0000EB   E8           MOV     A,R0
+   \   0000EC   2430         ADD     A,#0x30
+   \   0000EE   12....       LCALL   ?Subroutine4 & 0xFFFF
+    145                                  temp[2] = '.';
+   \                     ??CrossCallReturnLabel_6:
+   \   0000F1   742E         MOV     A,#0x2e
+   \   0000F3   F0           MOVX    @DPTR,A
+    146                                  temp[3] = unit+0x30;
+   \   0000F4   7430         MOV     A,#0x30
+   \   0000F6   25..         ADD     A,?V4
+   \   0000F8   12....       LCALL   ?Subroutine3 & 0xFFFF
+    147                                  temp[4] = '\0';
+   \                     ??CrossCallReturnLabel_4:
+   \   0000FB   E4           CLR     A
+   \   0000FC   F0           MOVX    @DPTR,A
+    148                                  
+    149                                  hundred=humidity/100;
+   \   0000FD   A8..         MOV     R0,?V2
+   \   0000FF   A9..         MOV     R1,?V3
+   \   000101   7A64         MOV     R2,#0x64
+   \   000103   FB           MOV     R3,A
+   \   000104   12....       LCALL   ?US_DIV_MOD
+   \   000107   E8           MOV     A,R0
+   \   000108   F5..         MOV     ?V5,A
+    150                                  unit=humidity%10;
+   \   00010A   A8..         MOV     R0,?V2
+   \   00010C   A9..         MOV     R1,?V3
+   \   00010E   7A0A         MOV     R2,#0xa
+   \   000110   7B00         MOV     R3,#0x0
+   \   000112   12....       LCALL   ?US_DIV_MOD
+   \   000115   EA           MOV     A,R2
+   \   000116   F5..         MOV     ?V4,A
+    151                                  decade=(humidity-hundred*100-unit)/10;                        
+    152                                  humi[0] = hundred+0x30;
+   \   000118   7430         MOV     A,#0x30
+   \   00011A   25..         ADD     A,?V5
+   \   00011C   8E82         MOV     DPL,R6
+   \   00011E   8F83         MOV     DPH,R7
+   \   000120   12....       LCALL   ?Subroutine2 & 0xFFFF
+    153                                  humi[1] = decade+0x30;
+   \                     ??CrossCallReturnLabel_3:
+   \   000123   E5..         MOV     A,?V2
+   \   000125   98           SUBB    A,R0
+   \   000126   FA           MOV     R2,A
+   \   000127   E5..         MOV     A,?V3
+   \   000129   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   00012C   12....       LCALL   ?US_DIV_MOD
+   \   00012F   E8           MOV     A,R0
+   \   000130   2430         ADD     A,#0x30
+   \   000132   12....       LCALL   ?Subroutine6 & 0xFFFF
+    154                                  humi[2] = '.';
+   \                     ??CrossCallReturnLabel_12:
+   \   000135   A3           INC     DPTR
+   \   000136   A3           INC     DPTR
+   \   000137   742E         MOV     A,#0x2e
+   \   000139   F0           MOVX    @DPTR,A
+    155                                  humi[3] = unit+0x30;
+   \   00013A   7430         MOV     A,#0x30
+   \   00013C   25..         ADD     A,?V4
+   \   00013E   12....       LCALL   ?Subroutine5 & 0xFFFF
+    156                                  humi[4] = '\0';
+    157                                  //unit=0;//用于断电调试
+    158                              
+    159                            }
+   \                     ??CrossCallReturnLabel_8:
+   \   000141   E4           CLR     A
+   \   000142   800C         SJMP    ??dht22_value_11
+    160                            else//16位二进制数类型 
+    161                            {
+    162                                *temp = temp_H;
+   \                     ??dht22_value_10:
+   \   000144   85..82       MOV     DPL,?V0
+   \   000147   85..83       MOV     DPH,?V1
+   \   00014A   E9           MOV     A,R1
+   \   00014B   12....       LCALL   ??Subroutine8_0 & 0xFFFF
+    163                                *humi = humi_H;
+    164                            }                                                       
+    165                      }
+    166                      else//获取错误
+    167                      {          
+    168                          if(flag == DHT22_STRING)
+    169                          {
+    170                              temp[0] = '\0';
+    171                              temp[1] = '\0';
+    172                              temp[2] = '\0';
+    173                              temp[3] = '\0';
+    174                              temp[4] = '\0';
+    175                             
+    176                              humi[0] = '\0';
+    177                              humi[1] = '\0';
+    178                              humi[2] = '\0';
+    179                              humi[3] = '\0';
+    180                              humi[4] = '\0';                    
+    181                          }
+    182                          else 
+    183                          {
+    184                              *temp = 0;
+    185                              *humi = 0;
+    186                          }     
+    187              
+    188                          return -1;
+    189                      }
+    190               }
+   \                     ??CrossCallReturnLabel_14:
+   \   00014E   E5..         MOV     A,?V4
+   \                     ??dht22_value_11:
+   \   000150   F0           MOVX    @DPTR,A
+    191               else//不正确的响应输出；
+    192               {
+    193                     if(flag == DHT22_STRING)
+    194                      {
+    195                              temp[0] = '\0';
+    196                              temp[1] = '\0';
+    197                              temp[2] = '\0';
+    198                              temp[3] = '\0';
+    199                              temp[4] = '\0';
+    200                             
+    201                              humi[0] = '\0';
+    202                              humi[1] = '\0';
+    203                              humi[2] = '\0';
+    204                              humi[3] = '\0';
+    205                              humi[4] = '\0'; 
+    206                      }
+    207                      else 
+    208                      {
+    209                          *temp = 0;
+    210                          *humi = 0;
+    211                      }     
+    212          
+    213                      return -1; 
+    214               }  
+    215               return 0;
+   \   000151   7900         MOV     R1,#0x0
+   \   000153   802B         SJMP    ??dht22_value_12
+   \                     ??dht22_value_5:
+   \   000155   7401         MOV     A,#0x1
+   \   000157   65..         XRL     A,?V6
+   \   000159   85..82       MOV     DPL,?V0
+   \   00015C   85..83       MOV     DPH,?V1
+   \   00015F   7018         JNZ     ??dht22_value_13
+   \   000161   E4           CLR     A
+   \   000162   F0           MOVX    @DPTR,A
+   \   000163   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000166   F0           MOVX    @DPTR,A
+   \   000167   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   00016A   12....       LCALL   ??Subroutine8_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_15:
+   \   00016D   F0           MOVX    @DPTR,A
+   \   00016E   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   000171   A3           INC     DPTR
+   \   000172   A3           INC     DPTR
+   \   000173   F0           MOVX    @DPTR,A
+   \   000174   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   000177   8004         SJMP    ??CrossCallReturnLabel_16
+   \                     ??dht22_value_13:
+   \   000179   E4           CLR     A
+   \   00017A   12....       LCALL   ??Subroutine8_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_16:
+   \   00017D   F0           MOVX    @DPTR,A
+   \                     ??dht22_value_2:
+   \   00017E   79FF         MOV     R1,#-0x1
+   \                     ??dht22_value_12:
+   \   000180   7F07         MOV     R7,#0x7
+   \   000182   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000185                REQUIRE P0DIR
+   \   000185                REQUIRE _A_P0
+    216          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   A3           INC     DPTR
+   \   000001                REQUIRE ??Subroutine8_0
+   \   000001                ; // Fall through to label ??Subroutine8_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine8_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8E82         MOV     DPL,R6
+   \   000003   8F83         MOV     DPH,R7
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   8E82         MOV     DPL,R6
+   \   000002   8F83         MOV     DPH,R7
+   \   000004   A3           INC     DPTR
+   \   000005   A3           INC     DPTR
+   \   000006   A3           INC     DPTR
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   8E82         MOV     DPL,R6
+   \   00000A   8F83         MOV     DPH,R7
+   \   00000C   A3           INC     DPTR
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   A3           INC     DPTR
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   A3           INC     DPTR
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   85..82       MOV     DPL,?V0
+   \   000005   85..83       MOV     DPH,?V1
+   \   000008   A3           INC     DPTR
+   \   000009   A3           INC     DPTR
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   85..82       MOV     DPL,?V0
+   \   000003   85..83       MOV     DPH,?V1
+   \   000006   A3           INC     DPTR
+   \   000007   A3           INC     DPTR
+   \   000008   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_11:
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   E5..         MOV     A,?V5
+   \   000003   75F064       MOV     B,#0x64
+   \   000006   A4           MUL     AB
+   \   000007   F8           MOV     R0,A
+   \   000008   AAF0         MOV     R2,B
+   \   00000A   E4           CLR     A
+   \   00000B   2A           ADD     A,R2
+   \   00000C   F9           MOV     R1,A
+   \   00000D   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   99           SUBB    A,R1
+   \   000001   FB           MOV     R3,A
+   \   000002   A8..         MOV     R0,?V4
+   \   000004   EA           MOV     A,R2
+   \   000005   C3           CLR     C
+   \   000006   98           SUBB    A,R0
+   \   000007   F8           MOV     R0,A
+   \   000008   EB           MOV     A,R3
+   \   000009   9400         SUBB    A,#0x0
+   \   00000B   F9           MOV     R1,A
+   \   00000C   7A0A         MOV     R2,#0xa
+   \   00000E   7B00         MOV     R3,#0x0
+   \   000010   22           RET
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??dht22_delay_nus::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    dht22_delay_nus
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??dht22_delay_10us::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    dht22_delay_10us
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??dht22_delay_ms::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    dht22_delay_ms
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??dht22_read_byte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    dht22_read_byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??dht22_value::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    dht22_value
+    217          
+    218          
+    219          
+    220          
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      2      0   dht22_delay_10us
+        2      0   -> Onboard_wait
+      0     24   dht22_delay_ms
+        0      9   -> Onboard_wait
+      2      0   dht22_delay_nus
+        2      0   -> Onboard_wait
+      0     25   dht22_read_byte
+        0     10   -> Onboard_wait
+      1     15   dht22_value
+        0     15   -> Onboard_wait
+        0     15   -> dht22_delay_ms
+        0     15   -> dht22_read_byte
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       6  ??Subroutine8_0
+      10  ?Subroutine0
+      17  ?Subroutine1
+      14  ?Subroutine2
+      14  ?Subroutine3
+       4  ?Subroutine4
+      17  ?Subroutine5
+       1  ?Subroutine6
+      11  ?Subroutine7
+       1  P0DIR
+       1  _A_P0
+      10  dht22_delay_10us
+       6  dht22_delay_10us::?relay
+      48  dht22_delay_ms
+       6  dht22_delay_ms::?relay
+       4  dht22_delay_nus
+       6  dht22_delay_nus::?relay
+      95  dht22_read_byte
+       6  dht22_read_byte::?relay
+     389  dht22_value
+       6  dht22_value::?relay
+
+ 
+ 640 bytes in segment BANKED_CODE
+  30 bytes in segment BANK_RELAYS
+   2 bytes in segment SFR_AN
+ 
+ 670 bytes of CODE memory
+   0 bytes of DATA memory (+ 2 bytes shared)
+
+Errors: none
+Warnings: none

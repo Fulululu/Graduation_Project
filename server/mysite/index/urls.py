@@ -15,6 +15,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
 
     #AJAX functions
-    path('update/', views.update, name='update'),
+    path('update/<int:opt>', views.update, name='update'),
     path('devctl/<int:dev_id>', views.devctl, name='devctl'),
 ]

@@ -1,0 +1,836 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                08/Nov/2017  13:42:47
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\IIC.C
+#    Command line       =  
+#        -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\IIC.C
+#        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+#        xLCD_SUPPORTED=DEBUG -lC
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        -lA
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz
+#    List file          =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\IIC.lst
+#    Object file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj\IIC.r51
+#
+###############################################################################
+
+F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\IIC.C
+      1          /*
+      2          * Copyright (c) 2017,FAFU
+      3          * All rights reserved.
+      4          *
+      5          * File Name：IIC.c
+      6          * Abstract：software IIC for CC2530
+      7          *
+      8          * Current Version：1.0
+      9          * Author：ygf
+     10          * Finish Date：20171024
+     11          *
+     12          * Superseded Version：1.0
+     13          * Authorship ：ygf
+     14          * Finish Date：20171024
+     15          */ 
+     16          
+     17          #include "IIC.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+     18          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     19          unsigned char ack;
+   \                     ack:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     20          
+     21          /*Private functions*/
+     22          
+     23          /*Exported functions*/
+     24          /****************************
+     25                  延时函数
+     26          *****************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     27          void Delay_us(unsigned int timeout) //1 us延时unsigned int16 timeout )
+   \                     Delay_us:
+     28          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   8003         SJMP    ??Delay_us_0
+     29              while (timeout--)
+     30              {
+     31                asm("NOP");
+   \                     ??Delay_us_1:
+   \   000002   00           NOP
+     32                asm("NOP");
+   \   000003   00           NOP
+     33                asm("NOP");
+   \   000004   00           NOP
+     34              } 
+   \                     ??Delay_us_0:
+   \   000005   EA           MOV     A,R2
+   \   000006   F8           MOV     R0,A
+   \   000007   EB           MOV     A,R3
+   \   000008   F9           MOV     R1,A
+   \   000009   E8           MOV     A,R0
+   \   00000A   24FF         ADD     A,#-0x1
+   \   00000C   1A           DEC     R2
+   \   00000D   E9           MOV     A,R1
+   \   00000E   34FF         ADDC    A,#-0x1
+   \   000010   FB           MOV     R3,A
+   \   000011   E8           MOV     A,R0
+   \   000012   49           ORL     A,R1
+   \   000013   70ED         JNZ     ??Delay_us_1
+     35          }
+   \   000015   02....       LJMP    ?BRET
+     36          
+     37          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     38          void Delay_ms(unsigned int Time)//n ms延时
+   \                     Delay_ms:
+     39          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     40            unsigned char i;
+     41            while(Time--)
+   \                     ??Delay_ms_0:
+   \   000009   EE           MOV     A,R6
+   \   00000A   F8           MOV     R0,A
+   \   00000B   EF           MOV     A,R7
+   \   00000C   F9           MOV     R1,A
+   \   00000D   E8           MOV     A,R0
+   \   00000E   24FF         ADD     A,#-0x1
+   \   000010   1E           DEC     R6
+   \   000011   E9           MOV     A,R1
+   \   000012   34FF         ADDC    A,#-0x1
+   \   000014   FF           MOV     R7,A
+   \   000015   E8           MOV     A,R0
+   \   000016   49           ORL     A,R1
+   \   000017   6012         JZ      ??Delay_ms_1
+     42            {
+     43              for(i=0;i<100;i++)
+   \   000019   75..64       MOV     ?V0,#0x64
+     44               Delay_us(10);
+   \                     ??Delay_ms_2:
+   \   00001C                ; Setup parameters for call to function Delay_us
+   \   00001C   7A0A         MOV     R2,#0xa
+   \   00001E   7B00         MOV     R3,#0x0
+   \   000020   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+   \   000023   15..         DEC     ?V0
+   \   000025   E5..         MOV     A,?V0
+   \   000027   60E0         JZ      ??Delay_ms_0
+   \   000029   80F1         SJMP    ??Delay_ms_2
+     45            }
+     46          }
+   \                     ??Delay_ms_1:
+   \   00002B                REQUIRE ?Subroutine1
+   \   00002B                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+     47          //*********************************************************
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     48          void I2C_Init()
+   \                     I2C_Init:
+     49          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     50              P0SEL &= ~0xC0;                //设置P0.6 P0_7为普通IO口
+   \   000000   53F33F       ANL     0xf3,#0x3f
+     51              P0DIR |= 0xC0;                 //P0.6 P0.7定义为输出口
+   \   000003   43FDC0       ORL     0xfd,#0xc0
+     52          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+     53          /**************************************
+     54          起始信号
+     55          **************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     56          void I2C_Start()
+   \                     I2C_Start:
+     57          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     58              P0DIR |= 0x80;
+   \   000004   12....       LCALL   ?Subroutine2 & 0xFFFF
+     59              SDA = 1;                    //拉高数据线
+     60              SCL = 1;                    //拉高时钟线
+     61              Delay_us(5);                //延时
+   \                     ??CrossCallReturnLabel_0:
+   \   000007   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+     62              SDA = 0;                    //产生下降沿
+   \   00000A   C287         CLR     0x80.7
+     63              Delay_us(5);                //延时
+   \   00000C                ; Setup parameters for call to function Delay_us
+   \   00000C   7A05         MOV     R2,#0x5
+   \   00000E   7B00         MOV     R3,#0x0
+   \   000010   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+     64              SCL = 0;                    //拉低时钟线
+   \   000013   C286         CLR     0x80.6
+     65          }
+   \   000015   80..         SJMP    ?Subroutine0
+   \   000017                REQUIRE P0DIR
+   \   000017                REQUIRE _A_P0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   43FD80       ORL     0xfd,#0x80
+   \   000003   D287         SETB    0x80.7
+   \   000005   D286         SETB    0x80.6
+   \   000007                ; Setup parameters for call to function Delay_us
+   \   000007                ; Setup parameters for call to function Delay_us
+   \   000007   7A05         MOV     R2,#0x5
+   \   000009   7B00         MOV     R3,#0x0
+   \   00000B   22           RET
+     66          
+     67          
+     68          /**************************************
+     69          停止信号
+     70          **************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     71          void  I2C_Stop()
+   \                     I2C_Stop:
+     72          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     73              P0DIR|=0x80;
+   \   000004   12....       LCALL   ?Subroutine3 & 0xFFFF
+     74              SDA = 0;                    //拉低数据线
+     75              SCL = 1;                    //拉高时钟线
+     76              Delay_us(5);                //延时
+   \                     ??CrossCallReturnLabel_2:
+   \   000007   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+     77              SDA = 1;                    //产生上升沿
+   \   00000A   D287         SETB    0x80.7
+     78              Delay_us(5);                //延时
+   \   00000C                ; Setup parameters for call to function Delay_us
+   \   00000C   7A05         MOV     R2,#0x5
+   \   00000E   7B00         MOV     R3,#0x0
+   \   000010   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+     79          }
+   \   000013   80..         SJMP    ?Subroutine0
+   \   000015                REQUIRE P0DIR
+   \   000015                REQUIRE _A_P0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   43FD80       ORL     0xfd,#0x80
+   \   000003   C287         CLR     0x80.7
+   \   000005   D286         SETB    0x80.6
+   \   000007                ; Setup parameters for call to function Delay_us
+   \   000007                ; Setup parameters for call to function Delay_us
+   \   000007   7A05         MOV     R2,#0x5
+   \   000009   7B00         MOV     R3,#0x0
+   \   00000B   22           RET
+     80          
+     81          /**************************************
+     82          发送应答信号
+     83          入口参数:ack (0:ACK 1:NAK)
+     84          **************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     85          void SendACK()
+   \                     SendACK:
+     86          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     87              P0DIR|=0x80;
+   \   000004   12....       LCALL   ?Subroutine3 & 0xFFFF
+     88              SDA = 0;                    //写应答信号
+     89              SCL = 1;                    //拉高时钟线
+     90              Delay_us(5);                //延时
+   \                     ??CrossCallReturnLabel_3:
+   \   000007   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+     91              SCL = 0;                    //拉低时钟线
+   \   00000A   C286         CLR     0x80.6
+     92              SDA = 1;  
+   \   00000C   D287         SETB    0x80.7
+     93          }
+   \   00000E                REQUIRE ?Subroutine0
+   \   00000E                REQUIRE P0DIR
+   \   00000E                REQUIRE _A_P0
+   \   00000E                ; // Fall through to label ?Subroutine0
+     94          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     95          void SendNCK()
+   \                     SendNCK:
+     96          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     97              P0DIR|=0x80;
+   \   000004   12....       LCALL   ?Subroutine2 & 0xFFFF
+     98              SDA = 1;                    //写应答信号
+     99              SCL = 1;                    //拉高时钟线
+    100              Delay_us(5);                //延时
+   \                     ??CrossCallReturnLabel_1:
+   \   000007   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    101              SCL = 0;                    //拉低时钟线
+   \   00000A   C286         CLR     0x80.6
+    102              SDA = 0; 
+   \   00000C   C287         CLR     0x80.7
+    103          }
+   \   00000E   80..         SJMP    ?Subroutine0
+   \   000010                REQUIRE P0DIR
+   \   000010                REQUIRE _A_P0
+    104          
+    105          /*----------------------------------------------------------------              
+    106          I2C写入一个8位二进制数，高位在前低位在后
+    107          ------------------------------------------------------------------*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    108          void  I2C_SendByte(unsigned char c)
+   \                     I2C_SendByte:
+    109          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+    110            unsigned char BitCnt;
+    111            P0DIR|=0x80;
+   \   000007   43FD80       ORL     0xfd,#0x80
+    112            for(BitCnt=0;BitCnt<8;BitCnt++)  //要传送的数据长度为8位
+   \   00000A   7E00         MOV     R6,#0x0
+    113              {
+    114               
+    115                if((c<<BitCnt)&0x80) SDA=1;   //判断发送位
+   \                     ??I2C_SendByte_0:
+   \   00000C   8F..         MOV     ?V0,R7
+   \   00000E   75..00       MOV     ?V1,#0x0
+   \   000011   EE           MOV     A,R6
+   \   000012   78..         MOV     R0,#?V0
+   \   000014   12....       LCALL   ?S_SHL
+   \   000017   E5..         MOV     A,?V0
+   \   000019   5480         ANL     A,#0x80
+   \   00001B   6004         JZ      ??I2C_SendByte_1
+   \   00001D   D287         SETB    0x80.7
+   \   00001F   8002         SJMP    ??I2C_SendByte_2
+    116                 else  SDA=0;                
+   \                     ??I2C_SendByte_1:
+   \   000021   C287         CLR     0x80.7
+    117               SCL=1;               //置时钟线为高，通知被控器开始接收数据位
+   \                     ??I2C_SendByte_2:
+   \   000023   D286         SETB    0x80.6
+    118               Delay_us(5);         //保证时钟高电平周期大于4μ      
+   \   000025                ; Setup parameters for call to function Delay_us
+   \   000025   7A05         MOV     R2,#0x5
+   \   000027   7B00         MOV     R3,#0x0
+   \   000029   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    119               SCL=0; 
+   \   00002C   C286         CLR     0x80.6
+    120              }  
+   \   00002E   0E           INC     R6
+   \   00002F   EE           MOV     A,R6
+   \   000030   C3           CLR     C
+   \   000031   9408         SUBB    A,#0x8
+   \   000033   40D7         JC      ??I2C_SendByte_0
+    121               SDA=1;
+   \   000035   D287         SETB    0x80.7
+    122              Delay_us(5);
+   \   000037                ; Setup parameters for call to function Delay_us
+   \   000037   7A05         MOV     R2,#0x5
+   \   000039   7B00         MOV     R3,#0x0
+   \   00003B   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    123              P0DIR&=~0x80;          //8位发送完后释放数据线，准备接收应答位
+   \   00003E   53FD7F       ANL     0xfd,#0x7f
+    124              SCL=1;
+   \   000041   D286         SETB    0x80.6
+    125              Delay_us(5);
+   \   000043                ; Setup parameters for call to function Delay_us
+   \   000043   7A05         MOV     R2,#0x5
+   \   000045   7B00         MOV     R3,#0x0
+   \   000047   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    126              if(SDA==1)ack=0;     
+    127                 else ack=1;        //判断是否接收到应答信号，“SDA=1”：没有
+   \   00004A   A287         MOV     C,0x80.7
+   \   00004C   4004         JC      ??I2C_SendByte_3
+   \   00004E   D2F0         SETB    B.0
+   \   000050   8002         SJMP    ??I2C_SendByte_4
+   \                     ??I2C_SendByte_3:
+   \   000052   C2F0         CLR     B.0
+   \                     ??I2C_SendByte_4:
+   \   000054   A2F0         MOV     C,B.0
+   \   000056   E4           CLR     A
+   \   000057   33           RLC     A
+   \   000058   90....       MOV     DPTR,#ack
+   \   00005B   F0           MOVX    @DPTR,A
+    128              SCL=0;
+   \   00005C   C286         CLR     0x80.6
+    129          }
+   \   00005E   7F02         MOV     R7,#0x2
+   \   000060   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000063                REQUIRE P0DIR
+   \   000063                REQUIRE _A_P0
+    130          
+    131          /*******************************************************************
+    132                           向无子地址器件发送字节数据函数               
+    133          函数原型: bit  I2C_ISendByte(unsigned char sla,ucahr c);  
+    134          功能:     从启动总线到发送地址，数据，结束总线的全过程,从器件地址sla.
+    135                    如果返回1表示操作成功，否则操作有误。
+    136          注意：    使用前必须已结束总线。
+    137          ********************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    138          unsigned char I2C_ISendByte(unsigned char sla,unsigned char c)
+   \                     I2C_ISendByte:
+    139          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+    140             I2C_Start();               /*启动总线*/
+   \   000009                ; Setup parameters for call to function I2C_Start
+   \   000009   12....       LCALL   `??I2C_Start::?relay`; Banked call to: I2C_Start
+    141             I2C_SendByte(sla);             /*发送器件地址*/
+   \   00000C                ; Setup parameters for call to function I2C_SendByte
+   \   00000C   EF           MOV     A,R7
+   \   00000D   F9           MOV     R1,A
+   \   00000E   12....       LCALL   `??I2C_SendByte::?relay`; Banked call to: I2C_SendByte
+    142             if(ack==0)return(0);
+   \   000011   90....       MOV     DPTR,#ack
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   600B         JZ      ??I2C_ISendByte_0
+    143             I2C_SendByte(c);               /*发送数据*/
+   \   000017                ; Setup parameters for call to function I2C_SendByte
+   \   000017   EE           MOV     A,R6
+   \   000018   F9           MOV     R1,A
+   \   000019   12....       LCALL   `??I2C_SendByte::?relay`; Banked call to: I2C_SendByte
+    144             if(ack==0)return(0);
+   \   00001C   90....       MOV     DPTR,#ack
+   \   00001F   E0           MOVX    A,@DPTR
+   \   000020   7004         JNZ     ??I2C_ISendByte_1
+   \                     ??I2C_ISendByte_0:
+   \   000022   7900         MOV     R1,#0x0
+   \   000024   8005         SJMP    ??I2C_ISendByte_2
+    145             I2C_Stop();                /*结束总线*/ 
+   \                     ??I2C_ISendByte_1:
+   \   000026                ; Setup parameters for call to function I2C_Stop
+   \   000026   12....       LCALL   `??I2C_Stop::?relay` ; Banked call to: I2C_Stop
+    146             return(1);
+   \   000029   7901         MOV     R1,#0x1
+   \                     ??I2C_ISendByte_2:
+   \   00002B   02....       LJMP    ?Subroutine1 & 0xFFFF
+    147          }
+    148          
+    149          /*******************************************************************
+    150          I2C读取一个8位二进制数，也是高位在前低位在后  
+    151          ****************************************************************/	
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    152          unsigned char I2C_RcvByte()
+   \                     I2C_RcvByte:
+    153          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    154            unsigned char retc;
+    155            unsigned char BitCnt;
+    156            retc=0; 
+   \   000005   7E00         MOV     R6,#0x0
+    157            P0DIR &= ~0x80;         //置数据线为输入方式
+   \   000007   53FD7F       ANL     0xfd,#0x7f
+    158            for(BitCnt=0;BitCnt<8;BitCnt++)
+   \   00000A   7F08         MOV     R7,#0x8
+    159            {       
+    160              SCL=0;      
+   \                     ??I2C_RcvByte_0:
+   \   00000C   C286         CLR     0x80.6
+    161              Delay_us(5); //时钟低电平周期大于4.7us
+   \   00000E                ; Setup parameters for call to function Delay_us
+   \   00000E   7A05         MOV     R2,#0x5
+   \   000010   7B00         MOV     R3,#0x0
+   \   000012   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    162              if(SDA==1) retc=retc+1; //读数据位,接收的数据位放入retc中
+   \   000015   A287         MOV     C,0x80.7
+   \   000017   5001         JNC     ??I2C_RcvByte_1
+   \   000019   0E           INC     R6
+    163              SCL=1;
+   \                     ??I2C_RcvByte_1:
+   \   00001A   D286         SETB    0x80.6
+    164              retc=retc<<1;
+   \   00001C   EE           MOV     A,R6
+   \   00001D   C3           CLR     C
+   \   00001E   33           RLC     A
+   \   00001F   FE           MOV     R6,A
+    165              Delay_us(5);  
+   \   000020                ; Setup parameters for call to function Delay_us
+   \   000020   7A05         MOV     R2,#0x5
+   \   000022   7B00         MOV     R3,#0x0
+   \   000024   12....       LCALL   `??Delay_us::?relay` ; Banked call to: Delay_us
+    166            }   
+   \   000027   1F           DEC     R7
+   \   000028   EF           MOV     A,R7
+   \   000029   70E1         JNZ     ??I2C_RcvByte_0
+    167            SCL=0; 
+   \   00002B   C286         CLR     0x80.6
+    168            return(retc);
+   \   00002D   EE           MOV     A,R6
+   \   00002E   F9           MOV     R1,A
+   \   00002F   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000032                REQUIRE P0DIR
+   \   000032                REQUIRE _A_P0
+    169          }
+    170          
+    171          //*********************************************************
+    172          //从sla连续读出no个数据到*s
+    173          //*********************************************************
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    174          unsigned char I2C_IRcvStrExt(unsigned char sla,unsigned char *s,unsigned char no)
+   \                     I2C_IRcvStrExt:
+    175          {   
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0,R1
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+   \   000009   EB           MOV     A,R3
+   \   00000A   FF           MOV     R7,A
+   \   00000B   8C..         MOV     ?V2,R4
+    176              unsigned char i;	
+    177              I2C_Start();                         //起始信号
+   \   00000D                ; Setup parameters for call to function I2C_Start
+   \   00000D   12....       LCALL   `??I2C_Start::?relay`; Banked call to: I2C_Start
+    178              I2C_SendByte(sla+1);        //发送设备地址+读信号
+   \   000010                ; Setup parameters for call to function I2C_SendByte
+   \   000010   7401         MOV     A,#0x1
+   \   000012   25..         ADD     A,?V0
+   \   000014   F9           MOV     R1,A
+   \   000015   12....       LCALL   `??I2C_SendByte::?relay`; Banked call to: I2C_SendByte
+    179              if(ack==0)return(0);
+   \   000018   90....       MOV     DPTR,#ack
+   \   00001B   E0           MOVX    A,@DPTR
+   \   00001C   7004         JNZ     ??I2C_IRcvStrExt_0
+   \   00001E   7900         MOV     R1,#0x0
+   \   000020   8043         SJMP    ??I2C_IRcvStrExt_1
+    180                for (i=0; i<no-1; i++)                      //连续读取6个地址数据，存储中BUF
+   \                     ??I2C_IRcvStrExt_0:
+   \   000022   75..00       MOV     ?V1,#0x0
+   \   000025   8017         SJMP    ??I2C_IRcvStrExt_2
+    181                {
+    182                  *s=I2C_RcvByte();      
+   \                     ??I2C_IRcvStrExt_3:
+   \   000027                ; Setup parameters for call to function I2C_RcvByte
+   \   000027   12....       LCALL   `??I2C_RcvByte::?relay`; Banked call to: I2C_RcvByte
+   \   00002A   E9           MOV     A,R1
+   \   00002B   8E82         MOV     DPL,R6
+   \   00002D   8F83         MOV     DPH,R7
+   \   00002F   F0           MOVX    @DPTR,A
+    183                  SendACK();                //回应ACK
+   \   000030                ; Setup parameters for call to function SendACK
+   \   000030   12....       LCALL   `??SendACK::?relay`  ; Banked call to: SendACK
+    184                  s++;
+   \   000033   8E82         MOV     DPL,R6
+   \   000035   8F83         MOV     DPH,R7
+   \   000037   A3           INC     DPTR
+   \   000038   AE82         MOV     R6,DPL
+   \   00003A   AF83         MOV     R7,DPH
+    185                }		
+   \   00003C   05..         INC     ?V1
+   \                     ??I2C_IRcvStrExt_2:
+   \   00003E   E5..         MOV     A,?V2
+   \   000040   24FF         ADD     A,#-0x1
+   \   000042   F8           MOV     R0,A
+   \   000043   E4           CLR     A
+   \   000044   34FF         ADDC    A,#-0x1
+   \   000046   F9           MOV     R1,A
+   \   000047   C3           CLR     C
+   \   000048   E5..         MOV     A,?V1
+   \   00004A   98           SUBB    A,R0
+   \   00004B   E4           CLR     A
+   \   00004C   99           SUBB    A,R1
+   \   00004D   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00004F   65D0         XRL     A,PSW
+   \   000051   33           RLC     A
+   \   000052   40D3         JC      ??I2C_IRcvStrExt_3
+    186                  *s=I2C_RcvByte();
+   \   000054                ; Setup parameters for call to function I2C_RcvByte
+   \   000054   12....       LCALL   `??I2C_RcvByte::?relay`; Banked call to: I2C_RcvByte
+   \   000057   E9           MOV     A,R1
+   \   000058   8E82         MOV     DPL,R6
+   \   00005A   8F83         MOV     DPH,R7
+   \   00005C   F0           MOVX    @DPTR,A
+    187                  SendNCK();      //最后一个数据需要回NOACK             
+   \   00005D                ; Setup parameters for call to function SendNCK
+   \   00005D   12....       LCALL   `??SendNCK::?relay`  ; Banked call to: SendNCK
+    188                  I2C_Stop();   
+   \   000060                ; Setup parameters for call to function I2C_Stop
+   \   000060   12....       LCALL   `??I2C_Stop::?relay` ; Banked call to: I2C_Stop
+    189                  return(1);
+   \   000063   7901         MOV     R1,#0x1
+   \                     ??I2C_IRcvStrExt_1:
+   \   000065   7F03         MOV     R7,#0x3
+   \   000067   02....       LJMP    ?BANKED_LEAVE_XDATA
+    190          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??Delay_us::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Delay_us
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??Delay_ms::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Delay_ms
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_Init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_Start::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_Start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_Stop::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_Stop
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??SendACK::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SendACK
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??SendNCK::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SendNCK
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_SendByte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_SendByte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_ISendByte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_ISendByte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_RcvByte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_RcvByte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??I2C_IRcvStrExt::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    I2C_IRcvStrExt
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0      9   Delay_ms
+        0      9   -> Delay_us
+      0     10   Delay_us
+      1     11   I2C_IRcvStrExt
+        0     11   -> I2C_RcvByte
+        0     11   -> I2C_SendByte
+        0     11   -> I2C_Start
+        0     11   -> I2C_Stop
+        0     11   -> SendACK
+        0     11   -> SendNCK
+      0      9   I2C_ISendByte
+        0      9   -> I2C_SendByte
+        0      9   -> I2C_Start
+        0      9   -> I2C_Stop
+      0      0   I2C_Init
+      0     20   I2C_RcvByte
+        0      9   -> Delay_us
+      0     21   I2C_SendByte
+        0     10   -> Delay_us
+      2     11   I2C_Start
+        2      0   -> Delay_us
+      2     11   I2C_Stop
+        2      0   -> Delay_us
+      2     11   SendACK
+        2      0   -> Delay_us
+      2     11   SendNCK
+        2      0   -> Delay_us
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       7  ?Subroutine0
+       5  ?Subroutine1
+      12  ?Subroutine2
+      12  ?Subroutine3
+      43  Delay_ms
+       6  Delay_ms::?relay
+      24  Delay_us
+       6  Delay_us::?relay
+     106  I2C_IRcvStrExt
+       6  I2C_IRcvStrExt::?relay
+      46  I2C_ISendByte
+       6  I2C_ISendByte::?relay
+       9  I2C_Init
+       6  I2C_Init::?relay
+      50  I2C_RcvByte
+       6  I2C_RcvByte::?relay
+      99  I2C_SendByte
+       6  I2C_SendByte::?relay
+      23  I2C_Start
+       6  I2C_Start::?relay
+      21  I2C_Stop
+       6  I2C_Stop::?relay
+       1  P0DIR
+       1  P0SEL
+      14  SendACK
+       6  SendACK::?relay
+      16  SendNCK
+       6  SendNCK::?relay
+       1  _A_P0
+       1  ack
+
+ 
+ 487 bytes in segment BANKED_CODE
+  66 bytes in segment BANK_RELAYS
+   3 bytes in segment SFR_AN
+   1 byte  in segment XDATA_Z
+ 
+ 553 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 3 bytes shared)
+   1 byte  of XDATA memory
+
+Errors: none
+Warnings: none

@@ -1,33 +1,63 @@
-function update(){
-	$.getJSON('/update/', function(jsondata){
-		$.each(jsondata, function(){
-			$('#showdata').html('<td scope="col">'+this.UID_id+'</td>'
-						    + '<td>'+this.NODE+'</td>'
-						    + '<td>'+this.LIGHT+'</td>'
-						    + '<td>'+this.AIRTEMP+'</td>'
-						    + '<td>'+this.AIRHUMI+'</td>'
-						    + '<td>'+this.SOILTEMP+'</td>'
-						    + '<td>'+this.SOILHUMI+'</td>');  
-			});	
-		});
+function update(opt){
+	if(opt == 0){
+		$.getJSON('/update/'+opt, function(jsondata){
+			$.each(jsondata, function(){
+				$('#'+this.NODE).html('<td scope="col">'+this.UID_id+'</td>'
+							    + '<td>'+this.NODE+'</td>'
+							    + '<td>'+this.LIGHT+'</td>'
+							    + '<td>'+this.AIRTEMP+'</td>'
+							    + '<td>'+this.AIRHUMI+'</td>'
+							    + '<td>'+this.SOILTEMP+'</td>'
+							    + '<td>'+this.SOILHUMI+'</td>');
+				});	
+			});
+	}else if(opt == 1){
+		$.getJSON('/update/'+opt, function(jsondata){
+			$.each(jsondata, function(){
+				if(this.pump_state){
+					obj = document.getElementById("pump_on");
+					obj.className='btn btn-lg btn-primary';
+					obj = document.getElementById("pump_off");
+					obj.className='btn btn-lg btn-default';
+				}else{
+					obj = document.getElementById("pump_on");
+					obj.className='btn btn-lg btn-default';
+					obj = document.getElementById("pump_off");
+					obj.className='btn btn-lg btn-primary';				
+				}	
+				if(this.lamp_state){
+					obj = document.getElementById("lamp_on");
+					obj.className='btn btn-lg btn-warning';
+					obj = document.getElementById("lamp_off");
+					obj.className='btn btn-lg btn-default';
+				}else{
+					obj = document.getElementById("lamp_on");
+					obj.className='btn btn-lg btn-default';
+					obj = document.getElementById("lamp_off");
+					obj.className='btn btn-lg btn-warning';
+				}
+				});	
+			});
 	}
-function timeDown(limit, i, f){  
-	limit--;  
-	if (i > 60){  
-		i = 0;  
-	}  
-	if (limit < 0){  
-		limit = 60;
-		if(f == 0)  update();
-		else if(f == 1) devctl(2);  
-		i++;  
-	}  
-	//$('#time').text(limit + '秒后刷新');  
+}
+//backup must be 0
+function timeDown(time, backup, opt){  	
+	time--;
+	if (time < 0){
+		time = backup;
+		backup = 0;
+		update(opt);
+		if(opt==0) opt=1;
+  		else if(opt==1) opt=0;
+	}else{
+		backup++;
+	}
+	//$('#time').text(time + '秒后刷新');  
 	setTimeout(function(){
-		timeDown(limit, i);
+		timeDown(time, backup, opt);
 		}, 1000)  
 	}  
-//dev_id = 0 is PUMP, 1 is LAMP.
+//dev_id = 0 is PUMP, 1 is LAMP, 2 update device_state.
 function devctl(dev_id){
 	$.getJSON('/devctl/'+dev_id, function(jsondata){
 		$.each(jsondata, function(){
@@ -37,38 +67,15 @@ function devctl(dev_id){
 			else if(dev_id == 1){
 				//$('#content').html('<p>LAMP Status:'+this.lamp_state+'</p>');
 			}
-			else if(dev_id == 2){ //update device_state
-				//$('#content').html('<p>PUMP Status:'+this.pump_state+'</p>'+'<p>LAMP Status:'+this.lamp_state+'</p>');				
-				if(this.pump_state){
-					obj = document.getElementById("pump_on");
-					obj.className='btn btn-lg btn-primary';
-					obj = document.getElementById("pump_off");
-					obj.className='btn btn-lg btn-default';
-				}	
-				if(this.lamp_state){
-					obj = document.getElementById("lamp_on");
-					obj.className='btn btn-lg btn-warning';
-					obj = document.getElementById("lamp_off");
-					obj.className='btn btn-lg btn-default';
-				}
-			}
 		});	
 	});
 }
 
 $(document).ready(function(){
 	/*
-	 * Start update real time data 
+	 * Start update real time data and device states for device button 
 	 */
-	timeDown(60, 0, 0)
-	/*
-	 * Start update real time device_state 
-	 */
-	timeDown(2, 0, 1)
-	/*
-	 * get device states for device button 
-	 */
-	devctl(2); 
+	timeDown(3, 0, 0)
 	/*
 	 * 以下代码控制按钮切换效果
  	 */

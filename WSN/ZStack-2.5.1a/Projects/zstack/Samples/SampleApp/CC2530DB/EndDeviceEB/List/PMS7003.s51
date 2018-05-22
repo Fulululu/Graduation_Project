@@ -1,0 +1,1554 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.1.3056 for 8051               22/May/2018  20:40:26
+// Copyright 2004-2015 IAR Systems AB.
+// Standalone license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\PMS7003.c
+//    Command line       =  
+//        -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+//        -DREJOIN_POLL_RATE=1000
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\PMS7003.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D
+//        xMT_ZDO_FUNC -D xLCD_SUPPORTED=DEBUG -D POWER_SAVING -lC
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+//        --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -On --require_prototypes
+//    List file          =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\PMS7003.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME PMS7003
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__iar_require _formatted_write", "widths"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?V4
+        EXTERN ?V6
+        EXTERN ?V7
+        EXTERN ?V5
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?MOVE_LONG8_XDATA_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_DISP101_8
+
+        PUBLIC `??PMS7003_Init::?relay`
+        FUNCTION `??PMS7003_Init::?relay`,0203H
+        PUBLIC `??PMS7003_Read::?relay`
+        FUNCTION `??PMS7003_Read::?relay`,0203H
+        PUBLIC `??PMS7003_Read_Str::?relay`
+        FUNCTION `??PMS7003_Read_Str::?relay`,0203H
+        PUBLIC `??PMS7003_buildframe::?relay`
+        FUNCTION `??PMS7003_buildframe::?relay`,0203H
+        PUBLIC `??PMS7003_control::?relay`
+        FUNCTION `??PMS7003_control::?relay`,0203H
+        PUBLIC `??PMS7003_recdata::?relay`
+        FUNCTION `??PMS7003_recdata::?relay`,0203H
+        PUBLIC `??PMS7003_rest::?relay`
+        FUNCTION `??PMS7003_rest::?relay`,0203H
+        PUBLIC `??PMS7003_sleep::?relay`
+        FUNCTION `??PMS7003_sleep::?relay`,0203H
+        PUBWEAK P0DIR
+        PUBWEAK P0SEL
+        PUBLIC PMS7003_Init
+        FUNCTION PMS7003_Init,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC PMS7003_Read
+        FUNCTION PMS7003_Read,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 48, STACK
+        PUBLIC PMS7003_Read_Str
+        FUNCTION PMS7003_Read_Str,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 54, STACK
+        PUBLIC PMS7003_buildframe
+        FUNCTION PMS7003_buildframe,080203H
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 13, STACK
+        PUBLIC PMS7003_control
+        FUNCTION PMS7003_control,0a1203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 17, STACK
+        PUBLIC PMS7003_recdata
+        FUNCTION PMS7003_recdata,0a1203H
+        ARGFRAME XSTACK, 48, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC PMS7003_rest
+        FUNCTION PMS7003_rest,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC PMS7003_sleep
+        FUNCTION PMS7003_sleep,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBWEAK _A_P0
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+HalUARTRead         SYMBOL "HalUARTRead"
+`??HalUARTRead::?relay` SYMBOL "?relay", HalUARTRead
+HalUARTWrite        SYMBOL "HalUARTWrite"
+`??HalUARTWrite::?relay` SYMBOL "?relay", HalUARTWrite
+sprintf             SYMBOL "sprintf"
+`??sprintf::?relay` SYMBOL "?relay", sprintf
+PMS7003_Init        SYMBOL "PMS7003_Init"
+`??PMS7003_Init::?relay` SYMBOL "?relay", PMS7003_Init
+PMS7003_Read        SYMBOL "PMS7003_Read"
+`??PMS7003_Read::?relay` SYMBOL "?relay", PMS7003_Read
+PMS7003_Read_Str    SYMBOL "PMS7003_Read_Str"
+`??PMS7003_Read_Str::?relay` SYMBOL "?relay", PMS7003_Read_Str
+PMS7003_buildframe  SYMBOL "PMS7003_buildframe"
+`??PMS7003_buildframe::?relay` SYMBOL "?relay", PMS7003_buildframe
+PMS7003_control     SYMBOL "PMS7003_control"
+`??PMS7003_control::?relay` SYMBOL "?relay", PMS7003_control
+PMS7003_recdata     SYMBOL "PMS7003_recdata"
+`??PMS7003_recdata::?relay` SYMBOL "?relay", PMS7003_recdata
+PMS7003_rest        SYMBOL "PMS7003_rest"
+`??PMS7003_rest::?relay` SYMBOL "?relay", PMS7003_rest
+PMS7003_sleep       SYMBOL "PMS7003_sleep"
+`??PMS7003_sleep::?relay` SYMBOL "?relay", PMS7003_sleep
+
+        EXTERN `??HalUARTRead::?relay`
+        FUNCTION `??HalUARTRead::?relay`,00H
+        EXTERN `??HalUARTWrite::?relay`
+        FUNCTION `??HalUARTWrite::?relay`,00H
+        EXTERN `??sprintf::?relay`
+        FUNCTION `??sprintf::?relay`,00H
+        EXTERN HalUARTRead
+        FUNCTION HalUARTRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalUARTWrite
+        FUNCTION HalUARTWrite,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN sprintf
+        FUNCTION sprintf,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 54, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\PMS7003.c
+//    1 //=====================================================================
+//    2 //文件名称：PMS7003.c
+//    3 //功能概要：空气颗粒物传感器（PM2.5）PMS7003构件源文件
+//    4 //=====================================================================
+//    5 
+//    6 #include "PMS7003.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+//    7 
+//    8 //SET------3.3V
+//    9 //RST------3.3V
+//   10 
+//   11 //=====================================================================
+//   12 //传感器命令协议：
+//   13 //特征字节  特征字节  指令字节  状态字节1 状态字节2 校验字节1 校验字节2
+//   14 // 0x42      0x4d      CMD      DATAH     DATAL    LRCH      LRCL
+//   15 //指令及特征字节的定义：
+//   16 //CMD  DATAH  DATAL      	  说明
+//   17 //0xe2   x      x        	 被动读数
+//   18 //0xe1   x    00H-被动式         状态切换
+//   19 //            01H-主动式
+//   20 //0xe4   x    00H-待机模式       待机控制
+//   21 //       x    01H-正常模式
+//   22 //校验字生成：
+//   23 //从特征字开始所有字节累加和
+//   24 //=====================================================================
+//   25 
+//   26 //=========================================================================
+//   27 //函数名称：PMS7003_init
+//   28 //函数参数：无
+//   29 //函数返回：无
+//   30 //功能概要：初始化SET、RST引脚
+//   31 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   32 void PMS7003_Init(void)
+PMS7003_Init:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function PMS7003_Init
+        CODE
+//   33 {
+        FUNCALL PMS7003_Init, PMS7003_control
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH    DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   34     P0SEL &= ~0x30;                 //设置P0.4 P0.5为普通IO口
+        ANL     0xf3,#0xcf
+//   35     P0DIR |= 0x30;                 //P0.4 P0.5定义为输出口
+        ORL     0xfd,#0x30
+//   36     //PMS7003_rest();
+//   37     //PMS7003_SET = 1;
+//   38     PMS7003_control(PMS7003_CMD_READSTATE_PASSTIVE);
+        ; Setup parameters for call to function PMS7003_control
+        MOV     R2,#0x0
+        MOV     R3,#-0x1f
+        LCALL   `??PMS7003_control::?relay`; Banked call to: PMS7003_control
+        MOV     A,R1
+//   39 }
+        POP     DPH
+          CFI DPH0 SameValue
+          CFI CFA_SP SP+-4
+        POP     DPL
+          CFI DPL0 SameValue
+          CFI CFA_SP SP+-3
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock0
+        REQUIRE P0SEL
+        REQUIRE P0DIR
+//   40 
+//   41 //=========================================================================
+//   42 //函数名称：PMS7003_control
+//   43 //函数参数：cmd:控制命令
+//   44 //函数返回：命令发送成功：0；命令发送失败：0x11
+//   45 //功能概要：通过命令控制传感器工作状态
+//   46 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   47 unsigned char PMS7003_control(unsigned int cmd)
+PMS7003_control:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function PMS7003_control
+        CODE
+//   48 {
+        FUNCALL PMS7003_control, PMS7003_buildframe
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL PMS7003_control, HalUARTWrite
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 7
+        MOV     A,#-0x7
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 17)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+//   49 	unsigned char flag;
+//   50 	//初始化命令帧
+//   51 	unsigned char command[PMS7003_LENTH_CMD] = {0};
+        MOV     DPTR,#`?<Constant {0, 0, 0, 0, 0, 0, 0}>`
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     A,#0x7
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//   52 
+//   53 	PMS7003_buildframe(cmd,command);
+        ; Setup parameters for call to function PMS7003_buildframe
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     R2,?V0
+        MOV     R3,?V1
+        LCALL   `??PMS7003_buildframe::?relay`; Banked call to: PMS7003_buildframe
+//   54 	flag = HalUARTWrite(0, command, PMS7003_LENTH_CMD);
+        ; Setup parameters for call to function HalUARTWrite
+        MOV     R4,#0x7
+        MOV     R5,#0x0
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        MOV     R1,#0x0
+        LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+        MOV     A,R2
+        MOV     R6,A
+//   55 
+//   56 	//如果发送命令错误，返回错误码
+//   57 	if(!flag)
+        MOV     A,R6
+        JNZ     ??PMS7003_control_0
+//   58 	{
+//   59 		return PMS7003_ERR_CMDFAIL;
+        MOV     R1,#0x11
+        SJMP    ??PMS7003_control_1
+//   60 	}
+//   61 
+//   62 	return 0;
+??PMS7003_control_0:
+        MOV     R1,#0x0
+??PMS7003_control_1:
+        MOV     A,#0x7
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+//   63 }
+          CFI EndBlock cfiBlock1
+//   64 
+//   65 //=========================================================================
+//   66 //函数名称：PMS7003_buildframe
+//   67 //函数参数：cmd:控制命令
+//   68 //		 *frame：命令帧数组
+//   69 //函数返回：无
+//   70 //功能概要：将命令组成命令帧
+//   71 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   72 void PMS7003_buildframe(unsigned int cmd_state,unsigned char *frame)
+PMS7003_buildframe:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function PMS7003_buildframe
+        CODE
+//   73 {
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        MOV     A,#-0xd
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 13)
+        ; Saved register size: 13
+        ; Auto size: 0
+//   74 	unsigned char cmd;
+//   75 	unsigned char statechar;
+//   76 	unsigned char lrcl;
+//   77 	unsigned char lrch;
+//   78 	unsigned int lrc = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+//   79 
+//   80 	//计算命令和状态字节
+//   81 	cmd = cmd_state >> 8;
+        MOV     A,R2
+        MOV     R0,A
+        MOV     A,R3
+        MOV     R1,A
+        CLR     A
+        XCH     A,R1
+        MOV     R0,A
+        MOV     A,R0
+        MOV     ?V0,A
+//   82 	statechar = cmd_state;
+        MOV     A,R2
+        MOV     ?V1,A
+//   83 
+//   84 	//组帧
+//   85 	frame[0] = 0x42;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOV     A,#0x42
+        MOVX    @DPTR,A
+//   86 	frame[1] = 0x4d;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        MOV     A,#0x4d
+        MOVX    @DPTR,A
+//   87 	frame[2] = cmd;
+        MOV     A,?V0
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//   88 	frame[3] = 0x00;
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOV     A,#0x0
+        MOVX    @DPTR,A
+//   89 	frame[4] = statechar;
+        MOV     A,?V1
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//   90 
+//   91 	//计算校验字 节
+//   92 	unsigned char i;
+//   93 	for(i = 0 ; i < (PMS7003_LENTH_CMD-2) ; i++)
+        MOV     ?V4,#0x0
+??PMS7003_buildframe_0:
+        MOV     A,?V4
+        CLR     C
+        SUBB    A,#0x5
+        JNC     ??PMS7003_buildframe_1
+//   94 	{
+//   95 		lrc += frame[i];
+        MOV     R0,?V4
+        MOV     R1,#0x0
+        MOV     A,R4
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,R5
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,R6
+        ADD     A,R0
+        MOV     R6,A
+        MOV     A,R7
+        ADDC    A,R1
+        MOV     R7,A
+//   96 	}
+        INC     ?V4
+        SJMP    ??PMS7003_buildframe_0
+//   97 	lrch = lrc >> 8;
+??PMS7003_buildframe_1:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        CLR     A
+        XCH     A,R1
+        MOV     R0,A
+        MOV     A,R0
+        MOV     ?V3,A
+//   98 	lrcl = lrc;
+        MOV     A,R6
+        MOV     ?V2,A
+//   99 	//组帧
+//  100 	frame[5] = lrcl;
+        MOV     A,?V2
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  101 	frame[6] = lrch;
+        MOV     A,?V3
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R4
+        MOV     DPH,R5
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  102 }
+        MOV     R7,#0x5
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock2
+//  103 
+//  104 //=========================================================================
+//  105 //函数名称：PMS7003_rest
+//  106 //函数参数：无
+//  107 //函数返回：无
+//  108 //功能概要：通过RST引脚复位传感器
+//  109 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  110 void PMS7003_rest(void)
+PMS7003_rest:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Function PMS7003_rest
+        CODE
+//  111 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  112 	PMS7003_RST = 0;
+        CLR     0x80.4
+//  113         for(int i=0;i<500;i++);
+        MOV     R0,#0x0
+        MOV     R1,#0x0
+??PMS7003_rest_0:
+        CLR     C
+        MOV     A,R0
+        SUBB    A,#-0xc
+        MOV     A,R1
+        SUBB    A,#0x1
+        MOV     C,0xD0 /* PSW */.2
+        XRL     A,PSW
+        RLC     A
+        JNC     ??PMS7003_rest_1
+        INC     R0
+        MOV     A,R0
+        JNZ     ??PMS7003_rest_0
+        INC     R1
+        SJMP    ??PMS7003_rest_0
+//  114         PMS7003_RST = 1;
+??PMS7003_rest_1:
+        SETB    0x80.4
+//  115 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock3
+        REQUIRE _A_P0
+//  116 
+//  117 //=========================================================================
+//  118 //函数名称：PMS7003_sleep
+//  119 //函数参数：无
+//  120 //函数返回：无
+//  121 //功能概要：通过SET引脚休眠传感器
+//  122 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  123 void PMS7003_sleep(void)
+PMS7003_sleep:
+          CFI Block cfiBlock4 Using cfiCommon0
+          CFI Function PMS7003_sleep
+        CODE
+//  124 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  125 	PMS7003_SET = 0;
+        CLR     0x80.5
+//  126 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock4
+        REQUIRE _A_P0
+//  127 
+//  128 //======================================================================
+//  129 //函数名称：PMS7003_datarec
+//  130 //函数参数：databuf:数据接收缓存
+//  131 //函数返回：接收成功：0 ；接收失败：0x12
+//  132 //功能概要：接收传感器原始读数
+//  133 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  134 unsigned char PMS7003_recdata(unsigned char *databuf)
+PMS7003_recdata:
+          CFI Block cfiBlock5 Using cfiCommon0
+          CFI Function PMS7003_recdata
+        CODE
+//  135 {
+        FUNCALL PMS7003_recdata, PMS7003_control
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL PMS7003_recdata, HalUARTRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  136 	unsigned char lrcl, lrch, i;
+//  137 	unsigned int lrcsum, datasum = 0;
+        MOV     ?V2,#0x0
+        MOV     ?V3,#0x0
+//  138         PMS7003_control(PMS7003_CMD_PSSTIVEREAD);
+        ; Setup parameters for call to function PMS7003_control
+        MOV     R2,#0x0
+        MOV     R3,#-0x1e
+        LCALL   `??PMS7003_control::?relay`; Banked call to: PMS7003_control
+        MOV     A,R1
+//  139 	//接收传感器的数据
+//  140         i=HalUARTRead(0, databuf, PMS7003_LENTH_DATA);
+        ; Setup parameters for call to function HalUARTRead
+        MOV     R4,#0x20
+        MOV     R5,#0x0
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        MOV     R1,#0x0
+        LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+        MOV     A,R2
+        MOV     ?V0,A
+//  141 
+//  142 	//计算校验和
+//  143 	for(i = 0; i < (PMS7003_LENTH_DATA -2) ; i++)
+        MOV     ?V0,#0x0
+??PMS7003_recdata_0:
+        MOV     A,?V0
+        CLR     C
+        SUBB    A,#0x1e
+        JNC     ??PMS7003_recdata_1
+//  144 	{
+//  145 		datasum += databuf[i];
+        MOV     R0,?V0
+        MOV     R1,#0x0
+        MOV     A,R6
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V2
+        ADD     A,R0
+        MOV     ?V2,A
+        MOV     A,?V3
+        ADDC    A,R1
+        MOV     ?V3,A
+//  146 	}
+        INC     ?V0
+        SJMP    ??PMS7003_recdata_0
+//  147 	lrcl = databuf[PMS7003_LENTH_DATA-1];
+??PMS7003_recdata_1:
+        MOV     A,R6
+        ADD     A,#0x1f
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R7
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     ?V4,A
+//  148 	lrch = databuf[PMS7003_LENTH_DATA-2];
+        MOV     A,R6
+        ADD     A,#0x1e
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R7
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     ?V1,A
+//  149 	lrcsum = (lrch<<8)+lrcl;
+        MOV     R0,?V1
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     R2,?V4
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V6,R0
+        MOV     ?V7,R1
+//  150 	//如果校验错误，返回错误码
+//  151 	if(datasum != lrcsum)
+        MOV     A,?V6
+        XRL     A,?V2
+        JNZ     ??PMS7003_recdata_2
+        MOV     A,?V7
+        XRL     A,?V3
+??PMS7003_recdata_2:
+        JZ      ??PMS7003_recdata_3
+//  152         {
+//  153 		return PMS7003_ERR_RECFAIL;
+        MOV     R1,#0x12
+        SJMP    ??PMS7003_recdata_4
+//  154         }
+//  155 
+//  156 	return 0;
+??PMS7003_recdata_3:
+        MOV     R1,#0x0
+??PMS7003_recdata_4:
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+//  157 }
+          CFI EndBlock cfiBlock5
+//  158 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  159 unsigned char PMS7003_Read_Str(unsigned char *buf)
+PMS7003_Read_Str:
+          CFI Block cfiBlock6 Using cfiCommon0
+          CFI Function PMS7003_Read_Str
+        CODE
+//  160 {
+        FUNCALL PMS7003_Read_Str, PMS7003_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 48, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 48, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL PMS7003_Read_Str, sprintf
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 54, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 54, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        MOV     A,#-0xe
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 14
+        ; Auto size: 34
+        MOV     A,#-0x22
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 48)
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  161   unsigned char tmp[PMS7003_LENTH_DATA];
+//  162   unsigned int pm1, pm25, pm10;//CF=1，标准颗粒物，单位ug/m3
+//  163   unsigned int cnt = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+//  164   while(PMS7003_recdata(tmp) == PMS7003_ERR_RECFAIL)
+??PMS7003_Read_Str_0:
+        ; Setup parameters for call to function PMS7003_recdata
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP101_8
+        LCALL   `??PMS7003_recdata::?relay`; Banked call to: PMS7003_recdata
+        MOV     A,R1
+        XRL     A,#0x12
+        JNZ     ??PMS7003_Read_Str_1
+//  165   {
+//  166     if(++cnt > 1000)
+        INC     R6
+        MOV     A,R6
+        JNZ     ??PMS7003_Read_Str_2
+        INC     R7
+??PMS7003_Read_Str_2:
+        CLR     C
+        MOV     A,R6
+        SUBB    A,#-0x17
+        MOV     A,R7
+        SUBB    A,#0x3
+        JC      ??PMS7003_Read_Str_0
+//  167       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        LJMP    ??PMS7003_Read_Str_3 & 0xFFFF
+//  168   }
+//  169   pm1 = (tmp[4]<<8) + tmp[5];
+??PMS7003_Read_Str_1:
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V4,R0
+        MOV     ?V5,R1
+//  170   pm25 = (tmp[6]<<8) + tmp[7];
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V2,R0
+        MOV     ?V3,R1
+//  171   pm10 = (tmp[8]<<8) + tmp[9];
+        MOV     A,#0xa
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0xb
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V0,R0
+        MOV     ?V1,R1
+//  172       
+//  173   if(pm1<1000 && pm25<1000 && pm10<1000)
+        CLR     C
+        MOV     A,?V4
+        SUBB    A,#-0x18
+        MOV     A,?V5
+        SUBB    A,#0x3
+        JNC     ??PMS7003_Read_Str_4
+        CLR     C
+        MOV     A,?V2
+        SUBB    A,#-0x18
+        MOV     A,?V3
+        SUBB    A,#0x3
+        JNC     ??PMS7003_Read_Str_4
+        CLR     C
+        MOV     A,?V0
+        SUBB    A,#-0x18
+        MOV     A,?V1
+        SUBB    A,#0x3
+        JNC     ??PMS7003_Read_Str_4
+//  174   {
+//  175     sprintf((char*)buf, "%3d %3d %3d", pm1, pm25, pm10);
+        ; Setup parameters for call to function sprintf
+        MOV     R0,#?V0
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 50)
+        MOV     R0,#?V2
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 52)
+        MOV     R0,#?V4
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 54)
+        MOV     R4,#`?<Constant "%3d %3d %3d">` & 0xff
+        MOV     R5,#(`?<Constant "%3d %3d %3d">` >> 8) & 0xff
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+        MOV     A,#0x6
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 48)
+//  176     return 0;
+        MOV     R1,#0x0
+        SJMP    ??PMS7003_Read_Str_3
+//  177   }
+//  178   return 1;              //should not arrive here
+??PMS7003_Read_Str_4:
+        MOV     R1,#0x1
+??PMS7003_Read_Str_3:
+        MOV     A,#0x22
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 14)
+        MOV     R7,#0x6
+        LJMP    ?BANKED_LEAVE_XDATA
+//  179 }
+          CFI EndBlock cfiBlock6
+//  180 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  181 unsigned char PMS7003_Read(unsigned char *buf)
+PMS7003_Read:
+          CFI Block cfiBlock7 Using cfiCommon0
+          CFI Function PMS7003_Read
+        CODE
+//  182 {
+        FUNCALL PMS7003_Read, PMS7003_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 48, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 48, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 32
+        MOV     A,#-0x20
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 48)
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  183   unsigned char tmp[PMS7003_LENTH_DATA];
+//  184   unsigned int pm1, pm25, pm10;//CF=1，标准颗粒物，单位ug/m3
+//  185   unsigned int cnt = 0;
+        MOV     ?V0,#0x0
+        MOV     ?V1,#0x0
+//  186   while(PMS7003_recdata(tmp) == PMS7003_ERR_RECFAIL)
+??PMS7003_Read_0:
+        ; Setup parameters for call to function PMS7003_recdata
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??PMS7003_recdata::?relay`; Banked call to: PMS7003_recdata
+        MOV     A,R1
+        XRL     A,#0x12
+        JNZ     ??PMS7003_Read_1
+//  187   {
+//  188     if(++cnt > 1000)
+        INC     ?V0
+        MOV     A,?V0
+        JNZ     ??PMS7003_Read_2
+        INC     ?V1
+??PMS7003_Read_2:
+        CLR     C
+        MOV     A,?V0
+        SUBB    A,#-0x17
+        MOV     A,?V1
+        SUBB    A,#0x3
+        JC      ??PMS7003_Read_0
+//  189       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        LJMP    ??PMS7003_Read_3 & 0xFFFF
+//  190   }
+//  191   pm1 = (tmp[4]<<8) + tmp[5];
+??PMS7003_Read_1:
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V6,R0
+        MOV     ?V7,R1
+//  192   pm25 = (tmp[6]<<8) + tmp[7];
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V4,R0
+        MOV     ?V5,R1
+//  193   pm10 = (tmp[8]<<8) + tmp[9];
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V2,R0
+        MOV     ?V3,R1
+//  194       
+//  195   if(pm1<1000 && pm25<1000 && pm10<1000)
+        CLR     C
+        MOV     A,?V6
+        SUBB    A,#-0x18
+        MOV     A,?V7
+        SUBB    A,#0x3
+        JC      $+5
+        LJMP    ??PMS7003_Read_4 & 0xFFFF
+        CLR     C
+        MOV     A,?V4
+        SUBB    A,#-0x18
+        MOV     A,?V5
+        SUBB    A,#0x3
+        JNC     ??PMS7003_Read_4
+        CLR     C
+        MOV     A,?V2
+        SUBB    A,#-0x18
+        MOV     A,?V3
+        SUBB    A,#0x3
+        JNC     ??PMS7003_Read_4
+//  196   {
+//  197     buf[0] = tmp[4];    //pm1 H
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  198     buf[1] = tmp[5];    //pm1 L
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  199     
+//  200     buf[2] = tmp[6];
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  201     buf[3] = tmp[7];
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  202     
+//  203     buf[4] = tmp[8];
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  204     buf[5] = tmp[9];
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  205     return 0;
+        MOV     R1,#0x0
+        SJMP    ??PMS7003_Read_3
+//  206   }
+//  207   return 1;              //should not arrive here
+??PMS7003_Read_4:
+        MOV     R1,#0x1
+??PMS7003_Read_3:
+        MOV     A,#0x20
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+//  208 }
+          CFI EndBlock cfiBlock7
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_Init::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_control::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_control
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_buildframe::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_buildframe
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_rest::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_rest
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_sleep::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_sleep
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_recdata::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_recdata
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_Read_Str::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_Read_Str
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??PMS7003_Read::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    PMS7003_Read
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0, 0, 0, 0, 0, 0}>`:
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant "%3d %3d %3d">`:
+        DB "%3d %3d %3d"
+
+        END
+//  209 
+// 
+// 984 bytes in segment BANKED_CODE
+//  48 bytes in segment BANK_RELAYS
+//   3 bytes in segment SFR_AN
+//  19 bytes in segment XDATA_ROM_C
+// 
+// 1 032 bytes of CODE  memory
+//    19 bytes of CONST memory
+//     0 bytes of DATA  memory (+ 3 bytes shared)
+//
+//Errors: none
+//Warnings: none

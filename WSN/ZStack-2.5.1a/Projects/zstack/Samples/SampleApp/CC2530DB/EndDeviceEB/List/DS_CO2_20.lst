@@ -1,0 +1,815 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                22/May/2018  20:40:14
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+#    Command line       =  
+#        -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+#        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+#        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D
+#        xMT_ZDO_FUNC -D xLCD_SUPPORTED=DEBUG -D POWER_SAVING -lC
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+#        -lA
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+#        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --debug
+#        --core=plain --dptr=16,1 --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\ -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -On --require_prototypes
+#    List file          =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\DS_CO2_20.lst
+#    Object file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\DS_CO2_20.r51
+#
+###############################################################################
+
+D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+      1          //=====================================================================
+      2          //文件名称：DS_CO2_20.c
+      3          //功能概要：CO2传感器DS_CO2_20构件源文件
+      4          //=====================================================================
+      5          
+      6          #include "DS_CO2_20.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      7          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+      8          unsigned char frame[] = {0x42, 0x4D, 0xE3, 0x00, 0x00 , 0x01, 0x72};
+   \                     frame:
+   \   000000                DS 7
+   \   000007                REQUIRE `?<Initializer for frame>`
+   \   000007                REQUIRE __INIT_XDATA_I
+      9          
+     10          //RST------3.3V
+     11          
+     12          //=====================================================================
+     13          //传感器命令协议：
+     14          //特征字节  特征字节  指令字节  状态字节1 状态字节2 校验字节1 校验字节2
+     15          // 0x42      0x4d      CMD     DATAH      DATAL    LRCH       LRCL
+     16          //指令及特征字节的定义：
+     17          //CMD  DATAH  DATAL      			说明
+     18          //0xe3   x      x        		 被动读数
+     19          //校验字生成：
+     20          //从特征字开始所有字节累加和
+     21          //=====================================================================
+     22          
+     23          //=========================================================================
+     24          //函数名称：DS_CO2_20_init
+     25          //函数参数：无
+     26          //函数返回：无
+     27          //功能概要：初始化SET、RST引脚
+     28          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     29          void DS_CO2_20_Init(void)
+   \                     DS_CO2_20_Init:
+     30          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     31              P0SEL &= ~0x30;                 //设置P0.4 P0.5为普通IO口
+   \   000000   53F3CF       ANL     0xf3,#0xcf
+     32              P0DIR |= 0x30;                 //P0.4 P0.5定义为输出口
+   \   000003   43FD30       ORL     0xfd,#0x30
+     33              //DS_CO2_20_rest();
+     34          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+     35          
+     36          //=========================================================================
+     37          //函数名称：DS_CO2_20_control
+     38          //函数参数：cmd:控制命令
+     39          //函数返回：命令发送成功：0；命令发送失败：0x11
+     40          //功能概要：通过命令控制传感器工作状态
+     41          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     42          unsigned char DS_CO2_20_control(void)
+   \                     DS_CO2_20_control:
+     43          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     44          	unsigned char flag = 0;
+   \   000005   7E00         MOV     R6,#0x0
+     45                  
+     46          	flag = HalUARTWrite(0, frame, DS_CO2_20_LENTH_CMD);
+   \   000007                ; Setup parameters for call to function HalUARTWrite
+   \   000007   7C07         MOV     R4,#0x7
+   \   000009   7D00         MOV     R5,#0x0
+   \   00000B   7A..         MOV     R2,#frame & 0xff
+   \   00000D   7B..         MOV     R3,#(frame >> 8) & 0xff
+   \   00000F   7900         MOV     R1,#0x0
+   \   000011   12....       LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+   \   000014   EA           MOV     A,R2
+   \   000015   FE           MOV     R6,A
+     47                  
+     48          	//如果发送命令错误，返回错误码
+     49          	if(!flag)
+   \   000016   EE           MOV     A,R6
+   \   000017   7004         JNZ     ??DS_CO2_20_control_0
+     50          	{
+     51          		return DS_CO2_20_ERR_CMDFAIL;
+   \   000019   7911         MOV     R1,#0x11
+   \   00001B   8002         SJMP    ??DS_CO2_20_control_1
+     52          	}
+     53          
+     54          	return 0;
+   \                     ??DS_CO2_20_control_0:
+   \   00001D   7900         MOV     R1,#0x0
+   \                     ??DS_CO2_20_control_1:
+   \   00001F   7F01         MOV     R7,#0x1
+   \   000021   02....       LJMP    ?BANKED_LEAVE_XDATA
+     55          }
+     56          
+     57          //=========================================================================
+     58          //函数名称：DS_CO2_20_rest
+     59          //函数参数：无
+     60          //函数返回：无
+     61          //功能概要：通过RST引脚复位传感器
+     62          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     63          void DS_CO2_20_rest(void)
+   \                     DS_CO2_20_rest:
+     64          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     65          	DS_CO2_20_RST = 0;
+   \   000000   C284         CLR     0x80.4
+     66                  for(int i=0;i<500;i++);
+   \   000002   7800         MOV     R0,#0x0
+   \   000004   7900         MOV     R1,#0x0
+   \                     ??DS_CO2_20_rest_0:
+   \   000006   C3           CLR     C
+   \   000007   E8           MOV     A,R0
+   \   000008   94F4         SUBB    A,#-0xc
+   \   00000A   E9           MOV     A,R1
+   \   00000B   9401         SUBB    A,#0x1
+   \   00000D   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00000F   65D0         XRL     A,PSW
+   \   000011   33           RLC     A
+   \   000012   5007         JNC     ??DS_CO2_20_rest_1
+   \   000014   08           INC     R0
+   \   000015   E8           MOV     A,R0
+   \   000016   70EE         JNZ     ??DS_CO2_20_rest_0
+   \   000018   09           INC     R1
+   \   000019   80EB         SJMP    ??DS_CO2_20_rest_0
+     67                  DS_CO2_20_RST = 1;
+   \                     ??DS_CO2_20_rest_1:
+   \   00001B   D284         SETB    0x80.4
+     68          }
+   \   00001D   02....       LJMP    ?BRET
+   \   000020                REQUIRE _A_P0
+     69          
+     70          //======================================================================
+     71          //函数名称：DS_CO2_20_datarec
+     72          //函数参数：databuf:数据接收缓存
+     73          //函数返回：接收成功：0 ；接收失败：0x12
+     74          //功能概要：接收传感器原始读数
+     75          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     76          unsigned char DS_CO2_20_recdata(unsigned char *databuf)
+   \                     DS_CO2_20_recdata:
+     77          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     78          	unsigned char lrcl, lrch, i;
+     79          	unsigned int lrcsum = 0, datasum = 0;
+   \   000009   75..00       MOV     ?V4,#0x0
+   \   00000C   75..00       MOV     ?V5,#0x0
+   \   00000F   75..00       MOV     ?V2,#0x0
+   \   000012   75..00       MOV     ?V3,#0x0
+     80                  DS_CO2_20_control();
+   \   000015                ; Setup parameters for call to function DS_CO2_20_control
+   \   000015   12....       LCALL   `??DS_CO2_20_control::?relay`; Banked call to: DS_CO2_20_control
+   \   000018   E9           MOV     A,R1
+     81                 
+     82          	//接收传感器的数据
+     83                  i = HalUARTRead(0, databuf, DS_CO2_20_LENTH_DATA);
+   \   000019                ; Setup parameters for call to function HalUARTRead
+   \   000019   7C0C         MOV     R4,#0xc
+   \   00001B   7D00         MOV     R5,#0x0
+   \   00001D   EE           MOV     A,R6
+   \   00001E   FA           MOV     R2,A
+   \   00001F   EF           MOV     A,R7
+   \   000020   FB           MOV     R3,A
+   \   000021   7900         MOV     R1,#0x0
+   \   000023   12....       LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+   \   000026   EA           MOV     A,R2
+   \   000027   F5..         MOV     ?V0,A
+     84          
+     85          	//计算校验和
+     86          	for(i = 0; i < (DS_CO2_20_LENTH_DATA -2) ; i++)
+   \   000029   75..00       MOV     ?V0,#0x0
+   \                     ??DS_CO2_20_recdata_0:
+   \   00002C   E5..         MOV     A,?V0
+   \   00002E   C3           CLR     C
+   \   00002F   940A         SUBB    A,#0xa
+   \   000031   501E         JNC     ??DS_CO2_20_recdata_1
+     87          	{
+     88          		datasum += databuf[i];
+   \   000033   A8..         MOV     R0,?V0
+   \   000035   7900         MOV     R1,#0x0
+   \   000037   EE           MOV     A,R6
+   \   000038   28           ADD     A,R0
+   \   000039   F582         MOV     DPL,A
+   \   00003B   EF           MOV     A,R7
+   \   00003C   39           ADDC    A,R1
+   \   00003D   F583         MOV     DPH,A
+   \   00003F   E0           MOVX    A,@DPTR
+   \   000040   F8           MOV     R0,A
+   \   000041   7900         MOV     R1,#0x0
+   \   000043   E5..         MOV     A,?V2
+   \   000045   28           ADD     A,R0
+   \   000046   F5..         MOV     ?V2,A
+   \   000048   E5..         MOV     A,?V3
+   \   00004A   39           ADDC    A,R1
+   \   00004B   F5..         MOV     ?V3,A
+     89          	}
+   \   00004D   05..         INC     ?V0
+   \   00004F   80DB         SJMP    ??DS_CO2_20_recdata_0
+     90          	lrcl = databuf[DS_CO2_20_LENTH_DATA-1];
+   \                     ??DS_CO2_20_recdata_1:
+   \   000051   EE           MOV     A,R6
+   \   000052   240B         ADD     A,#0xb
+   \   000054   F582         MOV     DPL,A
+   \   000056   E4           CLR     A
+   \   000057   3F           ADDC    A,R7
+   \   000058   F583         MOV     DPH,A
+   \   00005A   E0           MOVX    A,@DPTR
+   \   00005B   F5..         MOV     ?V6,A
+     91          	lrch = databuf[DS_CO2_20_LENTH_DATA-2];
+   \   00005D   8E82         MOV     DPL,R6
+   \   00005F   8F83         MOV     DPH,R7
+   \   000061   A3           INC     DPTR
+   \   000062   A3           INC     DPTR
+   \   000063   A3           INC     DPTR
+   \   000064   A3           INC     DPTR
+   \   000065   A3           INC     DPTR
+   \   000066   A3           INC     DPTR
+   \   000067   A3           INC     DPTR
+   \   000068   A3           INC     DPTR
+   \   000069   A3           INC     DPTR
+   \   00006A   A3           INC     DPTR
+   \   00006B   E0           MOVX    A,@DPTR
+   \   00006C   F5..         MOV     ?V1,A
+     92          	lrcsum = (lrch<<8)+lrcl;
+   \   00006E   A8..         MOV     R0,?V1
+   \   000070   7900         MOV     R1,#0x0
+   \   000072   E4           CLR     A
+   \   000073   C8           XCH     A,R0
+   \   000074   F9           MOV     R1,A
+   \   000075   AA..         MOV     R2,?V6
+   \   000077   7B00         MOV     R3,#0x0
+   \   000079   E8           MOV     A,R0
+   \   00007A   2A           ADD     A,R2
+   \   00007B   F8           MOV     R0,A
+   \   00007C   E9           MOV     A,R1
+   \   00007D   3B           ADDC    A,R3
+   \   00007E   F9           MOV     R1,A
+   \   00007F   88..         MOV     ?V4,R0
+   \   000081   89..         MOV     ?V5,R1
+     93          	//如果校验错误，返回错误码
+     94          	if(datasum != lrcsum)
+   \   000083   E5..         MOV     A,?V4
+   \   000085   65..         XRL     A,?V2
+   \   000087   7004         JNZ     ??DS_CO2_20_recdata_2
+   \   000089   E5..         MOV     A,?V5
+   \   00008B   65..         XRL     A,?V3
+   \                     ??DS_CO2_20_recdata_2:
+   \   00008D   6004         JZ      ??DS_CO2_20_recdata_3
+     95                  {
+     96          		return DS_CO2_20_ERR_RECFAIL;
+   \   00008F   7912         MOV     R1,#0x12
+   \   000091   8002         SJMP    ??DS_CO2_20_recdata_4
+     97                  }
+     98          
+     99          	return 0;
+   \                     ??DS_CO2_20_recdata_3:
+   \   000093   7900         MOV     R1,#0x0
+   \                     ??DS_CO2_20_recdata_4:
+   \   000095   7F07         MOV     R7,#0x7
+   \   000097   02....       LJMP    ?BANKED_LEAVE_XDATA
+    100          }
+    101          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    102          unsigned char DS_CO2_20_Read_Str(unsigned char *buf)
+   \                     DS_CO2_20_Read_Str:
+    103          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 12
+   \   000005   74F4         MOV     A,#-0xc
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0,R2
+   \   00000C   8B..         MOV     ?V1,R3
+    104            unsigned char tmp[DS_CO2_20_LENTH_DATA];
+    105            unsigned int co2, para1, para2;         //单位ppm; para unuse
+    106            unsigned int cnt = 0;
+   \   00000E   7E00         MOV     R6,#0x0
+   \   000010   7F00         MOV     R7,#0x0
+    107          
+    108            while(DS_CO2_20_recdata(tmp) == DS_CO2_20_ERR_RECFAIL)
+   \                     ??DS_CO2_20_Read_Str_0:
+   \   000012                ; Setup parameters for call to function DS_CO2_20_recdata
+   \   000012   AA..         MOV     R2,?XSP + 0
+   \   000014   AB..         MOV     R3,?XSP + 1
+   \   000016   12....       LCALL   `??DS_CO2_20_recdata::?relay`; Banked call to: DS_CO2_20_recdata
+   \   000019   E9           MOV     A,R1
+   \   00001A   6412         XRL     A,#0x12
+   \   00001C   7013         JNZ     ??DS_CO2_20_Read_Str_1
+    109            {
+    110              if(++cnt > 1000)
+   \   00001E   0E           INC     R6
+   \   00001F   EE           MOV     A,R6
+   \   000020   7001         JNZ     ??DS_CO2_20_Read_Str_2
+   \   000022   0F           INC     R7
+   \                     ??DS_CO2_20_Read_Str_2:
+   \   000023   C3           CLR     C
+   \   000024   EE           MOV     A,R6
+   \   000025   94E9         SUBB    A,#-0x17
+   \   000027   EF           MOV     A,R7
+   \   000028   9403         SUBB    A,#0x3
+   \   00002A   40E6         JC      ??DS_CO2_20_Read_Str_0
+    111                return 1;         //timeout,sensor no response
+   \   00002C   7901         MOV     R1,#0x1
+   \   00002E   02....       LJMP    ??DS_CO2_20_Read_Str_3 & 0xFFFF
+    112            }
+    113            co2 = (tmp[4]<<8) + tmp[5];
+   \                     ??DS_CO2_20_Read_Str_1:
+   \   000031   7404         MOV     A,#0x4
+   \   000033   12....       LCALL   ?XSTACK_DISP0_8
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   F8           MOV     R0,A
+   \   000038   7900         MOV     R1,#0x0
+   \   00003A   E4           CLR     A
+   \   00003B   C8           XCH     A,R0
+   \   00003C   F9           MOV     R1,A
+   \   00003D   7405         MOV     A,#0x5
+   \   00003F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000042   E0           MOVX    A,@DPTR
+   \   000043   FA           MOV     R2,A
+   \   000044   7B00         MOV     R3,#0x0
+   \   000046   E8           MOV     A,R0
+   \   000047   2A           ADD     A,R2
+   \   000048   F8           MOV     R0,A
+   \   000049   E9           MOV     A,R1
+   \   00004A   3B           ADDC    A,R3
+   \   00004B   F9           MOV     R1,A
+   \   00004C   88..         MOV     ?V4,R0
+   \   00004E   89..         MOV     ?V5,R1
+    114            para1 = (tmp[6]<<8) + tmp[7];
+   \   000050   7406         MOV     A,#0x6
+   \   000052   12....       LCALL   ?XSTACK_DISP0_8
+   \   000055   E0           MOVX    A,@DPTR
+   \   000056   F8           MOV     R0,A
+   \   000057   7900         MOV     R1,#0x0
+   \   000059   E4           CLR     A
+   \   00005A   C8           XCH     A,R0
+   \   00005B   F9           MOV     R1,A
+   \   00005C   7407         MOV     A,#0x7
+   \   00005E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000061   E0           MOVX    A,@DPTR
+   \   000062   FA           MOV     R2,A
+   \   000063   7B00         MOV     R3,#0x0
+   \   000065   E8           MOV     A,R0
+   \   000066   2A           ADD     A,R2
+   \   000067   F8           MOV     R0,A
+   \   000068   E9           MOV     A,R1
+   \   000069   3B           ADDC    A,R3
+   \   00006A   F9           MOV     R1,A
+   \   00006B   88..         MOV     ?V6,R0
+   \   00006D   89..         MOV     ?V7,R1
+    115            para2 = (tmp[8]<<8) + tmp[9];
+   \   00006F   7408         MOV     A,#0x8
+   \   000071   12....       LCALL   ?XSTACK_DISP0_8
+   \   000074   E0           MOVX    A,@DPTR
+   \   000075   F8           MOV     R0,A
+   \   000076   7900         MOV     R1,#0x0
+   \   000078   E4           CLR     A
+   \   000079   C8           XCH     A,R0
+   \   00007A   F9           MOV     R1,A
+   \   00007B   7409         MOV     A,#0x9
+   \   00007D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000080   E0           MOVX    A,@DPTR
+   \   000081   FA           MOV     R2,A
+   \   000082   7B00         MOV     R3,#0x0
+   \   000084   E8           MOV     A,R0
+   \   000085   2A           ADD     A,R2
+   \   000086   F8           MOV     R0,A
+   \   000087   E9           MOV     A,R1
+   \   000088   3B           ADDC    A,R3
+   \   000089   F9           MOV     R1,A
+   \   00008A   88..         MOV     ?V2,R0
+   \   00008C   89..         MOV     ?V3,R1
+    116            (void)para1;
+    117            (void)para2;
+    118                
+    119            if(co2 < 3000)
+   \   00008E   C3           CLR     C
+   \   00008F   E5..         MOV     A,?V4
+   \   000091   94B8         SUBB    A,#-0x48
+   \   000093   E5..         MOV     A,?V5
+   \   000095   940B         SUBB    A,#0xb
+   \   000097   5019         JNC     ??DS_CO2_20_Read_Str_4
+    120            {
+    121              sprintf((char *)buf, "%4d", co2);
+   \   000099                ; Setup parameters for call to function sprintf
+   \   000099   78..         MOV     R0,#?V4
+   \   00009B   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00009E   7C..         MOV     R4,#`?<Constant "%4d">` & 0xff
+   \   0000A0   7D..         MOV     R5,#(`?<Constant "%4d">` >> 8) & 0xff
+   \   0000A2   AA..         MOV     R2,?V0
+   \   0000A4   AB..         MOV     R3,?V1
+   \   0000A6   12....       LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+   \   0000A9   7402         MOV     A,#0x2
+   \   0000AB   12....       LCALL   ?DEALLOC_XSTACK8
+    122              return 0;
+   \   0000AE   7900         MOV     R1,#0x0
+   \   0000B0   8002         SJMP    ??DS_CO2_20_Read_Str_3
+    123            }
+    124            return 1;              //should not arrive here
+   \                     ??DS_CO2_20_Read_Str_4:
+   \   0000B2   7901         MOV     R1,#0x1
+   \                     ??DS_CO2_20_Read_Str_3:
+   \   0000B4   740C         MOV     A,#0xc
+   \   0000B6   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000B9   7F08         MOV     R7,#0x8
+   \   0000BB   02....       LJMP    ?BANKED_LEAVE_XDATA
+    125          }
+    126          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    127          unsigned char DS_CO2_20_Read(unsigned char *buf)
+   \                     DS_CO2_20_Read:
+    128          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 12
+   \   000005   74F4         MOV     A,#-0xc
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0,R2
+   \   00000C   8B..         MOV     ?V1,R3
+    129            unsigned char tmp[DS_CO2_20_LENTH_DATA];
+    130            unsigned int co2, para1, para2;         //单位ppm; para unuse
+    131            unsigned int cnt = 0;
+   \   00000E   7E00         MOV     R6,#0x0
+   \   000010   7F00         MOV     R7,#0x0
+    132          
+    133            while(DS_CO2_20_recdata(tmp) == DS_CO2_20_ERR_RECFAIL)
+   \                     ??DS_CO2_20_Read_0:
+   \   000012                ; Setup parameters for call to function DS_CO2_20_recdata
+   \   000012   AA..         MOV     R2,?XSP + 0
+   \   000014   AB..         MOV     R3,?XSP + 1
+   \   000016   12....       LCALL   `??DS_CO2_20_recdata::?relay`; Banked call to: DS_CO2_20_recdata
+   \   000019   E9           MOV     A,R1
+   \   00001A   6412         XRL     A,#0x12
+   \   00001C   7013         JNZ     ??DS_CO2_20_Read_1
+    134            {
+    135              if(++cnt > 1000)
+   \   00001E   0E           INC     R6
+   \   00001F   EE           MOV     A,R6
+   \   000020   7001         JNZ     ??DS_CO2_20_Read_2
+   \   000022   0F           INC     R7
+   \                     ??DS_CO2_20_Read_2:
+   \   000023   C3           CLR     C
+   \   000024   EE           MOV     A,R6
+   \   000025   94E9         SUBB    A,#-0x17
+   \   000027   EF           MOV     A,R7
+   \   000028   9403         SUBB    A,#0x3
+   \   00002A   40E6         JC      ??DS_CO2_20_Read_0
+    136                return 1;         //timeout,sensor no response
+   \   00002C   7901         MOV     R1,#0x1
+   \   00002E   02....       LJMP    ??DS_CO2_20_Read_3 & 0xFFFF
+    137            }
+    138            co2 = (tmp[4]<<8) + tmp[5];
+   \                     ??DS_CO2_20_Read_1:
+   \   000031   7404         MOV     A,#0x4
+   \   000033   12....       LCALL   ?XSTACK_DISP0_8
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   F8           MOV     R0,A
+   \   000038   7900         MOV     R1,#0x0
+   \   00003A   E4           CLR     A
+   \   00003B   C8           XCH     A,R0
+   \   00003C   F9           MOV     R1,A
+   \   00003D   7405         MOV     A,#0x5
+   \   00003F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000042   E0           MOVX    A,@DPTR
+   \   000043   FA           MOV     R2,A
+   \   000044   7B00         MOV     R3,#0x0
+   \   000046   E8           MOV     A,R0
+   \   000047   2A           ADD     A,R2
+   \   000048   F8           MOV     R0,A
+   \   000049   E9           MOV     A,R1
+   \   00004A   3B           ADDC    A,R3
+   \   00004B   F9           MOV     R1,A
+   \   00004C   88..         MOV     ?V2,R0
+   \   00004E   89..         MOV     ?V3,R1
+    139            para1 = (tmp[6]<<8) + tmp[7];
+   \   000050   7406         MOV     A,#0x6
+   \   000052   12....       LCALL   ?XSTACK_DISP0_8
+   \   000055   E0           MOVX    A,@DPTR
+   \   000056   F8           MOV     R0,A
+   \   000057   7900         MOV     R1,#0x0
+   \   000059   E4           CLR     A
+   \   00005A   C8           XCH     A,R0
+   \   00005B   F9           MOV     R1,A
+   \   00005C   7407         MOV     A,#0x7
+   \   00005E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000061   E0           MOVX    A,@DPTR
+   \   000062   FA           MOV     R2,A
+   \   000063   7B00         MOV     R3,#0x0
+   \   000065   E8           MOV     A,R0
+   \   000066   2A           ADD     A,R2
+   \   000067   F8           MOV     R0,A
+   \   000068   E9           MOV     A,R1
+   \   000069   3B           ADDC    A,R3
+   \   00006A   F9           MOV     R1,A
+   \   00006B   88..         MOV     ?V6,R0
+   \   00006D   89..         MOV     ?V7,R1
+    140            para2 = (tmp[8]<<8) + tmp[9];
+   \   00006F   7408         MOV     A,#0x8
+   \   000071   12....       LCALL   ?XSTACK_DISP0_8
+   \   000074   E0           MOVX    A,@DPTR
+   \   000075   F8           MOV     R0,A
+   \   000076   7900         MOV     R1,#0x0
+   \   000078   E4           CLR     A
+   \   000079   C8           XCH     A,R0
+   \   00007A   F9           MOV     R1,A
+   \   00007B   7409         MOV     A,#0x9
+   \   00007D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000080   E0           MOVX    A,@DPTR
+   \   000081   FA           MOV     R2,A
+   \   000082   7B00         MOV     R3,#0x0
+   \   000084   E8           MOV     A,R0
+   \   000085   2A           ADD     A,R2
+   \   000086   F8           MOV     R0,A
+   \   000087   E9           MOV     A,R1
+   \   000088   3B           ADDC    A,R3
+   \   000089   F9           MOV     R1,A
+   \   00008A   88..         MOV     ?V4,R0
+   \   00008C   89..         MOV     ?V5,R1
+    141            (void)para1;
+    142            (void)para2;
+    143                
+    144            if(co2 < 3000)
+   \   00008E   C3           CLR     C
+   \   00008F   E5..         MOV     A,?V2
+   \   000091   94B8         SUBB    A,#-0x48
+   \   000093   E5..         MOV     A,?V3
+   \   000095   940B         SUBB    A,#0xb
+   \   000097   5027         JNC     ??DS_CO2_20_Read_4
+    145            {
+    146              buf[0] = tmp[4];
+   \   000099   7404         MOV     A,#0x4
+   \   00009B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00009E   E0           MOVX    A,@DPTR
+   \   00009F   C0E0         PUSH    A
+   \   0000A1   85..82       MOV     DPL,?V0
+   \   0000A4   85..83       MOV     DPH,?V1
+   \   0000A7   D0E0         POP     A
+   \   0000A9   F0           MOVX    @DPTR,A
+    147              buf[1] = tmp[5];
+   \   0000AA   7405         MOV     A,#0x5
+   \   0000AC   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000AF   E0           MOVX    A,@DPTR
+   \   0000B0   C0E0         PUSH    A
+   \   0000B2   85..82       MOV     DPL,?V0
+   \   0000B5   85..83       MOV     DPH,?V1
+   \   0000B8   A3           INC     DPTR
+   \   0000B9   D0E0         POP     A
+   \   0000BB   F0           MOVX    @DPTR,A
+    148              return 0;
+   \   0000BC   7900         MOV     R1,#0x0
+   \   0000BE   8002         SJMP    ??DS_CO2_20_Read_3
+    149            }
+    150            return 1;              //should not arrive here
+   \                     ??DS_CO2_20_Read_4:
+   \   0000C0   7901         MOV     R1,#0x1
+   \                     ??DS_CO2_20_Read_3:
+   \   0000C2   740C         MOV     A,#0xc
+   \   0000C4   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000C7   7F08         MOV     R7,#0x8
+   \   0000C9   02....       LJMP    ?BANKED_LEAVE_XDATA
+    151          }
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for frame>`:
+   \   000000   42           DB 66
+   \   000001   4D           DB 77
+   \   000002   E3           DB 227
+   \   000003   00           DB 0
+   \   000004   00           DB 0
+   \   000005   01           DB 1
+   \   000006   72           DB 114
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_Init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_control::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_control
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_rest::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_rest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_recdata::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_recdata
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_Read_Str::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_Read_Str
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??DS_CO2_20_Read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DS_CO2_20_Read
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "%4d">`:
+   \   000000   25346400     DB "%4d"
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0      0   DS_CO2_20_Init
+      1     28   DS_CO2_20_Read
+        0     28   -> DS_CO2_20_recdata
+      0     30   DS_CO2_20_Read_Str
+        0     28   -> DS_CO2_20_recdata
+        0     30   -> sprintf
+      0     24   DS_CO2_20_control
+        0      9   -> HalUARTWrite
+      0     43   DS_CO2_20_recdata
+        0     15   -> DS_CO2_20_control
+        0     15   -> HalUARTRead
+      0      0   DS_CO2_20_rest
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?<Constant "%4d">
+       7  ?<Initializer for frame>
+       9  DS_CO2_20_Init
+       6  DS_CO2_20_Init::?relay
+     204  DS_CO2_20_Read
+       6  DS_CO2_20_Read::?relay
+     190  DS_CO2_20_Read_Str
+       6  DS_CO2_20_Read_Str::?relay
+      36  DS_CO2_20_control
+       6  DS_CO2_20_control::?relay
+     154  DS_CO2_20_recdata
+       6  DS_CO2_20_recdata::?relay
+      32  DS_CO2_20_rest
+       6  DS_CO2_20_rest::?relay
+       1  P0DIR
+       1  P0SEL
+       1  _A_P0
+       7  frame
+
+ 
+ 625 bytes in segment BANKED_CODE
+  36 bytes in segment BANK_RELAYS
+   3 bytes in segment SFR_AN
+   7 bytes in segment XDATA_I
+   7 bytes in segment XDATA_ID
+   4 bytes in segment XDATA_ROM_C
+ 
+ 668 bytes of CODE  memory
+   4 bytes of CONST memory
+   0 bytes of DATA  memory (+ 3 bytes shared)
+   7 bytes of XDATA memory
+
+Errors: none
+Warnings: none

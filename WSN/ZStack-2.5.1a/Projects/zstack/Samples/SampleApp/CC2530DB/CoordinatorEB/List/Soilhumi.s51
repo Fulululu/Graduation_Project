@@ -1,0 +1,1274 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.1.3056 for 8051               17/Apr/2018  20:44:29
+// Copyright 2004-2015 IAR Systems AB.
+// Standalone license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+//    Command line       =  
+//        -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+//        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+//        -DZDO_COORDINATOR -DRTR_NWK) -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+//        -DREJOIN_POLL_RATE=1000
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+//        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+//        xLCD_SUPPORTED=DEBUG -lC
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+//        -lA
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj
+//        -e --no_code_motion --debug --core=plain --dptr=16,1
+//        --data_model=large --code_model=banked
+//        --calling_convention=xdata_reentrant --place_constants=data_rom
+//        --nr_virtual_regs 8 -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -Ohz
+//    List file          =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\Soilhumi.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Soilhumi
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__iar_require _formatted_write", "widths"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?V4
+        EXTERN ?V5
+        EXTERN ?V6
+        EXTERN ?V7
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?FLT_ADD
+        EXTERN ?FLT_MUL
+        EXTERN ?FLT_TO_L
+        EXTERN ?L_ADD
+        EXTERN ?L_MOV_TO_X
+        EXTERN ?L_MOV_X
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?UL_DIV_MOD
+        EXTERN ?UL_GT
+        EXTERN ?UL_TO_FLT
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC `??Soilhumi_Init::?relay`
+        FUNCTION `??Soilhumi_Init::?relay`,0203H
+        PUBLIC `??Soilhumi_Read::?relay`
+        FUNCTION `??Soilhumi_Read::?relay`,0203H
+        PUBLIC `??Soilhumi_Read_Str::?relay`
+        FUNCTION `??Soilhumi_Read_Str::?relay`,0203H
+        PUBLIC Soilhumi_Init
+        FUNCTION Soilhumi_Init,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC Soilhumi_Read
+        FUNCTION Soilhumi_Read,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 4, STACK
+        LOCFRAME XSTACK, 22, STACK
+        PUBLIC Soilhumi_Read_Str
+        FUNCTION Soilhumi_Read_Str,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 4, STACK
+        LOCFRAME XSTACK, 24, STACK
+        PUBWEAK __Constant_3c567770
+        PUBWEAK __Constant_44e8e000
+        PUBWEAK __Constant_64
+        PUBWEAK __Constant_a
+        PUBWEAK __Constant_b6e02d5a
+        PUBWEAK __Constant_c10872b0
+        PUBLIC pos_100
+        PUBLIC pos_zero
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+        
+          CFI Common cfiCommon1 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-2
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B SameValue
+          CFI A SameValue
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 SameValue
+          CFI R1 SameValue
+          CFI R2 SameValue
+          CFI R3 SameValue
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT SameValue
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon1
+        
+HalAdcRead          SYMBOL "HalAdcRead"
+`??HalAdcRead::?relay` SYMBOL "?relay", HalAdcRead
+sprintf             SYMBOL "sprintf"
+`??sprintf::?relay` SYMBOL "?relay", sprintf
+Soilhumi_Init       SYMBOL "Soilhumi_Init"
+`??Soilhumi_Init::?relay` SYMBOL "?relay", Soilhumi_Init
+Soilhumi_Read       SYMBOL "Soilhumi_Read"
+`??Soilhumi_Read::?relay` SYMBOL "?relay", Soilhumi_Read
+Soilhumi_Read_Str   SYMBOL "Soilhumi_Read_Str"
+`??Soilhumi_Read_Str::?relay` SYMBOL "?relay", Soilhumi_Read_Str
+
+        EXTERN `??HalAdcRead::?relay`
+        FUNCTION `??HalAdcRead::?relay`,00H
+        EXTERN `??sprintf::?relay`
+        FUNCTION `??sprintf::?relay`,00H
+        EXTERN HalAdcRead
+        FUNCTION HalAdcRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 22, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN sprintf
+        FUNCTION sprintf,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+//    1 /*
+//    2 * Copyright (c) 2017,FAFU
+//    3 * All rights reserved.
+//    4 *
+//    5 * File Name：Soilhumi.c
+//    6 * Abstract：Soilhumi driver for CC2530
+//    7 *
+//    8 * Current Version：1.0
+//    9 * Author：ygf
+//   10 * Finish Date：20171202
+//   11 *
+//   12 * Superseded Version：1.0
+//   13 * Authorship ：ygf
+//   14 * Finish Date：20171202
+//   15 */ 
+//   16 
+//   17 #include "Soilhumi.h"
+//   18 #include "OnBoard.h"
+//   19 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   20 unsigned int pos_zero=0;
+pos_zero:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+//   21 unsigned int pos_100 = 4300;
+pos_100:
+        DATA16
+        DS 2
+        REQUIRE `?<Initializer for pos_100>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   22 void Soilhumi_Init(void)
+Soilhumi_Init:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function Soilhumi_Init
+        CODE
+//   23 {
+        FUNCALL Soilhumi_Init, HalAdcRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+//   24   unsigned char i;
+//   25   unsigned long temp=0;
+        MOV     ?V4,#0x0
+        MOV     ?V5,#0x0
+        MOV     ?V6,#0x0
+        MOV     ?V7,#0x0
+//   26   pos_zero = 0;
+        MOV     DPTR,#pos_zero
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//   27   for(i=0; i<100; i++)
+        MOV     R6,#0x64
+//   28   {
+//   29     temp += HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14);
+??Soilhumi_Init_0:
+        ; Setup parameters for call to function HalAdcRead
+        MOV     R2,#0x4
+        MOV     R1,#0x4
+        LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+        CLR     A
+        MOV     ?V2,A
+        MOV     ?V3,A
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?L_ADD
+//   30   }
+        DJNZ    R6,??Soilhumi_Init_0
+//   31   pos_zero = temp/100;
+        MOV     DPTR,#__Constant_64
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?UL_DIV_MOD
+        MOV     DPTR,#pos_zero
+        MOV     A,?V4
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,?V5
+        MOVX    @DPTR,A
+//   32 }
+        LJMP    ??Subroutine3_0 & 0xFFFF
+          CFI EndBlock cfiBlock0
+//   33 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   34 unsigned char Soilhumi_Read_Str(unsigned char *buf)
+Soilhumi_Read_Str:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function Soilhumi_Read_Str
+        CODE
+//   35 {
+        FUNCALL Soilhumi_Read_Str, HalAdcRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 22, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 22, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Soilhumi_Read_Str, sprintf
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 6
+        MOV     A,#-0x6
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 22)
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?Subroutine1 & 0xFFFF
+//   36   unsigned int humi = 0, cnt=0;
+//   37   unsigned long sum = 0;
+//   38   double p1=-0.000006681,p2=0.01309,p3=-8.528,p4=1863;//为计算时减少计算量，拟合时输入缩小了10倍
+//   39   
+//   40   do
+//   41   {
+//   42     humi = HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14); //ref Vol = AVDD5(3.3V)
+//   43     sum += humi;
+??CrossCallReturnLabel_0:
+        ; Setup parameters for call to function HalAdcRead
+        MOV     R2,#0x4
+        MOV     R1,#0x4
+        LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+        CLR     A
+        MOV     ?V2,A
+        MOV     ?V3,A
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?L_ADD
+//   44     cnt++;
+        INC     R6
+        MOV     A,R6
+        JNZ     ??Soilhumi_Read_Str_0
+        INC     R7
+//   45   }while(cnt < 100);
+??Soilhumi_Read_Str_0:
+        CLR     C
+        SUBB    A,#0x64
+        MOV     A,R7
+        SUBB    A,#0x0
+        JC      ??CrossCallReturnLabel_0
+//   46   
+//   47   if(cnt == 100)
+        MOV     A,#0x64
+        XRL     A,R6
+        ORL     A,R7
+        JZ      $+5
+        LJMP    ??Soilhumi_Read_Str_1 & 0xFFFF
+//   48   {
+//   49     sum/=100;
+        MOV     DPTR,#__Constant_64
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?UL_DIV_MOD
+//   50     if(sum > pos_zero)
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_2:
+        LCALL   ?UL_GT
+        JNC     $+5
+        LJMP    ??Soilhumi_Read_Str_2 & 0xFFFF
+//   51       humi = 0;
+//   52     else
+//   53     {
+//   54       sum/=10;             //相应的计算时也要缩小10倍
+        MOV     DPTR,#__Constant_a
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?UL_DIV_MOD
+//   55       humi = (unsigned int)(p1*sum*sum*sum + p2*sum*sum + p3*sum + p4);
+        MOV     R0,#?V4
+        LCALL   ?UL_TO_FLT
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_TO_X
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_b6e02d5a
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        PUSH    ?V0
+          CFI CFA_SP SP+-1
+        PUSH    ?V1
+          CFI CFA_SP SP+-2
+        PUSH    ?V2
+          CFI CFA_SP SP+-3
+        PUSH    ?V3
+          CFI CFA_SP SP+-4
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_3c567770
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        POP     ?V7
+          CFI CFA_SP SP+-3
+        POP     ?V6
+          CFI CFA_SP SP+-2
+        POP     ?V5
+          CFI CFA_SP SP+-1
+        POP     ?V4
+          CFI CFA_SP SP+0
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?FLT_ADD
+        PUSH    ?V4
+          CFI CFA_SP SP+-1
+        PUSH    ?V5
+          CFI CFA_SP SP+-2
+        PUSH    ?V6
+          CFI CFA_SP SP+-3
+        PUSH    ?V7
+          CFI CFA_SP SP+-4
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_c10872b0
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?FLT_MUL
+        POP     ?V3
+          CFI CFA_SP SP+-3
+        POP     ?V2
+          CFI CFA_SP SP+-2
+        POP     ?V1
+          CFI CFA_SP SP+-1
+        POP     ?V0
+          CFI CFA_SP SP+0
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_ADD
+        MOV     DPTR,#__Constant_44e8e000
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_ADD
+        MOV     R0,#?V0
+        LCALL   ?FLT_TO_L
+        MOV     ?V2,?V0
+        MOV     ?V3,?V1
+//   56     }
+//   57     if(humi > 100)
+        CLR     C
+        MOV     A,?V2
+        SUBB    A,#0x65
+        MOV     A,?V3
+        SUBB    A,#0x0
+        JC      ??Soilhumi_Read_Str_2
+//   58       humi = 100;
+        MOV     ?V2,#0x64
+        MOV     ?V3,#0x0
+//   59     
+//   60     sprintf((char *)buf, "%3d", humi);
+??Soilhumi_Read_Str_2:
+        ; Setup parameters for call to function sprintf
+        MOV     R0,#?V2
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 24)
+        MOV     R4,#`?<Constant "%3d">` & 0xff
+        MOV     R5,#(`?<Constant "%3d">` >> 8) & 0xff
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 22)
+//   61     return 0;
+        MOV     R1,#0x0
+        SJMP    ??Soilhumi_Read_Str_3
+//   62   }
+//   63   return 1;
+??Soilhumi_Read_Str_1:
+        MOV     R1,#0x1
+??Soilhumi_Read_Str_3:
+          CFI EndBlock cfiBlock1
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//   64 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI NoFunction
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 22)
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     A,#0x6
+        LCALL   ?DEALLOC_XSTACK8
+          CFI EndBlock cfiBlock2
+        REQUIRE ??Subroutine3_0
+        ; // Fall through to label ??Subroutine3_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine3_0:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI NoFunction
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock3
+//   65 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   66 unsigned char Soilhumi_Read(unsigned char *buf)
+Soilhumi_Read:
+          CFI Block cfiBlock4 Using cfiCommon0
+          CFI Function Soilhumi_Read
+        CODE
+//   67 {
+        FUNCALL Soilhumi_Read, HalAdcRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 22, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 22, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 6
+        MOV     A,#-0x6
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 22)
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?Subroutine1 & 0xFFFF
+//   68   unsigned int humi = 0, cnt=0;
+//   69   unsigned long sum = 0;
+//   70   double p1=-0.000006681,p2=0.01309,p3=-8.528,p4=1863;//为计算时减少计算量，拟合时输入缩小了10倍
+//   71   
+//   72   do
+//   73   {
+//   74     humi = HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14); //ref Vol = AVDD5(3.3V)
+//   75     sum += humi;
+??CrossCallReturnLabel_1:
+        ; Setup parameters for call to function HalAdcRead
+        MOV     R2,#0x4
+        MOV     R1,#0x4
+        LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+        CLR     A
+        MOV     ?V2,A
+        MOV     ?V3,A
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?L_ADD
+//   76     cnt++;
+        INC     R6
+        MOV     A,R6
+        JNZ     ??Soilhumi_Read_0
+        INC     R7
+//   77   }while(cnt < 100);
+??Soilhumi_Read_0:
+        CLR     C
+        SUBB    A,#0x64
+        MOV     A,R7
+        SUBB    A,#0x0
+        JC      ??CrossCallReturnLabel_1
+//   78   
+//   79   if(cnt == 100)
+        MOV     A,#0x64
+        XRL     A,R6
+        ORL     A,R7
+        JZ      $+5
+        LJMP    ??Soilhumi_Read_1 & 0xFFFF
+//   80   {
+//   81     sum/=100;
+        MOV     DPTR,#__Constant_64
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?UL_DIV_MOD
+//   82     if(sum > pos_zero)
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_3:
+        LCALL   ?UL_GT
+        JNC     ??Soilhumi_Read_2
+//   83       humi = 0;
+        MOV     R0,#0x0
+        LJMP    ??Soilhumi_Read_3 & 0xFFFF
+//   84     else
+//   85     {
+//   86       sum/=10;             //相应的计算时也要缩小10倍
+??Soilhumi_Read_2:
+        MOV     DPTR,#__Constant_a
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?UL_DIV_MOD
+//   87       humi = (unsigned int)(p1*sum*sum*sum + p2*sum*sum + p3*sum + p4);
+        MOV     R0,#?V4
+        LCALL   ?UL_TO_FLT
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_TO_X
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_b6e02d5a
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        PUSH    ?V0
+          CFI CFA_SP SP+-1
+        PUSH    ?V1
+          CFI CFA_SP SP+-2
+        PUSH    ?V2
+          CFI CFA_SP SP+-3
+        PUSH    ?V3
+          CFI CFA_SP SP+-4
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_3c567770
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_MUL
+        POP     ?V7
+          CFI CFA_SP SP+-3
+        POP     ?V6
+          CFI CFA_SP SP+-2
+        POP     ?V5
+          CFI CFA_SP SP+-1
+        POP     ?V4
+          CFI CFA_SP SP+0
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?FLT_ADD
+        PUSH    ?V4
+          CFI CFA_SP SP+-1
+        PUSH    ?V5
+          CFI CFA_SP SP+-2
+        PUSH    ?V6
+          CFI CFA_SP SP+-3
+        PUSH    ?V7
+          CFI CFA_SP SP+-4
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#__Constant_c10872b0
+        MOV     R0,#?V0
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        LCALL   ?FLT_MUL
+        POP     ?V3
+          CFI CFA_SP SP+-3
+        POP     ?V2
+          CFI CFA_SP SP+-2
+        POP     ?V1
+          CFI CFA_SP SP+-1
+        POP     ?V0
+          CFI CFA_SP SP+0
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_ADD
+        MOV     DPTR,#__Constant_44e8e000
+        MOV     R0,#?V4
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0
+        MOV     R1,#?V4
+        LCALL   ?FLT_ADD
+        MOV     R0,#?V0
+        LCALL   ?FLT_TO_L
+        MOV     R0,?V0
+//   88     }
+//   89     if(humi > 100)
+        CLR     C
+        MOV     A,R0
+        SUBB    A,#0x65
+        MOV     A,?V1
+        SUBB    A,#0x0
+        JC      ??Soilhumi_Read_3
+//   90       humi = 100;
+        MOV     R0,#0x64
+//   91     
+//   92     buf[0] = (unsigned char)humi;
+??Soilhumi_Read_3:
+        MOV     A,R0
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPH,A
+        MOV     DPL,R0
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//   93     return 0;
+        MOV     R1,#0x0
+        SJMP    ??Soilhumi_Read_4
+//   94   }
+//   95   return 1;
+??Soilhumi_Read_1:
+        MOV     R1,#0x1
+??Soilhumi_Read_4:
+        LJMP    ?Subroutine0 & 0xFFFF
+//   96 }
+          CFI EndBlock cfiBlock4
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+          CFI Block cfiCond5 Using cfiCommon0
+          CFI Function Soilhumi_Read_Str
+          CFI Conditional ??CrossCallReturnLabel_2
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI CFA_SP SP+-2
+          CFI CFA_XSP16 add(XSP16, 22)
+          CFI Block cfiCond6 Using cfiCommon0
+          CFI (cfiCond6) Function Soilhumi_Read
+          CFI (cfiCond6) Conditional ??CrossCallReturnLabel_3
+          CFI (cfiCond6) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond6) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond6) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond6) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond6) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond6) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond6) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond6) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond6) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond6) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond6) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond6) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond6) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond6) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond6) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond6) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond6) CFA_SP SP+-2
+          CFI (cfiCond6) CFA_XSP16 add(XSP16, 22)
+          CFI Block cfiPicker7 Using cfiCommon1
+          CFI (cfiPicker7) NoFunction
+          CFI (cfiPicker7) Picker
+        MOV     DPTR,#pos_zero
+        MOVX    A,@DPTR
+        MOV     ?V0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V1,A
+        CLR     A
+        MOV     ?V2,A
+        MOV     ?V3,A
+        MOV     R0,#?V4
+        MOV     R1,#?V0
+        RET
+          CFI EndBlock cfiCond5
+          CFI EndBlock cfiCond6
+          CFI EndBlock cfiPicker7
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+          CFI Block cfiCond8 Using cfiCommon0
+          CFI Function Soilhumi_Read_Str
+          CFI Conditional ??CrossCallReturnLabel_0
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI CFA_SP SP+-2
+          CFI CFA_XSP16 add(XSP16, 22)
+          CFI Block cfiCond9 Using cfiCommon0
+          CFI (cfiCond9) Function Soilhumi_Read
+          CFI (cfiCond9) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond9) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond9) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond9) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond9) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond9) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond9) CFA_SP SP+-2
+          CFI (cfiCond9) CFA_XSP16 add(XSP16, 22)
+          CFI Block cfiPicker10 Using cfiCommon1
+          CFI (cfiPicker10) NoFunction
+          CFI (cfiPicker10) Picker
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+        MOV     ?V4,R6
+        MOV     ?V5,R6
+        MOV     ?V6,R6
+        MOV     ?V7,R6
+        RET
+          CFI EndBlock cfiCond8
+          CFI EndBlock cfiCond9
+          CFI EndBlock cfiPicker10
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for pos_100>`:
+        DATA16
+        DW 4300
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Soilhumi_Init::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Soilhumi_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Soilhumi_Read_Str::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Soilhumi_Read_Str
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Soilhumi_Read::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Soilhumi_Read
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+`?<Constant "%3d">`:
+        DB "%3d"
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_64:
+        DD 100
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_a:
+        DD 10
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_b6e02d5a:
+        DD 0B6E02D5AH
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_3c567770:
+        DD 3C567770H
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_c10872b0:
+        DD 0C10872B0H
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_44e8e000:
+        DD 44E8E000H
+
+        END
+// 
+// 863 bytes in segment BANKED_CODE
+//  18 bytes in segment BANK_RELAYS
+//   2 bytes in segment XDATA_I
+//   2 bytes in segment XDATA_ID
+//  28 bytes in segment XDATA_ROM_C
+//   2 bytes in segment XDATA_Z
+// 
+// 883 bytes of CODE  memory
+//   4 bytes of CONST memory (+ 24 bytes shared)
+//   4 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

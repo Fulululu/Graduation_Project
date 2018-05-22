@@ -47,26 +47,44 @@ def logout(request):
     request.session.flush()
     return redirect("/index/")
 
-def update(request):
+def update(request, opt):
     if request.session.get('is_login', None):
-        obj = models.summary.objects.filter(UID_id=request.session['user_id'])
-        if(obj):
-            newest_data = obj[0]
-            data_dict = {'UID_id':newest_data.UID_id,\
-                         'NODE':newest_data.NODE,\
-                         'LIGHT':newest_data.LIGHT,\
-                         'AIRTEMP':newest_data.AIRTEMP,\
-                         'AIRHUMI':newest_data.AIRHUMI,\
-                         'SOILTEMP':newest_data.SOILTEMP,\
-                         'SOILHUMI':newest_data.SOILHUMI}
-            data_list = []
-            data_list.append(data_dict)
-            retjson = json.dumps(data_list)
-            response = HttpResponse()
-            response['Content-Type'] = "text/javascript"
-            response.write(retjson)
-            return response
-        return 1
+        if opt == 0:
+            summary_objs = models.summary.objects.filter(UID_id=request.session['user_id'])
+            if summary_objs:  # the method 'latest' will raise error when object is empty(so need 'if'), but 'only' method not.
+                tmp_objs = summary_objs
+                obj_list = []
+                while True:
+                    obj_list.append(tmp_objs.latest('CREATETIME'))
+                    tmp_objs = tmp_objs.exclude(NODE=obj_list[-1].NODE)
+                    if not tmp_objs:
+                        break
+                    obj_list.sort(key=lambda x:x.NODE)
+
+                data_list = []
+                for item in obj_list:
+                    tmp_dict = {'UID_id':item.UID_id,\
+                                'NODE':item.NODE,\
+                                'LIGHT':item.LIGHT,\
+                                'AIRTEMP':item.AIRTEMP,\
+                                'AIRHUMI':item.AIRHUMI,\
+                                'SOILTEMP':item.SOILTEMP,\
+                                'SOILHUMI':item.SOILHUMI}
+                    data_list.append(tmp_dict)
+                retjson = json.dumps(data_list)
+        elif opt == 1:
+            dev_state = models.device.objects.get(UID_id=request.session['user_id'])
+            dev_dict = {'pump_state':dev_state.PUMP, 'lamp_state':dev_state.LAMP}
+            dev_list = []
+            dev_list.append(dev_dict)
+            retjson = json.dumps(dev_list)
+        else:
+            return 1
+        response = HttpResponse()
+        response['Content-Type'] = "text/javascript"
+        response.write(retjson)
+        return response
+    return 1
 
 def devctl(request, dev_id):
     if request.session.get('is_login', None):
@@ -79,8 +97,6 @@ def devctl(request, dev_id):
             dev_state.LAMP = not dev_state.LAMP
             dev_state.AUTO_LAMP = not dev_state.AUTO_LAMP
             dev_dict = {'lamp_state':dev_state.LAMP}
-        elif(dev_id == 2):
-            dev_dict = {'pump_state':dev_state.PUMP, 'lamp_state':dev_state.LAMP}
         dev_state.save()
         dev_list = []
         dev_list.append(dev_dict)
@@ -204,16 +220,23 @@ def reset(request):
 def mydata(request):
     if request.session.get('is_login', None):
         devices = models.device.objects.get(UID_id=request.session['user_id'])
-        summary_list = models.summary.objects.filter(UID_id=request.session['user_id'])
-        if(summary_list):
-            realtime_data = summary_list[0]
-        light_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','LIGHT')
-        airtemp_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRTEMP')
-        airhumi_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','AIRHUMI')
-        soiltemp_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','SOILTEMP')
-        soilhumi_list = models.summary.objects.filter(UID_id=request.session['user_id']).only('CREATETIME','UID_id','NODE','SOILHUMI')
+        summary_objs = models.summary.objects.filter(UID_id=request.session['user_id'])
+        if summary_objs:  # the method 'latest' will raise error when object is empty(so need 'if'), but 'only' method not.
+            tmp_objs = summary_objs
+            node_list = []
+            while True:
+                node_list.append(tmp_objs.latest('CREATETIME'))
+                tmp_objs = tmp_objs.exclude(NODE=node_list[-1].NODE)
+                if not tmp_objs:
+                    break
+            node_list.sort(key=lambda x:x.NODE)
+
+        light_objs = summary_objs.only('CREATETIME','UID_id','NODE','LIGHT')
+        airtemp_objs = summary_objs.only('CREATETIME','UID_id','NODE','AIRTEMP')
+        airhumi_objs = summary_objs.only('CREATETIME','UID_id','NODE','AIRHUMI')
+        soiltemp_objs = summary_objs.only('CREATETIME','UID_id','NODE','SOILTEMP')
+        soilhumi_objs = summary_objs.only('CREATETIME','UID_id','NODE','SOILHUMI')
         return render(request, 'data.html',locals())
     
     return render(request, 'tologin.html')
-
 

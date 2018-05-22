@@ -1,0 +1,872 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                08/Apr/2018  22:27:33
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+#    Command line       =  
+#        -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+#        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+#        xLCD_SUPPORTED=DEBUG -lC
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        -lA
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz
+#    List file          =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\ZE03.lst
+#    Object file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj\ZE03.r51
+#
+###############################################################################
+
+F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\ZE03.c
+      1          //=====================================================================
+      2          //文件名称：ZE03.c
+      3          //功能概要：氧气浓度传感器ZE03构件源文件
+      4          //=====================================================================
+      5          
+      6          #include "ZE03.h"
+      7          
+      8          //SET------3.3V
+      9          //RST------3.3V
+     10          
+     11          //=====================================================================
+     12          //传感器命令协议：
+     13          //特征字节    地址    指令字节  通讯模式            校验字节
+     14          // 0xFF      0x01      CMD      STATE    0 0 0 0    0x84
+     15          //=====================================================================
+     16          
+     17          //=========================================================================
+     18          //函数名称：ZE03_init
+     19          //函数参数：无
+     20          //函数返回：无
+     21          //功能概要：初始化SET、RST引脚
+     22          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     23          void ZE03_Init(void)
+   \                     ZE03_Init:
+     24          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     25              ZE03_control(ZE03_MODE_PASSTIVE);
+   \   000004                ; Setup parameters for call to function ZE03_control
+   \   000004   7A04         MOV     R2,#0x4
+   \   000006   7B00         MOV     R3,#0x0
+   \   000008   12....       LCALL   `??ZE03_control::?relay`; Banked call to: ZE03_control
+     26          }
+   \   00000B                REQUIRE ?Subroutine0
+   \   00000B                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     27          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     28          unsigned char ZE03_CheckACK(void)
+   \                     ZE03_CheckACK:
+     29          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+     30            unsigned char flag = 0, timeout;
+     31            unsigned char ackbuf[ZE03_LENTH_DATA];
+     32            
+     33            for(timeout=0;timeout<10;timeout++)
+   \   00000A   7E00         MOV     R6,#0x0
+     34            {
+     35              flag = HalUARTRead(0, ackbuf, ZE03_LENTH_DATA);
+     36              if(flag != 0)
+   \                     ??ZE03_CheckACK_0:
+   \   00000C                ; Setup parameters for call to function HalUARTRead
+   \   00000C   7C09         MOV     R4,#0x9
+   \   00000E   7D00         MOV     R5,#0x0
+   \   000010   AA..         MOV     R2,?XSP + 0
+   \   000012   AB..         MOV     R3,?XSP + 1
+   \   000014   7900         MOV     R1,#0x0
+   \   000016   12....       LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+   \   000019   EA           MOV     A,R2
+   \   00001A   7007         JNZ     ??ZE03_CheckACK_1
+     37              {
+     38                break;
+     39              }
+     40            }
+   \   00001C   0E           INC     R6
+   \   00001D   EE           MOV     A,R6
+   \   00001E   C3           CLR     C
+   \   00001F   940A         SUBB    A,#0xa
+   \   000021   40E9         JC      ??ZE03_CheckACK_0
+     41            
+     42            if(timeout >= 10)
+   \                     ??ZE03_CheckACK_1:
+   \   000023   EE           MOV     A,R6
+   \   000024   C3           CLR     C
+   \   000025   940A         SUBB    A,#0xa
+   \   000027   4004         JC      ??ZE03_CheckACK_2
+     43            {
+     44              return ZE03_ERR_NOACK;
+   \   000029   7942         MOV     R1,#0x42
+   \   00002B   8002         SJMP    ??ZE03_CheckACK_3
+     45            }
+     46            else
+     47            {
+     48              if(ackbuf[0]==0xff && ackbuf[1]==0x78 && ackbuf[0]==0x01 && ackbuf[8]==0x84)
+     49              {
+     50                return 0;
+     51              }
+     52              else
+     53              {
+     54                return ZE03_ERR_ACKCHECKFAIL;
+   \                     ??ZE03_CheckACK_2:
+   \   00002D   7943         MOV     R1,#0x43
+     55              }
+     56            }
+   \                     ??ZE03_CheckACK_3:
+   \   00002F                REQUIRE ?Subroutine1
+   \   00002F                ; // Fall through to label ?Subroutine1
+     57            
+     58          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7409         MOV     A,#0x9
+   \   000002   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000005   7F01         MOV     R7,#0x1
+   \   000007   02....       LJMP    ?BANKED_LEAVE_XDATA
+     59          
+     60          //=========================================================================
+     61          //函数名称：ZE03_control
+     62          //函数参数：cmd:控制命令
+     63          //函数返回：命令发送成功：0；命令发送失败：0x11
+     64          //功能概要：通过命令控制传感器工作状态
+     65          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     66          unsigned char ZE03_control(unsigned int cmd)
+   \                     ZE03_control:
+     67          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 9
+   \   000004   74F7         MOV     A,#-0x9
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+     68          	unsigned char flag;
+     69          	//初始化命令帧
+     70          	unsigned char command[ZE03_LENTH_CMD] = {0};
+   \   000009   90....       MOV     DPTR,#`?<Constant {0, 0, 0, 0, 0, 0, 0, 0, 0}>`
+   \   00000C   AC..         MOV     R4,?XSP + 0
+   \   00000E   AD..         MOV     R5,?XSP + 1
+   \   000010   7409         MOV     A,#0x9
+   \   000012   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+     71          
+     72          	ZE03_buildframe(cmd,command);
+   \   000015                ; Setup parameters for call to function ZE03_buildframe
+   \   000015   AC..         MOV     R4,?XSP + 0
+   \   000017   AD..         MOV     R5,?XSP + 1
+   \   000019   12....       LCALL   `??ZE03_buildframe::?relay`; Banked call to: ZE03_buildframe
+     73          	flag = HalUARTWrite(0, command, ZE03_LENTH_CMD);
+     74          
+     75          	//如果发送命令错误，返回错误码
+     76          	if(!flag)
+   \   00001C                ; Setup parameters for call to function HalUARTWrite
+   \   00001C   7C09         MOV     R4,#0x9
+   \   00001E   7D00         MOV     R5,#0x0
+   \   000020   AA..         MOV     R2,?XSP + 0
+   \   000022   AB..         MOV     R3,?XSP + 1
+   \   000024   7900         MOV     R1,#0x0
+   \   000026   12....       LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+   \   000029   EA           MOV     A,R2
+   \   00002A   7004         JNZ     ??ZE03_control_0
+     77          	{
+     78          		return ZE03_ERR_CMDSENDFAIL;
+   \   00002C   7941         MOV     R1,#0x41
+   \   00002E   8005         SJMP    ??ZE03_control_1
+     79          	}
+     80                  
+     81                  flag = ZE03_CheckACK();
+   \                     ??ZE03_control_0:
+   \   000030                ; Setup parameters for call to function ZE03_CheckACK
+   \   000030   12....       LCALL   `??ZE03_CheckACK::?relay`; Banked call to: ZE03_CheckACK
+     82                  if(flag!=ZE03_ERR_NOACK || flag!=ZE03_ERR_ACKCHECKFAIL)
+     83                  {
+     84                    return ZE03_ERR_CHECKFAIL;
+   \   000033   7944         MOV     R1,#0x44
+   \                     ??ZE03_control_1:
+   \   000035   7409         MOV     A,#0x9
+   \   000037   12....       LCALL   ?DEALLOC_XSTACK8
+     85                  }
+   \   00003A   80..         SJMP    ?Subroutine0
+     86                  
+     87          	return 0;
+     88          }
+     89          
+     90          //=========================================================================
+     91          //函数名称：ZE03_buildframe
+     92          //函数参数：cmd:控制命令
+     93          //		 *frame：命令帧数组
+     94          //函数返回：无
+     95          //功能概要：将命令组成命令帧
+     96          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     97          void ZE03_buildframe(unsigned int cmd,unsigned char *frame)
+   \                     ZE03_buildframe:
+     98          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0,R2
+   \   000007   8B..         MOV     ?V1,R3
+     99          	switch(cmd)
+   \   000009   78..         MOV     R0,#?V0
+   \   00000B   12....       LCALL   ?US_SWITCH_SPARSE
+   \                     `?<Jumptable for ZE03_buildframe>_0`:
+   \   00000E   0000         DW        0
+   \   000010   0300         DW        3
+   \   000012   0300         DW        3
+   \   000014   ....         DW        ??ZE03_buildframe_0
+   \   000016   0400         DW        4
+   \   000018   ....         DW        ??ZE03_buildframe_1
+   \   00001A   8600         DW        134
+   \   00001C   ....         DW        ??ZE03_buildframe_2
+   \   00001E   ....         DW        ??ZE03_buildframe_3
+    100          	{
+    101          	case ZE03_MODE_ACTIVE:
+    102          		frame[0] = 0xff;
+   \                     ??ZE03_buildframe_0:
+   \   000020   12....       LCALL   ?Subroutine4 & 0xFFFF
+    103          		frame[1] = 0x01;
+    104          		frame[2] = ZE03_CMD_MODE_CHANGE;
+    105          		frame[3] = ZE03_MODE_ACTIVE;
+   \                     ??CrossCallReturnLabel_0:
+   \   000023   7403         MOV     A,#0x3
+   \   000025   12....       LCALL   ?Subroutine3 & 0xFFFF
+    106          		frame[4] = 0x00;
+    107          		frame[5] = 0x00;
+    108          		frame[6] = 0x00;
+    109          		frame[7] = 0x00;
+    110          		frame[8] = 0x84;
+   \                     ??CrossCallReturnLabel_9:
+   \   000028   7484         MOV     A,#-0x7c
+   \   00002A   801E         SJMP    ??ZE03_buildframe_4
+    111          		break;
+    112          	case ZE03_MODE_PASSTIVE:
+    113          		frame[0] = 0xff;
+   \                     ??ZE03_buildframe_1:
+   \   00002C   12....       LCALL   ?Subroutine4 & 0xFFFF
+    114          		frame[1] = 0x01;
+    115          		frame[2] = ZE03_CMD_MODE_CHANGE;
+    116          		frame[3] = ZE03_MODE_PASSTIVE;
+   \                     ??CrossCallReturnLabel_1:
+   \   00002F   7404         MOV     A,#0x4
+   \   000031   12....       LCALL   ?Subroutine3 & 0xFFFF
+    117          		frame[4] = 0x00;
+    118          		frame[5] = 0x00;
+    119          		frame[6] = 0x00;
+    120          		frame[7] = 0x00;
+    121          		frame[8] = 0x83;
+   \                     ??CrossCallReturnLabel_10:
+   \   000034   7483         MOV     A,#-0x7d
+   \   000036   8012         SJMP    ??ZE03_buildframe_4
+    122          		break;
+    123          	case ZE03_CMD_READ:
+    124          		frame[0] = 0xff;
+   \                     ??ZE03_buildframe_2:
+   \   000038   12....       LCALL   ?Subroutine7 & 0xFFFF
+    125          		frame[1] = 0x01;
+    126          		frame[2] = ZE03_CMD_READ;
+   \                     ??CrossCallReturnLabel_4:
+   \   00003B   7486         MOV     A,#-0x7a
+   \   00003D   12....       LCALL   ?Subroutine5 & 0xFFFF
+    127          		frame[3] = 0x00;
+   \                     ??CrossCallReturnLabel_2:
+   \   000040   E4           CLR     A
+   \   000041   12....       LCALL   ?Subroutine5 & 0xFFFF
+    128          		frame[4] = 0x00;
+   \                     ??CrossCallReturnLabel_3:
+   \   000044   A3           INC     DPTR
+   \   000045   12....       LCALL   ??Subroutine12_0 & 0xFFFF
+    129          		frame[5] = 0x00;
+    130          		frame[6] = 0x00;
+    131          		frame[7] = 0x00;
+    132          		frame[8] = 0x79;
+   \                     ??CrossCallReturnLabel_11:
+   \   000048   7479         MOV     A,#0x79
+   \                     ??ZE03_buildframe_4:
+   \   00004A   F0           MOVX    @DPTR,A
+    133          		break;
+    134          	default:
+    135          		break;
+    136          	}
+    137          }
+   \                     ??ZE03_buildframe_3:
+   \   00004B                REQUIRE ?Subroutine2
+   \   00004B                ; // Fall through to label ?Subroutine2
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_6:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   000003   7478         MOV     A,#0x78
+   \   000005   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8C82         MOV     DPL,R4
+   \   000003   8D83         MOV     DPH,R5
+   \   000005   A3           INC     DPTR
+   \   000006   A3           INC     DPTR
+   \   000007   A3           INC     DPTR
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   8C82         MOV     DPL,R4
+   \   000002   8D83         MOV     DPH,R5
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   F0           MOVX    @DPTR,A
+   \   000007   A3           INC     DPTR
+   \   000008   7401         MOV     A,#0x1
+   \   00000A   F0           MOVX    @DPTR,A
+   \   00000B   8C82         MOV     DPL,R4
+   \   00000D   8D83         MOV     DPH,R5
+   \   00000F   A3           INC     DPTR
+   \   000010   A3           INC     DPTR
+   \   000011   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   000003   A3           INC     DPTR
+   \   000004   E4           CLR     A
+   \   000005                REQUIRE ??Subroutine12_0
+   \   000005                ; // Fall through to label ??Subroutine12_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine12_0:
+   \   000000   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_14:
+   \   000003   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_15:
+   \   000006   A3           INC     DPTR
+   \   000007   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_12:
+   \   00000A   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   00000D   A3           INC     DPTR
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_16:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   000003   A3           INC     DPTR
+   \   000004   A3           INC     DPTR
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_17:
+   \   000003   A3           INC     DPTR
+   \   000004   A3           INC     DPTR
+   \   000005   22           RET
+    138          
+    139          //======================================================================
+    140          //函数名称：ZE03_datarec
+    141          //函数参数：databuf:数据接收缓存
+    142          //函数返回：接收成功：0 ；接收失败：0x12
+    143          //功能概要：接收传感器原始读数
+    144          //======================================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    145          unsigned char ZE03_recdata(unsigned char *databuf)
+   \                     ZE03_recdata:
+    146          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0,R2
+   \   000007   8B..         MOV     ?V1,R3
+    147          	unsigned char lrc, i;
+    148          	unsigned int datasum = 0;
+   \   000009   7E00         MOV     R6,#0x0
+   \   00000B   7F00         MOV     R7,#0x0
+    149                  ZE03_control(ZE03_CMD_READ);
+   \   00000D                ; Setup parameters for call to function ZE03_control
+   \   00000D   7A86         MOV     R2,#-0x7a
+   \   00000F   7B00         MOV     R3,#0x0
+   \   000011   12....       LCALL   `??ZE03_control::?relay`; Banked call to: ZE03_control
+    150          	//接收传感器的数据
+    151                  i=HalUARTRead(0, databuf, ZE03_LENTH_DATA);
+   \   000014                ; Setup parameters for call to function HalUARTRead
+   \   000014   7C09         MOV     R4,#0x9
+   \   000016   7D00         MOV     R5,#0x0
+   \   000018   AA..         MOV     R2,?V0
+   \   00001A   AB..         MOV     R3,?V1
+   \   00001C   7900         MOV     R1,#0x0
+   \   00001E   12....       LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+    152          
+    153          	//计算校验和
+    154          	for(i = 0; i < (ZE03_LENTH_DATA -1) ; i++)
+   \   000021   7A00         MOV     R2,#0x0
+    155          	{
+    156          		datasum += databuf[i];
+   \                     ??ZE03_recdata_0:
+   \   000023   EA           MOV     A,R2
+   \   000024   F8           MOV     R0,A
+   \   000025   E5..         MOV     A,?V0
+   \   000027   28           ADD     A,R0
+   \   000028   F582         MOV     DPL,A
+   \   00002A   E4           CLR     A
+   \   00002B   35..         ADDC    A,?V1
+   \   00002D   F583         MOV     DPH,A
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   F8           MOV     R0,A
+   \   000031   EE           MOV     A,R6
+   \   000032   28           ADD     A,R0
+   \   000033   FE           MOV     R6,A
+   \   000034   E4           CLR     A
+   \   000035   3F           ADDC    A,R7
+   \   000036   FF           MOV     R7,A
+    157          	}
+   \   000037   0A           INC     R2
+   \   000038   EA           MOV     A,R2
+   \   000039   C3           CLR     C
+   \   00003A   9408         SUBB    A,#0x8
+   \   00003C   40E5         JC      ??ZE03_recdata_0
+    158                  
+    159                  lrc = databuf[i];
+    160          	//如果校验错误，返回错误码
+    161          	if(datasum != lrc)
+   \   00003E   E5..         MOV     A,?V0
+   \   000040   2A           ADD     A,R2
+   \   000041   F582         MOV     DPL,A
+   \   000043   E4           CLR     A
+   \   000044   35..         ADDC    A,?V1
+   \   000046   F583         MOV     DPH,A
+   \   000048   E0           MOVX    A,@DPTR
+   \   000049   6E           XRL     A,R6
+   \   00004A   7001         JNZ     ??ZE03_recdata_1
+   \   00004C   EF           MOV     A,R7
+   \                     ??ZE03_recdata_1:
+   \   00004D   6004         JZ      ??ZE03_recdata_2
+    162                  {
+    163          		return ZE03_ERR_READFAIL;
+   \   00004F   7945         MOV     R1,#0x45
+   \   000051   8002         SJMP    ??ZE03_recdata_3
+    164                  }
+    165          
+    166          	return 0;
+   \                     ??ZE03_recdata_2:
+   \   000053   7900         MOV     R1,#0x0
+   \                     ??ZE03_recdata_3:
+   \   000055   02....       LJMP    ?Subroutine2 & 0xFFFF
+    167          }
+    168          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    169          unsigned char ZE03_Read_Str(unsigned char *buf)
+   \                     ZE03_Read_Str:
+    170          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    171            unsigned char tmp[ZE03_LENTH_DATA];
+    172            unsigned int o2;//浓度百分比
+    173            unsigned int cnt = 0;
+   \   00000E   75..65       MOV     ?V0,#0x65
+    174            while(ZE03_recdata(tmp) == ZE03_ERR_READFAIL)
+   \                     ??ZE03_Read_Str_0:
+   \   000011                ; Setup parameters for call to function ZE03_recdata
+   \   000011   AA..         MOV     R2,?XSP + 0
+   \   000013   AB..         MOV     R3,?XSP + 1
+   \   000015   12....       LCALL   `??ZE03_recdata::?relay`; Banked call to: ZE03_recdata
+   \   000018   E9           MOV     A,R1
+   \   000019   6445         XRL     A,#0x45
+   \   00001B   7010         JNZ     ??ZE03_Read_Str_1
+    175            {
+    176              if(++cnt > 100)
+   \   00001D   15..         DEC     ?V0
+   \   00001F   E5..         MOV     A,?V0
+   \   000021   70EE         JNZ     ??ZE03_Read_Str_0
+    177                return 1;         //timeout,sensor no response
+    178            }
+    179            o2 = (tmp[2]<<8) + tmp[3];
+    180                
+    181            if(o2>0 && o2<25)     //0%~25%
+    182            {
+    183              sprintf((char*)buf, "%3d", o2);
+    184              return 0;
+    185            }
+    186            return 1;              //should not arrive here
+   \                     ??ZE03_Read_Str_2:
+   \   000023   7901         MOV     R1,#0x1
+   \                     ??ZE03_Read_Str_3:
+   \   000025   7409         MOV     A,#0x9
+   \   000027   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00002A   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \                     ??ZE03_Read_Str_1:
+   \   00002D   7402         MOV     A,#0x2
+   \   00002F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000032   E0           MOVX    A,@DPTR
+   \   000033   F9           MOV     R1,A
+   \   000034   7403         MOV     A,#0x3
+   \   000036   12....       LCALL   ?XSTACK_DISP0_8
+   \   000039   E0           MOVX    A,@DPTR
+   \   00003A   FA           MOV     R2,A
+   \   00003B   E4           CLR     A
+   \   00003C   2A           ADD     A,R2
+   \   00003D   F5..         MOV     ?V0,A
+   \   00003F   E9           MOV     A,R1
+   \   000040   F5..         MOV     ?V1,A
+   \   000042   EA           MOV     A,R2
+   \   000043   45..         ORL     A,?V1
+   \   000045   60DC         JZ      ??ZE03_Read_Str_2
+   \   000047   EA           MOV     A,R2
+   \   000048   9419         SUBB    A,#0x19
+   \   00004A   E9           MOV     A,R1
+   \   00004B   9400         SUBB    A,#0x0
+   \   00004D   50D4         JNC     ??ZE03_Read_Str_2
+   \   00004F                ; Setup parameters for call to function sprintf
+   \   00004F   78..         MOV     R0,#?V0
+   \   000051   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000054   7C..         MOV     R4,#`?<Constant "%3d">` & 0xff
+   \   000056   7D..         MOV     R5,#(`?<Constant "%3d">` >> 8) & 0xff
+   \   000058   EE           MOV     A,R6
+   \   000059   FA           MOV     R2,A
+   \   00005A   EF           MOV     A,R7
+   \   00005B   FB           MOV     R3,A
+   \   00005C   12....       LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+   \   00005F   7402         MOV     A,#0x2
+   \   000061   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000064   7900         MOV     R1,#0x0
+   \   000066   80BD         SJMP    ??ZE03_Read_Str_3
+    187          }
+    188          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    189          unsigned char ZE03_Read(unsigned char *buf)
+   \                     ZE03_Read:
+    190          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    191            unsigned char tmp[ZE03_LENTH_DATA];
+    192            unsigned int o2;//浓度百分比
+    193            unsigned int cnt = 0;
+   \   00000E   75..65       MOV     ?V0,#0x65
+    194            while(ZE03_recdata(tmp) == ZE03_ERR_READFAIL)
+   \                     ??ZE03_Read_0:
+   \   000011                ; Setup parameters for call to function ZE03_recdata
+   \   000011   AA..         MOV     R2,?XSP + 0
+   \   000013   AB..         MOV     R3,?XSP + 1
+   \   000015   12....       LCALL   `??ZE03_recdata::?relay`; Banked call to: ZE03_recdata
+   \   000018   E9           MOV     A,R1
+   \   000019   6445         XRL     A,#0x45
+   \   00001B   700B         JNZ     ??ZE03_Read_1
+    195            {
+    196              if(++cnt > 100)
+   \   00001D   15..         DEC     ?V0
+   \   00001F   E5..         MOV     A,?V0
+   \   000021   70EE         JNZ     ??ZE03_Read_0
+    197                return 1;         //timeout,sensor no response
+    198            }
+    199            o2 = (tmp[2]<<8) + tmp[3];
+    200                
+    201            if(o2>0 && o2<25)     //0%~25%
+    202            {
+    203              buf[0]=o2 >> 8;
+    204              buf[1]=o2;
+    205              return 0;
+    206            }
+    207            return 1;              //should not arrive here
+   \                     ??ZE03_Read_2:
+   \   000023   7901         MOV     R1,#0x1
+   \                     ??ZE03_Read_3:
+   \   000025   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \                     ??ZE03_Read_1:
+   \   000028   7402         MOV     A,#0x2
+   \   00002A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002D   E0           MOVX    A,@DPTR
+   \   00002E   F9           MOV     R1,A
+   \   00002F   7403         MOV     A,#0x3
+   \   000031   12....       LCALL   ?XSTACK_DISP0_8
+   \   000034   E0           MOVX    A,@DPTR
+   \   000035   FA           MOV     R2,A
+   \   000036   E4           CLR     A
+   \   000037   2A           ADD     A,R2
+   \   000038   F8           MOV     R0,A
+   \   000039   49           ORL     A,R1
+   \   00003A   60E7         JZ      ??ZE03_Read_2
+   \   00003C   E8           MOV     A,R0
+   \   00003D   9419         SUBB    A,#0x19
+   \   00003F   E9           MOV     A,R1
+   \   000040   9400         SUBB    A,#0x0
+   \   000042   50DF         JNC     ??ZE03_Read_2
+   \   000044   E9           MOV     A,R1
+   \   000045   8E82         MOV     DPL,R6
+   \   000047   8F83         MOV     DPH,R7
+   \   000049   F0           MOVX    @DPTR,A
+   \   00004A   E8           MOV     A,R0
+   \   00004B   A3           INC     DPTR
+   \   00004C   F0           MOVX    @DPTR,A
+   \   00004D   7900         MOV     R1,#0x0
+   \   00004F   80D4         SJMP    ??ZE03_Read_3
+    208          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_Init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_CheckACK::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_CheckACK
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_control::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_control
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_buildframe::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_buildframe
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_recdata::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_recdata
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_Read_Str::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_Read_Str
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ZE03_Read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ZE03_Read
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0, 0, 0, 0, 0, 0, 0, 0, 0}>`:
+   \   000000   00           DB 0
+   \   000001   00           DB 0
+   \   000002   00           DB 0
+   \   000003   00           DB 0
+   \   000004   00           DB 0
+   \   000005   00           DB 0
+   \   000006   00           DB 0
+   \   000007   00           DB 0
+   \   000008   00           DB 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "%3d">`:
+   \   000000   25336400     DB "%3d"
+    209          
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0     27   ZE03_CheckACK
+        0     18   -> HalUARTRead
+      2      0   ZE03_Init
+        2      0   -> ZE03_control
+      1     18   ZE03_Read
+        0     18   -> ZE03_recdata
+      0     21   ZE03_Read_Str
+        0     19   -> ZE03_recdata
+        0     21   -> sprintf
+      0     19   ZE03_buildframe
+      2     19   ZE03_control
+        2      9   -> HalUARTWrite
+        2      9   -> ZE03_CheckACK
+        2      9   -> ZE03_buildframe
+      0     29   ZE03_recdata
+        0     10   -> HalUARTRead
+        0     10   -> ZE03_control
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?<Constant "%3d">
+       9  ?<Constant {0, 0, 0, 0, 0, 0, 0, 0, 0}>
+      15  ??Subroutine12_0
+       7  ?Subroutine0
+      10  ?Subroutine1
+       6  ?Subroutine10
+       9  ?Subroutine11
+       5  ?Subroutine2
+       5  ?Subroutine3
+       9  ?Subroutine4
+       4  ?Subroutine5
+       6  ?Subroutine6
+      18  ?Subroutine7
+       4  ?Subroutine8
+       4  ?Subroutine9
+      47  ZE03_CheckACK
+       6  ZE03_CheckACK::?relay
+      11  ZE03_Init
+       6  ZE03_Init::?relay
+      81  ZE03_Read
+       6  ZE03_Read::?relay
+     104  ZE03_Read_Str
+       6  ZE03_Read_Str::?relay
+      75  ZE03_buildframe
+       6  ZE03_buildframe::?relay
+      60  ZE03_control
+       6  ZE03_control::?relay
+      88  ZE03_recdata
+       6  ZE03_recdata::?relay
+
+ 
+ 568 bytes in segment BANKED_CODE
+  42 bytes in segment BANK_RELAYS
+  13 bytes in segment XDATA_ROM_C
+ 
+ 610 bytes of CODE  memory
+  13 bytes of CONST memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,456 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                24/Oct/2017  20:39:36
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750.c
+#    Command line       =  
+#        -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750.c
+#        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+#        xLCD_SUPPORTED=DEBUG -lC
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        -lA
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz
+#    List file          =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\BH1750.lst
+#    Object file        =  
+#        F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj\BH1750.r51
+#
+###############################################################################
+
+F:\Zigbeespace\20171020\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\BH1750.c
+      1          /**************************************************************************************************
+      2          文件名：24c02.c
+      3          编写者：czhang
+      4          描述：24c02子程序。用于135、145、147、149。
+      5          
+      6          版本变更：2003年10月11日   	1.0
+      7                    2004年11月   		1.3
+      8                    每次读写一个字节改为每次读写多字节
+      9          *****************************************************************************************************/
+     10          #include "BH1750.h"
+     11          #include "IIC.h"
+     12          void DelayaMs(unsigned int ms);
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     13          unsigned char BUF[2];
+   \                     BUF:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     14          
+     15          /***************************************************************************
+     16          向BH1750中写多个字节
+     17          psrc_data：指向要写入数据数组的指针
+     18          adr：BH1750中要写入数据的首地址
+     19          nbyte：写入的字节数
+     20          返回值:  0：执行完毕；1：执行出现错误
+     21          ***************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     22          unsigned char WriteBH1750(unsigned int adr,unsigned char nbyte)
+   \                     WriteBH1750:
+     23          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   89..         MOV     ?V0,R1
+   \   000009   800E         SJMP    ??WriteBH1750_0
+     24            	for(;nbyte!=0;nbyte--)
+     25          	{
+     26          		Start();			//启动IIC总线
+     27          		Send8bit(W_DEVICE_ADR);	//写24C02的芯片地址以及确定下面执行写操作
+     28          		if(ChkACK()==1)		//检验应答
+     29          			return 1;		//若应答错误，则退出函数，返回错误
+     30          		Send8bit(adr);			//写对24C02操作的地址
+     31          		if(ChkACK()==1)
+     32          			return 1;
+     33          		adr++;				//对24C02的操作地址加1
+   \                     ??WriteBH1750_1:
+   \   00000B   0E           INC     R6
+   \   00000C   EE           MOV     A,R6
+     34          		Stop();				//停止IIC总线
+   \   00000D                ; Setup parameters for call to function Stop
+   \   00000D   12....       LCALL   `??Stop::?relay`     ; Banked call to: Stop
+     35          		DelayaMs(10);			//写入延时
+   \   000010                ; Setup parameters for call to function DelayaMs
+   \   000010   7A0A         MOV     R2,#0xa
+   \   000012   7B00         MOV     R3,#0x0
+   \   000014   12....       LCALL   `??DelayaMs::?relay` ; Banked call to: DelayaMs
+   \   000017   15..         DEC     ?V0
+   \                     ??WriteBH1750_0:
+   \   000019   E5..         MOV     A,?V0
+   \   00001B   6021         JZ      ??WriteBH1750_2
+   \   00001D                ; Setup parameters for call to function Start
+   \   00001D   12....       LCALL   `??Start::?relay`    ; Banked call to: Start
+   \   000020                ; Setup parameters for call to function Send8bit
+   \   000020   7946         MOV     R1,#0x46
+   \   000022   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+   \   000025                ; Setup parameters for call to function ChkACK
+   \   000025   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000028   E9           MOV     A,R1
+   \   000029   6401         XRL     A,#0x1
+   \   00002B   600D         JZ      ??WriteBH1750_3
+   \   00002D                ; Setup parameters for call to function Send8bit
+   \   00002D   EE           MOV     A,R6
+   \   00002E   F9           MOV     R1,A
+   \   00002F   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+   \   000032                ; Setup parameters for call to function ChkACK
+   \   000032   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000035   E9           MOV     A,R1
+   \   000036   6401         XRL     A,#0x1
+   \   000038   70D1         JNZ     ??WriteBH1750_1
+   \                     ??WriteBH1750_3:
+   \   00003A   7901         MOV     R1,#0x1
+   \   00003C   8002         SJMP    ??WriteBH1750_4
+     36          	}
+     37          	return 0;
+   \                     ??WriteBH1750_2:
+   \   00003E   7900         MOV     R1,#0x0
+   \                     ??WriteBH1750_4:
+   \   000040                REQUIRE ?Subroutine0
+   \   000040                ; // Fall through to label ?Subroutine0
+     38          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+     39          
+     40          /***************************************************************************
+     41          从BH1750中读一个字节
+     42          pdin_data：指向要保存读出数据的变量的指针
+     43          adr：BH1750中要读出数据的地址
+     44          返回值:  0：执行完毕；1：执行出现错误
+     45          ***************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     46          unsigned char ReadBH1750(unsigned char *pdin_data,unsigned char adr)
+   \                     ReadBH1750:
+     47          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+   \   000009   89..         MOV     ?V0,R1
+     48          	Start();			//启动IIC总线
+   \   00000B                ; Setup parameters for call to function Start
+   \   00000B   12....       LCALL   `??Start::?relay`    ; Banked call to: Start
+     49          	Send8bit(W_DEVICE_ADR);	//写24C02的芯片地址以及确定下面执行写操作
+   \   00000E                ; Setup parameters for call to function Send8bit
+   \   00000E   7946         MOV     R1,#0x46
+   \   000010   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     50          	if(ChkACK()==1)
+   \   000013                ; Setup parameters for call to function ChkACK
+   \   000013   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000016   E9           MOV     A,R1
+   \   000017   6401         XRL     A,#0x1
+   \   000019   601D         JZ      ??ReadBH1750_0
+     51          		return 1;
+     52          	Send8bit(adr);			//写对24C02操作的地址
+   \   00001B                ; Setup parameters for call to function Send8bit
+   \   00001B   A9..         MOV     R1,?V0
+   \   00001D   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     53          	if(ChkACK()==1)
+   \   000020                ; Setup parameters for call to function ChkACK
+   \   000020   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000023   E9           MOV     A,R1
+   \   000024   6401         XRL     A,#0x1
+   \   000026   6010         JZ      ??ReadBH1750_0
+     54          		return 1;
+     55          
+     56          	Start();			//再次启动IIC总线
+   \   000028                ; Setup parameters for call to function Start
+   \   000028   12....       LCALL   `??Start::?relay`    ; Banked call to: Start
+     57          	Send8bit(R_DEVICE_ADR);	//写24C02的芯片地址以及确定下面执行读操作
+   \   00002B                ; Setup parameters for call to function Send8bit
+   \   00002B   7947         MOV     R1,#0x47
+   \   00002D   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     58          	if(ChkACK()==1)
+   \   000030                ; Setup parameters for call to function ChkACK
+   \   000030   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000033   E9           MOV     A,R1
+   \   000034   6401         XRL     A,#0x1
+   \   000036   7004         JNZ     ??ReadBH1750_1
+     59          		return 1;
+   \                     ??ReadBH1750_0:
+   \   000038   7901         MOV     R1,#0x1
+   \   00003A   8010         SJMP    ??ReadBH1750_2
+     60          	*pdin_data=Read8bit(0);		//从24C02中读数据，存入pdin_data所指的存储器中
+   \                     ??ReadBH1750_1:
+   \   00003C                ; Setup parameters for call to function Read8bit
+   \   00003C   7900         MOV     R1,#0x0
+   \   00003E   12....       LCALL   `??Read8bit::?relay` ; Banked call to: Read8bit
+   \   000041   E9           MOV     A,R1
+   \   000042   8E82         MOV     DPL,R6
+   \   000044   8F83         MOV     DPH,R7
+   \   000046   F0           MOVX    @DPTR,A
+     61          //	NoAck();			//IIC无应答操作
+     62          	Stop();				//停止IIC总线
+   \   000047                ; Setup parameters for call to function Stop
+   \   000047   12....       LCALL   `??Stop::?relay`     ; Banked call to: Stop
+     63          
+     64          	return 0;
+   \   00004A   7900         MOV     R1,#0x0
+   \                     ??ReadBH1750_2:
+   \   00004C   80..         SJMP    ?Subroutine0
+     65          }
+     66          
+     67          /***************************************************************************
+     68          从BH1750读多个字节
+     69          pdin_data：指向要保存读出数据的数组的指针
+     70          adr：BH1750中要读出数据的首地址
+     71          nbyte：读出的字节数
+     72          返回值:  0：执行完毕；1：执行出现错误
+     73          ***************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     74          unsigned char ReadBH1750Seq(unsigned char adr)
+   \                     ReadBH1750Seq:
+     75          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0,R1
+     76          	Start();			//启动IIC总线
+   \   000007                ; Setup parameters for call to function Start
+   \   000007   12....       LCALL   `??Start::?relay`    ; Banked call to: Start
+     77          	Send8bit(W_DEVICE_ADR);	//写24C02的芯片地址以及确定下面执行写操作
+   \   00000A                ; Setup parameters for call to function Send8bit
+   \   00000A   7946         MOV     R1,#0x46
+   \   00000C   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     78          	if(ChkACK()==1)
+   \   00000F                ; Setup parameters for call to function ChkACK
+   \   00000F   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   000012   E9           MOV     A,R1
+   \   000013   6401         XRL     A,#0x1
+   \   000015   601D         JZ      ??ReadBH1750Seq_0
+     79          		return 1;
+     80          	Send8bit(adr);			//写对24C02操作的地址
+   \   000017                ; Setup parameters for call to function Send8bit
+   \   000017   A9..         MOV     R1,?V0
+   \   000019   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     81          	if(ChkACK()==1)
+   \   00001C                ; Setup parameters for call to function ChkACK
+   \   00001C   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   00001F   E9           MOV     A,R1
+   \   000020   6401         XRL     A,#0x1
+   \   000022   6010         JZ      ??ReadBH1750Seq_0
+     82          		return 1;
+     83          
+     84          	Start();			//再次启动IIC总线
+   \   000024                ; Setup parameters for call to function Start
+   \   000024   12....       LCALL   `??Start::?relay`    ; Banked call to: Start
+     85          	Send8bit(R_DEVICE_ADR);	//写24C02的芯片地址以及确定下面执行读操作
+   \   000027                ; Setup parameters for call to function Send8bit
+   \   000027   7947         MOV     R1,#0x47
+   \   000029   12....       LCALL   `??Send8bit::?relay` ; Banked call to: Send8bit
+     86          	if(ChkACK()==1)
+   \   00002C                ; Setup parameters for call to function ChkACK
+   \   00002C   12....       LCALL   `??ChkACK::?relay`   ; Banked call to: ChkACK
+   \   00002F   E9           MOV     A,R1
+   \   000030   6401         XRL     A,#0x1
+   \   000032   7004         JNZ     ??ReadBH1750Seq_1
+     87          		return 1;
+   \                     ??ReadBH1750Seq_0:
+   \   000034   7901         MOV     R1,#0x1
+   \   000036   802C         SJMP    ??ReadBH1750Seq_2
+     88                  for(int i=0;i<2;i++)
+   \                     ??ReadBH1750Seq_1:
+   \   000038   7E00         MOV     R6,#0x0
+   \   00003A   7F00         MOV     R7,#0x0
+     89                  {
+     90                    BUF[i]=Read8bit(0);
+   \                     ??ReadBH1750Seq_3:
+   \   00003C                ; Setup parameters for call to function Read8bit
+   \   00003C   7900         MOV     R1,#0x0
+   \   00003E   12....       LCALL   `??Read8bit::?relay` ; Banked call to: Read8bit
+   \   000041   74..         MOV     A,#BUF & 0xff
+   \   000043   2E           ADD     A,R6
+   \   000044   F582         MOV     DPL,A
+   \   000046   74..         MOV     A,#(BUF >> 8) & 0xff
+   \   000048   3F           ADDC    A,R7
+   \   000049   F583         MOV     DPH,A
+   \   00004B   E9           MOV     A,R1
+   \   00004C   F0           MOVX    @DPTR,A
+     91          //          if(i==2)
+     92          //          {
+     93          //            NoAck();	
+     94          //          }
+     95          //          else
+     96          //          {
+     97          //            Ack();
+     98          //          }
+     99                  }
+   \   00004D   0E           INC     R6
+   \   00004E   EE           MOV     A,R6
+   \   00004F   7001         JNZ     ??ReadBH1750Seq_4
+   \   000051   0F           INC     R7
+   \                     ??ReadBH1750Seq_4:
+   \   000052   C3           CLR     C
+   \   000053   9402         SUBB    A,#0x2
+   \   000055   EF           MOV     A,R7
+   \   000056   9400         SUBB    A,#0x0
+   \   000058   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00005A   65D0         XRL     A,PSW
+   \   00005C   33           RLC     A
+   \   00005D   40DD         JC      ??ReadBH1750Seq_3
+    100          	Stop();
+   \   00005F                ; Setup parameters for call to function Stop
+   \   00005F   12....       LCALL   `??Stop::?relay`     ; Banked call to: Stop
+    101          	return 0;
+   \   000062   7900         MOV     R1,#0x0
+   \                     ??ReadBH1750Seq_2:
+   \   000064   02....       LJMP    ?Subroutine0 & 0xFFFF
+    102          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??WriteBH1750::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    WriteBH1750
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ReadBH1750::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ReadBH1750
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??ReadBH1750Seq::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ReadBH1750Seq
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      1      9   ReadBH1750
+        0      9   -> ChkACK
+        0      9   -> Read8bit
+        0      9   -> Send8bit
+        0      9   -> Start
+        0      9   -> Stop
+      1      9   ReadBH1750Seq
+        0      9   -> ChkACK
+        0      9   -> Read8bit
+        0      9   -> Send8bit
+        0      9   -> Start
+        0      9   -> Stop
+      0      9   WriteBH1750
+        0      9   -> ChkACK
+        0      9   -> DelayaMs
+        0      9   -> Send8bit
+        0      9   -> Start
+        0      9   -> Stop
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       5  ?Subroutine0
+       2  BUF
+      78  ReadBH1750
+       6  ReadBH1750::?relay
+     103  ReadBH1750Seq
+       6  ReadBH1750Seq::?relay
+      64  WriteBH1750
+       6  WriteBH1750::?relay
+
+ 
+ 250 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+   2 bytes in segment XDATA_Z
+ 
+ 268 bytes of CODE  memory
+   2 bytes of XDATA memory
+
+Errors: none
+Warnings: none

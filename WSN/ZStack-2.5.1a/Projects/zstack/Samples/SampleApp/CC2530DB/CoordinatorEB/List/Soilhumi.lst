@@ -1,0 +1,765 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.1.3056 for 8051                17/Apr/2018  20:44:29
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+#    Command line       =  
+#        -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+#        -DREJOIN_POLL_RATE=1000
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+#        -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D
+#        xLCD_SUPPORTED=DEBUG -lC
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        -lA
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 8 -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\ -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz
+#    List file          =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\List\Soilhumi.lst
+#    Object file        =  
+#        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB\Obj\Soilhumi.r51
+#
+###############################################################################
+
+D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Soilhumi.c
+      1          /*
+      2          * Copyright (c) 2017,FAFU
+      3          * All rights reserved.
+      4          *
+      5          * File Name：Soilhumi.c
+      6          * Abstract：Soilhumi driver for CC2530
+      7          *
+      8          * Current Version：1.0
+      9          * Author：ygf
+     10          * Finish Date：20171202
+     11          *
+     12          * Superseded Version：1.0
+     13          * Authorship ：ygf
+     14          * Finish Date：20171202
+     15          */ 
+     16          
+     17          #include "Soilhumi.h"
+     18          #include "OnBoard.h"
+     19          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     20          unsigned int pos_zero=0;
+   \                     pos_zero:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     21          unsigned int pos_100 = 4300;
+   \                     pos_100:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for pos_100>`
+   \   000002                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     22          void Soilhumi_Init(void)
+   \                     Soilhumi_Init:
+     23          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 0
+     24            unsigned char i;
+     25            unsigned long temp=0;
+   \   000005   75..00       MOV     ?V4,#0x0
+   \   000008   75..00       MOV     ?V5,#0x0
+   \   00000B   75..00       MOV     ?V6,#0x0
+   \   00000E   75..00       MOV     ?V7,#0x0
+     26            pos_zero = 0;
+   \   000011   90....       MOV     DPTR,#pos_zero
+   \   000014   E4           CLR     A
+   \   000015   F0           MOVX    @DPTR,A
+   \   000016   A3           INC     DPTR
+   \   000017   F0           MOVX    @DPTR,A
+     27            for(i=0; i<100; i++)
+   \   000018   7E64         MOV     R6,#0x64
+     28            {
+     29              temp += HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14);
+   \                     ??Soilhumi_Init_0:
+   \   00001A                ; Setup parameters for call to function HalAdcRead
+   \   00001A   7A04         MOV     R2,#0x4
+   \   00001C   7904         MOV     R1,#0x4
+   \   00001E   12....       LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+   \   000021   8A..         MOV     ?V0,R2
+   \   000023   8B..         MOV     ?V1,R3
+   \   000025   E4           CLR     A
+   \   000026   F5..         MOV     ?V2,A
+   \   000028   F5..         MOV     ?V3,A
+   \   00002A   78..         MOV     R0,#?V4
+   \   00002C   79..         MOV     R1,#?V0
+   \   00002E   12....       LCALL   ?L_ADD
+     30            }
+   \   000031   DEE7         DJNZ    R6,??Soilhumi_Init_0
+     31            pos_zero = temp/100;
+   \   000033   90....       MOV     DPTR,#__Constant_64
+   \   000036   78..         MOV     R0,#?V0
+   \   000038   12....       LCALL   ?L_MOV_X
+   \   00003B   78..         MOV     R0,#?V4
+   \   00003D   79..         MOV     R1,#?V0
+   \   00003F   12....       LCALL   ?UL_DIV_MOD
+   \   000042   90....       MOV     DPTR,#pos_zero
+   \   000045   E5..         MOV     A,?V4
+   \   000047   F0           MOVX    @DPTR,A
+   \   000048   A3           INC     DPTR
+   \   000049   E5..         MOV     A,?V5
+   \   00004B   F0           MOVX    @DPTR,A
+     32          }
+   \   00004C   02....       LJMP    ??Subroutine3_0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine3_0:
+   \   000000   7F08         MOV     R7,#0x8
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+     33          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     34          unsigned char Soilhumi_Read_Str(unsigned char *buf)
+   \                     Soilhumi_Read_Str:
+     35          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   7404         MOV     A,#0x4
+   \   00000C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000F   12....       LCALL   ?Subroutine1 & 0xFFFF
+     36            unsigned int humi = 0, cnt=0;
+     37            unsigned long sum = 0;
+     38            double p1=-0.000006681,p2=0.01309,p3=-8.528,p4=1863;//为计算时减少计算量，拟合时输入缩小了10倍
+     39            
+     40            do
+     41            {
+     42              humi = HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14); //ref Vol = AVDD5(3.3V)
+     43              sum += humi;
+   \                     ??CrossCallReturnLabel_0:
+   \   000012                ; Setup parameters for call to function HalAdcRead
+   \   000012   7A04         MOV     R2,#0x4
+   \   000014   7904         MOV     R1,#0x4
+   \   000016   12....       LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+   \   000019   8A..         MOV     ?V0,R2
+   \   00001B   8B..         MOV     ?V1,R3
+   \   00001D   E4           CLR     A
+   \   00001E   F5..         MOV     ?V2,A
+   \   000020   F5..         MOV     ?V3,A
+   \   000022   78..         MOV     R0,#?V4
+   \   000024   79..         MOV     R1,#?V0
+   \   000026   12....       LCALL   ?L_ADD
+     44              cnt++;
+   \   000029   0E           INC     R6
+   \   00002A   EE           MOV     A,R6
+   \   00002B   7001         JNZ     ??Soilhumi_Read_Str_0
+   \   00002D   0F           INC     R7
+     45            }while(cnt < 100);
+   \                     ??Soilhumi_Read_Str_0:
+   \   00002E   C3           CLR     C
+   \   00002F   9464         SUBB    A,#0x64
+   \   000031   EF           MOV     A,R7
+   \   000032   9400         SUBB    A,#0x0
+   \   000034   40DC         JC      ??CrossCallReturnLabel_0
+     46            
+     47            if(cnt == 100)
+   \   000036   7464         MOV     A,#0x64
+   \   000038   6E           XRL     A,R6
+   \   000039   4F           ORL     A,R7
+   \   00003A   6003         JZ      $+5
+   \   00003C   02....       LJMP    ??Soilhumi_Read_Str_1 & 0xFFFF
+     48            {
+     49              sum/=100;
+   \   00003F   90....       MOV     DPTR,#__Constant_64
+   \   000042   78..         MOV     R0,#?V0
+   \   000044   12....       LCALL   ?L_MOV_X
+   \   000047   78..         MOV     R0,#?V4
+   \   000049   79..         MOV     R1,#?V0
+   \   00004B   12....       LCALL   ?UL_DIV_MOD
+     50              if(sum > pos_zero)
+   \   00004E   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   000051   12....       LCALL   ?UL_GT
+   \   000054   5003         JNC     $+5
+   \   000056   02....       LJMP    ??Soilhumi_Read_Str_2 & 0xFFFF
+     51                humi = 0;
+     52              else
+     53              {
+     54                sum/=10;             //相应的计算时也要缩小10倍
+   \   000059   90....       MOV     DPTR,#__Constant_a
+   \   00005C   78..         MOV     R0,#?V0
+   \   00005E   12....       LCALL   ?L_MOV_X
+   \   000061   78..         MOV     R0,#?V4
+   \   000063   79..         MOV     R1,#?V0
+   \   000065   12....       LCALL   ?UL_DIV_MOD
+     55                humi = (unsigned int)(p1*sum*sum*sum + p2*sum*sum + p3*sum + p4);
+   \   000068   78..         MOV     R0,#?V4
+   \   00006A   12....       LCALL   ?UL_TO_FLT
+   \   00006D   85..82       MOV     DPL,?XSP + 0
+   \   000070   85..83       MOV     DPH,?XSP + 1
+   \   000073   78..         MOV     R0,#?V4
+   \   000075   12....       LCALL   ?L_MOV_TO_X
+   \   000078   85..82       MOV     DPL,?XSP + 0
+   \   00007B   85..83       MOV     DPH,?XSP + 1
+   \   00007E   78..         MOV     R0,#?V0
+   \   000080   12....       LCALL   ?L_MOV_X
+   \   000083   90....       MOV     DPTR,#__Constant_b6e02d5a
+   \   000086   78..         MOV     R0,#?V4
+   \   000088   12....       LCALL   ?L_MOV_X
+   \   00008B   78..         MOV     R0,#?V0
+   \   00008D   79..         MOV     R1,#?V4
+   \   00008F   12....       LCALL   ?FLT_MUL
+   \   000092   85..82       MOV     DPL,?XSP + 0
+   \   000095   85..83       MOV     DPH,?XSP + 1
+   \   000098   78..         MOV     R0,#?V4
+   \   00009A   12....       LCALL   ?L_MOV_X
+   \   00009D   78..         MOV     R0,#?V0
+   \   00009F   79..         MOV     R1,#?V4
+   \   0000A1   12....       LCALL   ?FLT_MUL
+   \   0000A4   85..82       MOV     DPL,?XSP + 0
+   \   0000A7   85..83       MOV     DPH,?XSP + 1
+   \   0000AA   78..         MOV     R0,#?V4
+   \   0000AC   12....       LCALL   ?L_MOV_X
+   \   0000AF   78..         MOV     R0,#?V0
+   \   0000B1   79..         MOV     R1,#?V4
+   \   0000B3   12....       LCALL   ?FLT_MUL
+   \   0000B6   C0..         PUSH    ?V0
+   \   0000B8   C0..         PUSH    ?V1
+   \   0000BA   C0..         PUSH    ?V2
+   \   0000BC   C0..         PUSH    ?V3
+   \   0000BE   85..82       MOV     DPL,?XSP + 0
+   \   0000C1   85..83       MOV     DPH,?XSP + 1
+   \   0000C4   78..         MOV     R0,#?V0
+   \   0000C6   12....       LCALL   ?L_MOV_X
+   \   0000C9   90....       MOV     DPTR,#__Constant_3c567770
+   \   0000CC   78..         MOV     R0,#?V4
+   \   0000CE   12....       LCALL   ?L_MOV_X
+   \   0000D1   78..         MOV     R0,#?V0
+   \   0000D3   79..         MOV     R1,#?V4
+   \   0000D5   12....       LCALL   ?FLT_MUL
+   \   0000D8   85..82       MOV     DPL,?XSP + 0
+   \   0000DB   85..83       MOV     DPH,?XSP + 1
+   \   0000DE   78..         MOV     R0,#?V4
+   \   0000E0   12....       LCALL   ?L_MOV_X
+   \   0000E3   78..         MOV     R0,#?V0
+   \   0000E5   79..         MOV     R1,#?V4
+   \   0000E7   12....       LCALL   ?FLT_MUL
+   \   0000EA   D0..         POP     ?V7
+   \   0000EC   D0..         POP     ?V6
+   \   0000EE   D0..         POP     ?V5
+   \   0000F0   D0..         POP     ?V4
+   \   0000F2   78..         MOV     R0,#?V4
+   \   0000F4   79..         MOV     R1,#?V0
+   \   0000F6   12....       LCALL   ?FLT_ADD
+   \   0000F9   C0..         PUSH    ?V4
+   \   0000FB   C0..         PUSH    ?V5
+   \   0000FD   C0..         PUSH    ?V6
+   \   0000FF   C0..         PUSH    ?V7
+   \   000101   85..82       MOV     DPL,?XSP + 0
+   \   000104   85..83       MOV     DPH,?XSP + 1
+   \   000107   78..         MOV     R0,#?V4
+   \   000109   12....       LCALL   ?L_MOV_X
+   \   00010C   90....       MOV     DPTR,#__Constant_c10872b0
+   \   00010F   78..         MOV     R0,#?V0
+   \   000111   12....       LCALL   ?L_MOV_X
+   \   000114   78..         MOV     R0,#?V4
+   \   000116   79..         MOV     R1,#?V0
+   \   000118   12....       LCALL   ?FLT_MUL
+   \   00011B   D0..         POP     ?V3
+   \   00011D   D0..         POP     ?V2
+   \   00011F   D0..         POP     ?V1
+   \   000121   D0..         POP     ?V0
+   \   000123   78..         MOV     R0,#?V0
+   \   000125   79..         MOV     R1,#?V4
+   \   000127   12....       LCALL   ?FLT_ADD
+   \   00012A   90....       MOV     DPTR,#__Constant_44e8e000
+   \   00012D   78..         MOV     R0,#?V4
+   \   00012F   12....       LCALL   ?L_MOV_X
+   \   000132   78..         MOV     R0,#?V0
+   \   000134   79..         MOV     R1,#?V4
+   \   000136   12....       LCALL   ?FLT_ADD
+   \   000139   78..         MOV     R0,#?V0
+   \   00013B   12....       LCALL   ?FLT_TO_L
+   \   00013E   85....       MOV     ?V2,?V0
+   \   000141   85....       MOV     ?V3,?V1
+     56              }
+     57              if(humi > 100)
+   \   000144   C3           CLR     C
+   \   000145   E5..         MOV     A,?V2
+   \   000147   9465         SUBB    A,#0x65
+   \   000149   E5..         MOV     A,?V3
+   \   00014B   9400         SUBB    A,#0x0
+   \   00014D   4006         JC      ??Soilhumi_Read_Str_2
+     58                humi = 100;
+   \   00014F   75..64       MOV     ?V2,#0x64
+   \   000152   75..00       MOV     ?V3,#0x0
+     59              
+     60              sprintf((char *)buf, "%3d", humi);
+   \                     ??Soilhumi_Read_Str_2:
+   \   000155                ; Setup parameters for call to function sprintf
+   \   000155   78..         MOV     R0,#?V2
+   \   000157   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00015A   7C..         MOV     R4,#`?<Constant "%3d">` & 0xff
+   \   00015C   7D..         MOV     R5,#(`?<Constant "%3d">` >> 8) & 0xff
+   \   00015E   7406         MOV     A,#0x6
+   \   000160   12....       LCALL   ?XSTACK_DISP0_8
+   \   000163   E0           MOVX    A,@DPTR
+   \   000164   FA           MOV     R2,A
+   \   000165   A3           INC     DPTR
+   \   000166   E0           MOVX    A,@DPTR
+   \   000167   FB           MOV     R3,A
+   \   000168   12....       LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+   \   00016B   7402         MOV     A,#0x2
+   \   00016D   12....       LCALL   ?DEALLOC_XSTACK8
+     61              return 0;
+   \   000170   7900         MOV     R1,#0x0
+   \   000172   8002         SJMP    ??Soilhumi_Read_Str_3
+     62            }
+     63            return 1;
+   \                     ??Soilhumi_Read_Str_1:
+   \   000174   7901         MOV     R1,#0x1
+   \                     ??Soilhumi_Read_Str_3:
+   \   000176                REQUIRE ?Subroutine0
+   \   000176                ; // Fall through to label ?Subroutine0
+     64          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7406         MOV     A,#0x6
+   \   000002   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000005                REQUIRE ??Subroutine3_0
+   \   000005                ; // Fall through to label ??Subroutine3_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   90....       MOV     DPTR,#pos_zero
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F5..         MOV     ?V0,A
+   \   000006   A3           INC     DPTR
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   F5..         MOV     ?V1,A
+   \   00000A   E4           CLR     A
+   \   00000B   F5..         MOV     ?V2,A
+   \   00000D   F5..         MOV     ?V3,A
+   \   00000F   78..         MOV     R0,#?V4
+   \   000011   79..         MOV     R1,#?V0
+   \   000013   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   EA           MOV     A,R2
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   A3           INC     DPTR
+   \   000003   EB           MOV     A,R3
+   \   000004   F0           MOVX    @DPTR,A
+   \   000005   7E00         MOV     R6,#0x0
+   \   000007   7F00         MOV     R7,#0x0
+   \   000009   8E..         MOV     ?V4,R6
+   \   00000B   8E..         MOV     ?V5,R6
+   \   00000D   8E..         MOV     ?V6,R6
+   \   00000F   8E..         MOV     ?V7,R6
+   \   000011   22           RET
+     65          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     66          unsigned char Soilhumi_Read(unsigned char *buf)
+   \                     Soilhumi_Read:
+     67          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   7404         MOV     A,#0x4
+   \   00000C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000F   12....       LCALL   ?Subroutine1 & 0xFFFF
+     68            unsigned int humi = 0, cnt=0;
+     69            unsigned long sum = 0;
+     70            double p1=-0.000006681,p2=0.01309,p3=-8.528,p4=1863;//为计算时减少计算量，拟合时输入缩小了10倍
+     71            
+     72            do
+     73            {
+     74              humi = HalAdcRead(HAL_ADC_CHANNEL_4, HAL_ADC_RESOLUTION_14); //ref Vol = AVDD5(3.3V)
+     75              sum += humi;
+   \                     ??CrossCallReturnLabel_1:
+   \   000012                ; Setup parameters for call to function HalAdcRead
+   \   000012   7A04         MOV     R2,#0x4
+   \   000014   7904         MOV     R1,#0x4
+   \   000016   12....       LCALL   `??HalAdcRead::?relay`; Banked call to: HalAdcRead
+   \   000019   8A..         MOV     ?V0,R2
+   \   00001B   8B..         MOV     ?V1,R3
+   \   00001D   E4           CLR     A
+   \   00001E   F5..         MOV     ?V2,A
+   \   000020   F5..         MOV     ?V3,A
+   \   000022   78..         MOV     R0,#?V4
+   \   000024   79..         MOV     R1,#?V0
+   \   000026   12....       LCALL   ?L_ADD
+     76              cnt++;
+   \   000029   0E           INC     R6
+   \   00002A   EE           MOV     A,R6
+   \   00002B   7001         JNZ     ??Soilhumi_Read_0
+   \   00002D   0F           INC     R7
+     77            }while(cnt < 100);
+   \                     ??Soilhumi_Read_0:
+   \   00002E   C3           CLR     C
+   \   00002F   9464         SUBB    A,#0x64
+   \   000031   EF           MOV     A,R7
+   \   000032   9400         SUBB    A,#0x0
+   \   000034   40DC         JC      ??CrossCallReturnLabel_1
+     78            
+     79            if(cnt == 100)
+   \   000036   7464         MOV     A,#0x64
+   \   000038   6E           XRL     A,R6
+   \   000039   4F           ORL     A,R7
+   \   00003A   6003         JZ      $+5
+   \   00003C   02....       LJMP    ??Soilhumi_Read_1 & 0xFFFF
+     80            {
+     81              sum/=100;
+   \   00003F   90....       MOV     DPTR,#__Constant_64
+   \   000042   78..         MOV     R0,#?V0
+   \   000044   12....       LCALL   ?L_MOV_X
+   \   000047   78..         MOV     R0,#?V4
+   \   000049   79..         MOV     R1,#?V0
+   \   00004B   12....       LCALL   ?UL_DIV_MOD
+     82              if(sum > pos_zero)
+   \   00004E   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   000051   12....       LCALL   ?UL_GT
+   \   000054   5005         JNC     ??Soilhumi_Read_2
+     83                humi = 0;
+   \   000056   7800         MOV     R0,#0x0
+   \   000058   02....       LJMP    ??Soilhumi_Read_3 & 0xFFFF
+     84              else
+     85              {
+     86                sum/=10;             //相应的计算时也要缩小10倍
+   \                     ??Soilhumi_Read_2:
+   \   00005B   90....       MOV     DPTR,#__Constant_a
+   \   00005E   78..         MOV     R0,#?V0
+   \   000060   12....       LCALL   ?L_MOV_X
+   \   000063   78..         MOV     R0,#?V4
+   \   000065   79..         MOV     R1,#?V0
+   \   000067   12....       LCALL   ?UL_DIV_MOD
+     87                humi = (unsigned int)(p1*sum*sum*sum + p2*sum*sum + p3*sum + p4);
+   \   00006A   78..         MOV     R0,#?V4
+   \   00006C   12....       LCALL   ?UL_TO_FLT
+   \   00006F   85..82       MOV     DPL,?XSP + 0
+   \   000072   85..83       MOV     DPH,?XSP + 1
+   \   000075   78..         MOV     R0,#?V4
+   \   000077   12....       LCALL   ?L_MOV_TO_X
+   \   00007A   85..82       MOV     DPL,?XSP + 0
+   \   00007D   85..83       MOV     DPH,?XSP + 1
+   \   000080   78..         MOV     R0,#?V0
+   \   000082   12....       LCALL   ?L_MOV_X
+   \   000085   90....       MOV     DPTR,#__Constant_b6e02d5a
+   \   000088   78..         MOV     R0,#?V4
+   \   00008A   12....       LCALL   ?L_MOV_X
+   \   00008D   78..         MOV     R0,#?V0
+   \   00008F   79..         MOV     R1,#?V4
+   \   000091   12....       LCALL   ?FLT_MUL
+   \   000094   85..82       MOV     DPL,?XSP + 0
+   \   000097   85..83       MOV     DPH,?XSP + 1
+   \   00009A   78..         MOV     R0,#?V4
+   \   00009C   12....       LCALL   ?L_MOV_X
+   \   00009F   78..         MOV     R0,#?V0
+   \   0000A1   79..         MOV     R1,#?V4
+   \   0000A3   12....       LCALL   ?FLT_MUL
+   \   0000A6   85..82       MOV     DPL,?XSP + 0
+   \   0000A9   85..83       MOV     DPH,?XSP + 1
+   \   0000AC   78..         MOV     R0,#?V4
+   \   0000AE   12....       LCALL   ?L_MOV_X
+   \   0000B1   78..         MOV     R0,#?V0
+   \   0000B3   79..         MOV     R1,#?V4
+   \   0000B5   12....       LCALL   ?FLT_MUL
+   \   0000B8   C0..         PUSH    ?V0
+   \   0000BA   C0..         PUSH    ?V1
+   \   0000BC   C0..         PUSH    ?V2
+   \   0000BE   C0..         PUSH    ?V3
+   \   0000C0   85..82       MOV     DPL,?XSP + 0
+   \   0000C3   85..83       MOV     DPH,?XSP + 1
+   \   0000C6   78..         MOV     R0,#?V0
+   \   0000C8   12....       LCALL   ?L_MOV_X
+   \   0000CB   90....       MOV     DPTR,#__Constant_3c567770
+   \   0000CE   78..         MOV     R0,#?V4
+   \   0000D0   12....       LCALL   ?L_MOV_X
+   \   0000D3   78..         MOV     R0,#?V0
+   \   0000D5   79..         MOV     R1,#?V4
+   \   0000D7   12....       LCALL   ?FLT_MUL
+   \   0000DA   85..82       MOV     DPL,?XSP + 0
+   \   0000DD   85..83       MOV     DPH,?XSP + 1
+   \   0000E0   78..         MOV     R0,#?V4
+   \   0000E2   12....       LCALL   ?L_MOV_X
+   \   0000E5   78..         MOV     R0,#?V0
+   \   0000E7   79..         MOV     R1,#?V4
+   \   0000E9   12....       LCALL   ?FLT_MUL
+   \   0000EC   D0..         POP     ?V7
+   \   0000EE   D0..         POP     ?V6
+   \   0000F0   D0..         POP     ?V5
+   \   0000F2   D0..         POP     ?V4
+   \   0000F4   78..         MOV     R0,#?V4
+   \   0000F6   79..         MOV     R1,#?V0
+   \   0000F8   12....       LCALL   ?FLT_ADD
+   \   0000FB   C0..         PUSH    ?V4
+   \   0000FD   C0..         PUSH    ?V5
+   \   0000FF   C0..         PUSH    ?V6
+   \   000101   C0..         PUSH    ?V7
+   \   000103   85..82       MOV     DPL,?XSP + 0
+   \   000106   85..83       MOV     DPH,?XSP + 1
+   \   000109   78..         MOV     R0,#?V4
+   \   00010B   12....       LCALL   ?L_MOV_X
+   \   00010E   90....       MOV     DPTR,#__Constant_c10872b0
+   \   000111   78..         MOV     R0,#?V0
+   \   000113   12....       LCALL   ?L_MOV_X
+   \   000116   78..         MOV     R0,#?V4
+   \   000118   79..         MOV     R1,#?V0
+   \   00011A   12....       LCALL   ?FLT_MUL
+   \   00011D   D0..         POP     ?V3
+   \   00011F   D0..         POP     ?V2
+   \   000121   D0..         POP     ?V1
+   \   000123   D0..         POP     ?V0
+   \   000125   78..         MOV     R0,#?V0
+   \   000127   79..         MOV     R1,#?V4
+   \   000129   12....       LCALL   ?FLT_ADD
+   \   00012C   90....       MOV     DPTR,#__Constant_44e8e000
+   \   00012F   78..         MOV     R0,#?V4
+   \   000131   12....       LCALL   ?L_MOV_X
+   \   000134   78..         MOV     R0,#?V0
+   \   000136   79..         MOV     R1,#?V4
+   \   000138   12....       LCALL   ?FLT_ADD
+   \   00013B   78..         MOV     R0,#?V0
+   \   00013D   12....       LCALL   ?FLT_TO_L
+   \   000140   A8..         MOV     R0,?V0
+     88              }
+     89              if(humi > 100)
+   \   000142   C3           CLR     C
+   \   000143   E8           MOV     A,R0
+   \   000144   9465         SUBB    A,#0x65
+   \   000146   E5..         MOV     A,?V1
+   \   000148   9400         SUBB    A,#0x0
+   \   00014A   4002         JC      ??Soilhumi_Read_3
+     90                humi = 100;
+   \   00014C   7864         MOV     R0,#0x64
+     91              
+     92              buf[0] = (unsigned char)humi;
+   \                     ??Soilhumi_Read_3:
+   \   00014E   E8           MOV     A,R0
+   \   00014F   C0E0         PUSH    A
+   \   000151   7404         MOV     A,#0x4
+   \   000153   12....       LCALL   ?XSTACK_DISP0_8
+   \   000156   E0           MOVX    A,@DPTR
+   \   000157   F8           MOV     R0,A
+   \   000158   A3           INC     DPTR
+   \   000159   E0           MOVX    A,@DPTR
+   \   00015A   F583         MOV     DPH,A
+   \   00015C   8882         MOV     DPL,R0
+   \   00015E   D0E0         POP     A
+   \   000160   F0           MOVX    @DPTR,A
+     93              return 0;
+   \   000161   7900         MOV     R1,#0x0
+   \   000163   8002         SJMP    ??Soilhumi_Read_4
+     94            }
+     95            return 1;
+   \                     ??Soilhumi_Read_1:
+   \   000165   7901         MOV     R1,#0x1
+   \                     ??Soilhumi_Read_4:
+   \   000167   02....       LJMP    ?Subroutine0 & 0xFFFF
+     96          }
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for pos_100>`:
+   \   000000   CC10         DW 4300
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??Soilhumi_Init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Soilhumi_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??Soilhumi_Read_Str::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Soilhumi_Read_Str
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??Soilhumi_Read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Soilhumi_Read
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "%3d">`:
+   \   000000   25336400     DB "%3d"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_64:
+   \   000000   64000000     DD 100
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_a:
+   \   000000   0A000000     DD 10
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_b6e02d5a:
+   \   000000   5A2DE0B6     DD 0B6E02D5AH
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3c567770:
+   \   000000   7077563C     DD 3C567770H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c10872b0:
+   \   000000   B07208C1     DD 0C10872B0H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_44e8e000:
+   \   000000   00E0E844     DD 44E8E000H
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0     16   Soilhumi_Init
+        0     16   -> HalAdcRead
+      4     22   Soilhumi_Read
+        0     22   -> HalAdcRead
+      4     24   Soilhumi_Read_Str
+        0     22   -> HalAdcRead
+        0     24   -> sprintf
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?<Constant "%3d">
+       2  ?<Initializer for pos_100>
+       5  ??Subroutine3_0
+       5  ?Subroutine0
+      18  ?Subroutine1
+      20  ?Subroutine2
+      79  Soilhumi_Init
+       6  Soilhumi_Init::?relay
+     362  Soilhumi_Read
+       6  Soilhumi_Read::?relay
+     374  Soilhumi_Read_Str
+       6  Soilhumi_Read_Str::?relay
+       4  __Constant_3c567770
+       4  __Constant_44e8e000
+       4  __Constant_64
+       4  __Constant_a
+       4  __Constant_b6e02d5a
+       4  __Constant_c10872b0
+       2  pos_100
+       2  pos_zero
+
+ 
+ 863 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+   2 bytes in segment XDATA_I
+   2 bytes in segment XDATA_ID
+  28 bytes in segment XDATA_ROM_C
+   2 bytes in segment XDATA_Z
+ 
+ 883 bytes of CODE  memory
+   4 bytes of CONST memory (+ 24 bytes shared)
+   4 bytes of XDATA memory
+
+Errors: none
+Warnings: none

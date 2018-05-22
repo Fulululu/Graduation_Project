@@ -180,9 +180,9 @@ class client:
                 pass
         else:
             pass
-        
+
     def disconnect(self):
-        '''Exit normally''' 
+        '''Exit normally'''
         print("Connection will close in a moment!")
         self.sock.close()
         GPIO.cleanup()
@@ -210,6 +210,6 @@ if __name__ == "__main__":
     myclient.login()
     while True:
         myclient.senddata()
-        time.sleep(10)
+        time.sleep(5)
 
     myclient.disconnect()

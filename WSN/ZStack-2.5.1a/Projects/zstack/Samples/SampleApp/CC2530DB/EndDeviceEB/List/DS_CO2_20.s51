@@ -1,0 +1,1165 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.1.3056 for 8051               22/May/2018  20:40:14
+// Copyright 2004-2015 IAR Systems AB.
+// Standalone license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+//    Command line       =  
+//        -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x333;
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=0 -DQUEUED_POLL_RATE=0 -DRESPONSE_POLL_RATE=0)
+//        -DREJOIN_POLL_RATE=1000
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D xMT_SYS_FUNC -D
+//        xMT_ZDO_FUNC -D xLCD_SUPPORTED=DEBUG -D POWER_SAVING -lC
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+//        --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\Source\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -On --require_prototypes
+//    List file          =  
+//        D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB\List\DS_CO2_20.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME DS_CO2_20
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__iar_require _formatted_write", "widths"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?V4
+        EXTERN ?V5
+        EXTERN ?V6
+        EXTERN ?V7
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_I
+
+        PUBLIC `??DS_CO2_20_Init::?relay`
+        FUNCTION `??DS_CO2_20_Init::?relay`,0203H
+        PUBLIC `??DS_CO2_20_Read::?relay`
+        FUNCTION `??DS_CO2_20_Read::?relay`,0203H
+        PUBLIC `??DS_CO2_20_Read_Str::?relay`
+        FUNCTION `??DS_CO2_20_Read_Str::?relay`,0203H
+        PUBLIC `??DS_CO2_20_control::?relay`
+        FUNCTION `??DS_CO2_20_control::?relay`,0203H
+        PUBLIC `??DS_CO2_20_recdata::?relay`
+        FUNCTION `??DS_CO2_20_recdata::?relay`,0203H
+        PUBLIC `??DS_CO2_20_rest::?relay`
+        FUNCTION `??DS_CO2_20_rest::?relay`,0203H
+        PUBLIC DS_CO2_20_Init
+        FUNCTION DS_CO2_20_Init,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC DS_CO2_20_Read
+        FUNCTION DS_CO2_20_Read,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 28, STACK
+        PUBLIC DS_CO2_20_Read_Str
+        FUNCTION DS_CO2_20_Read_Str,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 30, STACK
+        PUBLIC DS_CO2_20_control
+        FUNCTION DS_CO2_20_control,021203H
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC DS_CO2_20_recdata
+        FUNCTION DS_CO2_20_recdata,0a1203H
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 15, STACK
+        PUBLIC DS_CO2_20_rest
+        FUNCTION DS_CO2_20_rest,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBWEAK P0DIR
+        PUBWEAK P0SEL
+        PUBWEAK _A_P0
+        PUBLIC frame
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+HalUARTRead         SYMBOL "HalUARTRead"
+`??HalUARTRead::?relay` SYMBOL "?relay", HalUARTRead
+HalUARTWrite        SYMBOL "HalUARTWrite"
+`??HalUARTWrite::?relay` SYMBOL "?relay", HalUARTWrite
+sprintf             SYMBOL "sprintf"
+`??sprintf::?relay` SYMBOL "?relay", sprintf
+DS_CO2_20_Init      SYMBOL "DS_CO2_20_Init"
+`??DS_CO2_20_Init::?relay` SYMBOL "?relay", DS_CO2_20_Init
+DS_CO2_20_Read      SYMBOL "DS_CO2_20_Read"
+`??DS_CO2_20_Read::?relay` SYMBOL "?relay", DS_CO2_20_Read
+DS_CO2_20_Read_Str  SYMBOL "DS_CO2_20_Read_Str"
+`??DS_CO2_20_Read_Str::?relay` SYMBOL "?relay", DS_CO2_20_Read_Str
+DS_CO2_20_control   SYMBOL "DS_CO2_20_control"
+`??DS_CO2_20_control::?relay` SYMBOL "?relay", DS_CO2_20_control
+DS_CO2_20_recdata   SYMBOL "DS_CO2_20_recdata"
+`??DS_CO2_20_recdata::?relay` SYMBOL "?relay", DS_CO2_20_recdata
+DS_CO2_20_rest      SYMBOL "DS_CO2_20_rest"
+`??DS_CO2_20_rest::?relay` SYMBOL "?relay", DS_CO2_20_rest
+
+        EXTERN `??HalUARTRead::?relay`
+        FUNCTION `??HalUARTRead::?relay`,00H
+        EXTERN `??HalUARTWrite::?relay`
+        FUNCTION `??HalUARTWrite::?relay`,00H
+        EXTERN `??sprintf::?relay`
+        FUNCTION `??sprintf::?relay`,00H
+        EXTERN HalUARTRead
+        FUNCTION HalUARTRead,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalUARTWrite
+        FUNCTION HalUARTWrite,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN sprintf
+        FUNCTION sprintf,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 30, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// D:\design\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\DS_CO2_20.c
+//    1 //=====================================================================
+//    2 //文件名称：DS_CO2_20.c
+//    3 //功能概要：CO2传感器DS_CO2_20构件源文件
+//    4 //=====================================================================
+//    5 
+//    6 #include "DS_CO2_20.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+//    7 
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+//    8 unsigned char frame[] = {0x42, 0x4D, 0xE3, 0x00, 0x00 , 0x01, 0x72};
+frame:
+        DATA8
+        DS 7
+        REQUIRE `?<Initializer for frame>`
+        REQUIRE __INIT_XDATA_I
+//    9 
+//   10 //RST------3.3V
+//   11 
+//   12 //=====================================================================
+//   13 //传感器命令协议：
+//   14 //特征字节  特征字节  指令字节  状态字节1 状态字节2 校验字节1 校验字节2
+//   15 // 0x42      0x4d      CMD     DATAH      DATAL    LRCH       LRCL
+//   16 //指令及特征字节的定义：
+//   17 //CMD  DATAH  DATAL      			说明
+//   18 //0xe3   x      x        		 被动读数
+//   19 //校验字生成：
+//   20 //从特征字开始所有字节累加和
+//   21 //=====================================================================
+//   22 
+//   23 //=========================================================================
+//   24 //函数名称：DS_CO2_20_init
+//   25 //函数参数：无
+//   26 //函数返回：无
+//   27 //功能概要：初始化SET、RST引脚
+//   28 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   29 void DS_CO2_20_Init(void)
+DS_CO2_20_Init:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function DS_CO2_20_Init
+        CODE
+//   30 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   31     P0SEL &= ~0x30;                 //设置P0.4 P0.5为普通IO口
+        ANL     0xf3,#0xcf
+//   32     P0DIR |= 0x30;                 //P0.4 P0.5定义为输出口
+        ORL     0xfd,#0x30
+//   33     //DS_CO2_20_rest();
+//   34 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock0
+        REQUIRE P0SEL
+        REQUIRE P0DIR
+//   35 
+//   36 //=========================================================================
+//   37 //函数名称：DS_CO2_20_control
+//   38 //函数参数：cmd:控制命令
+//   39 //函数返回：命令发送成功：0；命令发送失败：0x11
+//   40 //功能概要：通过命令控制传感器工作状态
+//   41 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   42 unsigned char DS_CO2_20_control(void)
+DS_CO2_20_control:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function DS_CO2_20_control
+        CODE
+//   43 {
+        FUNCALL DS_CO2_20_control, HalUARTWrite
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//   44 	unsigned char flag = 0;
+        MOV     R6,#0x0
+//   45         
+//   46 	flag = HalUARTWrite(0, frame, DS_CO2_20_LENTH_CMD);
+        ; Setup parameters for call to function HalUARTWrite
+        MOV     R4,#0x7
+        MOV     R5,#0x0
+        MOV     R2,#frame & 0xff
+        MOV     R3,#(frame >> 8) & 0xff
+        MOV     R1,#0x0
+        LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+        MOV     A,R2
+        MOV     R6,A
+//   47         
+//   48 	//如果发送命令错误，返回错误码
+//   49 	if(!flag)
+        MOV     A,R6
+        JNZ     ??DS_CO2_20_control_0
+//   50 	{
+//   51 		return DS_CO2_20_ERR_CMDFAIL;
+        MOV     R1,#0x11
+        SJMP    ??DS_CO2_20_control_1
+//   52 	}
+//   53 
+//   54 	return 0;
+??DS_CO2_20_control_0:
+        MOV     R1,#0x0
+??DS_CO2_20_control_1:
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+//   55 }
+          CFI EndBlock cfiBlock1
+//   56 
+//   57 //=========================================================================
+//   58 //函数名称：DS_CO2_20_rest
+//   59 //函数参数：无
+//   60 //函数返回：无
+//   61 //功能概要：通过RST引脚复位传感器
+//   62 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   63 void DS_CO2_20_rest(void)
+DS_CO2_20_rest:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function DS_CO2_20_rest
+        CODE
+//   64 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   65 	DS_CO2_20_RST = 0;
+        CLR     0x80.4
+//   66         for(int i=0;i<500;i++);
+        MOV     R0,#0x0
+        MOV     R1,#0x0
+??DS_CO2_20_rest_0:
+        CLR     C
+        MOV     A,R0
+        SUBB    A,#-0xc
+        MOV     A,R1
+        SUBB    A,#0x1
+        MOV     C,0xD0 /* PSW */.2
+        XRL     A,PSW
+        RLC     A
+        JNC     ??DS_CO2_20_rest_1
+        INC     R0
+        MOV     A,R0
+        JNZ     ??DS_CO2_20_rest_0
+        INC     R1
+        SJMP    ??DS_CO2_20_rest_0
+//   67         DS_CO2_20_RST = 1;
+??DS_CO2_20_rest_1:
+        SETB    0x80.4
+//   68 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock2
+        REQUIRE _A_P0
+//   69 
+//   70 //======================================================================
+//   71 //函数名称：DS_CO2_20_datarec
+//   72 //函数参数：databuf:数据接收缓存
+//   73 //函数返回：接收成功：0 ；接收失败：0x12
+//   74 //功能概要：接收传感器原始读数
+//   75 //======================================================================
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   76 unsigned char DS_CO2_20_recdata(unsigned char *databuf)
+DS_CO2_20_recdata:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Function DS_CO2_20_recdata
+        CODE
+//   77 {
+        FUNCALL DS_CO2_20_recdata, DS_CO2_20_control
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL DS_CO2_20_recdata, HalUARTRead
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        MOV     A,#-0xf
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 15)
+        ; Saved register size: 15
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//   78 	unsigned char lrcl, lrch, i;
+//   79 	unsigned int lrcsum = 0, datasum = 0;
+        MOV     ?V4,#0x0
+        MOV     ?V5,#0x0
+        MOV     ?V2,#0x0
+        MOV     ?V3,#0x0
+//   80         DS_CO2_20_control();
+        ; Setup parameters for call to function DS_CO2_20_control
+        LCALL   `??DS_CO2_20_control::?relay`; Banked call to: DS_CO2_20_control
+        MOV     A,R1
+//   81        
+//   82 	//接收传感器的数据
+//   83         i = HalUARTRead(0, databuf, DS_CO2_20_LENTH_DATA);
+        ; Setup parameters for call to function HalUARTRead
+        MOV     R4,#0xc
+        MOV     R5,#0x0
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        MOV     R1,#0x0
+        LCALL   `??HalUARTRead::?relay`; Banked call to: HalUARTRead
+        MOV     A,R2
+        MOV     ?V0,A
+//   84 
+//   85 	//计算校验和
+//   86 	for(i = 0; i < (DS_CO2_20_LENTH_DATA -2) ; i++)
+        MOV     ?V0,#0x0
+??DS_CO2_20_recdata_0:
+        MOV     A,?V0
+        CLR     C
+        SUBB    A,#0xa
+        JNC     ??DS_CO2_20_recdata_1
+//   87 	{
+//   88 		datasum += databuf[i];
+        MOV     R0,?V0
+        MOV     R1,#0x0
+        MOV     A,R6
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        MOV     A,?V2
+        ADD     A,R0
+        MOV     ?V2,A
+        MOV     A,?V3
+        ADDC    A,R1
+        MOV     ?V3,A
+//   89 	}
+        INC     ?V0
+        SJMP    ??DS_CO2_20_recdata_0
+//   90 	lrcl = databuf[DS_CO2_20_LENTH_DATA-1];
+??DS_CO2_20_recdata_1:
+        MOV     A,R6
+        ADD     A,#0xb
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R7
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     ?V6,A
+//   91 	lrch = databuf[DS_CO2_20_LENTH_DATA-2];
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V1,A
+//   92 	lrcsum = (lrch<<8)+lrcl;
+        MOV     R0,?V1
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     R2,?V6
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V4,R0
+        MOV     ?V5,R1
+//   93 	//如果校验错误，返回错误码
+//   94 	if(datasum != lrcsum)
+        MOV     A,?V4
+        XRL     A,?V2
+        JNZ     ??DS_CO2_20_recdata_2
+        MOV     A,?V5
+        XRL     A,?V3
+??DS_CO2_20_recdata_2:
+        JZ      ??DS_CO2_20_recdata_3
+//   95         {
+//   96 		return DS_CO2_20_ERR_RECFAIL;
+        MOV     R1,#0x12
+        SJMP    ??DS_CO2_20_recdata_4
+//   97         }
+//   98 
+//   99 	return 0;
+??DS_CO2_20_recdata_3:
+        MOV     R1,#0x0
+??DS_CO2_20_recdata_4:
+        MOV     R7,#0x7
+        LJMP    ?BANKED_LEAVE_XDATA
+//  100 }
+          CFI EndBlock cfiBlock3
+//  101 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  102 unsigned char DS_CO2_20_Read_Str(unsigned char *buf)
+DS_CO2_20_Read_Str:
+          CFI Block cfiBlock4 Using cfiCommon0
+          CFI Function DS_CO2_20_Read_Str
+        CODE
+//  103 {
+        FUNCALL DS_CO2_20_Read_Str, DS_CO2_20_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 28, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL DS_CO2_20_Read_Str, sprintf
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 30, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 30, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 12
+        MOV     A,#-0xc
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 28)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+//  104   unsigned char tmp[DS_CO2_20_LENTH_DATA];
+//  105   unsigned int co2, para1, para2;         //单位ppm; para unuse
+//  106   unsigned int cnt = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+//  107 
+//  108   while(DS_CO2_20_recdata(tmp) == DS_CO2_20_ERR_RECFAIL)
+??DS_CO2_20_Read_Str_0:
+        ; Setup parameters for call to function DS_CO2_20_recdata
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??DS_CO2_20_recdata::?relay`; Banked call to: DS_CO2_20_recdata
+        MOV     A,R1
+        XRL     A,#0x12
+        JNZ     ??DS_CO2_20_Read_Str_1
+//  109   {
+//  110     if(++cnt > 1000)
+        INC     R6
+        MOV     A,R6
+        JNZ     ??DS_CO2_20_Read_Str_2
+        INC     R7
+??DS_CO2_20_Read_Str_2:
+        CLR     C
+        MOV     A,R6
+        SUBB    A,#-0x17
+        MOV     A,R7
+        SUBB    A,#0x3
+        JC      ??DS_CO2_20_Read_Str_0
+//  111       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        LJMP    ??DS_CO2_20_Read_Str_3 & 0xFFFF
+//  112   }
+//  113   co2 = (tmp[4]<<8) + tmp[5];
+??DS_CO2_20_Read_Str_1:
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V4,R0
+        MOV     ?V5,R1
+//  114   para1 = (tmp[6]<<8) + tmp[7];
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V6,R0
+        MOV     ?V7,R1
+//  115   para2 = (tmp[8]<<8) + tmp[9];
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V2,R0
+        MOV     ?V3,R1
+//  116   (void)para1;
+//  117   (void)para2;
+//  118       
+//  119   if(co2 < 3000)
+        CLR     C
+        MOV     A,?V4
+        SUBB    A,#-0x48
+        MOV     A,?V5
+        SUBB    A,#0xb
+        JNC     ??DS_CO2_20_Read_Str_4
+//  120   {
+//  121     sprintf((char *)buf, "%4d", co2);
+        ; Setup parameters for call to function sprintf
+        MOV     R0,#?V4
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 30)
+        MOV     R4,#`?<Constant "%4d">` & 0xff
+        MOV     R5,#(`?<Constant "%4d">` >> 8) & 0xff
+        MOV     R2,?V0
+        MOV     R3,?V1
+        LCALL   `??sprintf::?relay`  ; Banked call to: sprintf
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 28)
+//  122     return 0;
+        MOV     R1,#0x0
+        SJMP    ??DS_CO2_20_Read_Str_3
+//  123   }
+//  124   return 1;              //should not arrive here
+??DS_CO2_20_Read_Str_4:
+        MOV     R1,#0x1
+??DS_CO2_20_Read_Str_3:
+        MOV     A,#0xc
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+//  125 }
+          CFI EndBlock cfiBlock4
+//  126 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  127 unsigned char DS_CO2_20_Read(unsigned char *buf)
+DS_CO2_20_Read:
+          CFI Block cfiBlock5 Using cfiCommon0
+          CFI Function DS_CO2_20_Read
+        CODE
+//  128 {
+        FUNCALL DS_CO2_20_Read, DS_CO2_20_recdata
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 28, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 12
+        MOV     A,#-0xc
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 28)
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+//  129   unsigned char tmp[DS_CO2_20_LENTH_DATA];
+//  130   unsigned int co2, para1, para2;         //单位ppm; para unuse
+//  131   unsigned int cnt = 0;
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+//  132 
+//  133   while(DS_CO2_20_recdata(tmp) == DS_CO2_20_ERR_RECFAIL)
+??DS_CO2_20_Read_0:
+        ; Setup parameters for call to function DS_CO2_20_recdata
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??DS_CO2_20_recdata::?relay`; Banked call to: DS_CO2_20_recdata
+        MOV     A,R1
+        XRL     A,#0x12
+        JNZ     ??DS_CO2_20_Read_1
+//  134   {
+//  135     if(++cnt > 1000)
+        INC     R6
+        MOV     A,R6
+        JNZ     ??DS_CO2_20_Read_2
+        INC     R7
+??DS_CO2_20_Read_2:
+        CLR     C
+        MOV     A,R6
+        SUBB    A,#-0x17
+        MOV     A,R7
+        SUBB    A,#0x3
+        JC      ??DS_CO2_20_Read_0
+//  136       return 1;         //timeout,sensor no response
+        MOV     R1,#0x1
+        LJMP    ??DS_CO2_20_Read_3 & 0xFFFF
+//  137   }
+//  138   co2 = (tmp[4]<<8) + tmp[5];
+??DS_CO2_20_Read_1:
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V2,R0
+        MOV     ?V3,R1
+//  139   para1 = (tmp[6]<<8) + tmp[7];
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V6,R0
+        MOV     ?V7,R1
+//  140   para2 = (tmp[8]<<8) + tmp[9];
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     R1,#0x0
+        CLR     A
+        XCH     A,R0
+        MOV     R1,A
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R3,#0x0
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     ?V4,R0
+        MOV     ?V5,R1
+//  141   (void)para1;
+//  142   (void)para2;
+//  143       
+//  144   if(co2 < 3000)
+        CLR     C
+        MOV     A,?V2
+        SUBB    A,#-0x48
+        MOV     A,?V3
+        SUBB    A,#0xb
+        JNC     ??DS_CO2_20_Read_4
+//  145   {
+//  146     buf[0] = tmp[4];
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V0
+        MOV     DPH,?V1
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  147     buf[1] = tmp[5];
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     DPL,?V0
+        MOV     DPH,?V1
+        INC     DPTR
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  148     return 0;
+        MOV     R1,#0x0
+        SJMP    ??DS_CO2_20_Read_3
+//  149   }
+//  150   return 1;              //should not arrive here
+??DS_CO2_20_Read_4:
+        MOV     R1,#0x1
+??DS_CO2_20_Read_3:
+        MOV     A,#0xc
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+//  151 }
+          CFI EndBlock cfiBlock5
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for frame>`:
+        DATA8
+        DB 66
+        DB 77
+        DB 227
+        DB 0
+        DB 0
+        DB 1
+        DB 114
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_Init::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_control::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_control
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_rest::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_rest
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_recdata::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_recdata
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_Read_Str::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_Read_Str
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??DS_CO2_20_Read::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    DS_CO2_20_Read
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+`?<Constant "%4d">`:
+        DB "%4d"
+
+        END
+// 
+// 625 bytes in segment BANKED_CODE
+//  36 bytes in segment BANK_RELAYS
+//   3 bytes in segment SFR_AN
+//   7 bytes in segment XDATA_I
+//   7 bytes in segment XDATA_ID
+//   4 bytes in segment XDATA_ROM_C
+// 
+// 668 bytes of CODE  memory
+//   4 bytes of CONST memory
+//   0 bytes of DATA  memory (+ 3 bytes shared)
+//   7 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none
