@@ -30,7 +30,7 @@ Please follow this main startup step: Web service->myserver_asy->myclient->Zigbe
 
 #### TCP Communication Detail
 Server:
-python3.6 myserver_asy.py
+1. python3.6 myserver_asy.py
 
 Client:
 1. python myclient.py
