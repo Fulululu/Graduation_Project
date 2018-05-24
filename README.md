@@ -1,7 +1,12 @@
 # Remote Measurement and Control System
 This is a design for my graduation project. A total of three parts.
 
-## Environment
+## I. Environment
+How to:
+1. sudo apt install python3.6
+2. python(any version) -m pip install django django-el-pagination
+3. As for IAR, see other Internet blogs.
+
 #### Wireless Sensor network
 ZStack2.5.1 on CC2530 board with BH1750,SHT10,DS18B20 and GY-69 using IAR Embedded Workbench7.3 for 8051.
 
@@ -10,10 +15,10 @@ Server: Linux on Cloud Platform using python3.6.
 Client: Raspbian on Raspberry_Pi_3B+ using Python with pyserial modules.
 
 #### Web Service
-Linux on Cloud Platform using Django2.0.4.
+Linux on Cloud Platform using Django2.0.4 with django-el-pagination plugin.
 
-## Start
-Main Startup Step:myserver_asy->Web server->Zigbee Nodes->myclient
+## II. Start to Use
+Please follow this main startup step: Web service->myserver_asy->myclient->Zigbee Nodes
 
 #### Wireless Sensor Network Detail
 1. Open project file
