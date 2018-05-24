@@ -1,8 +1,8 @@
 # Remote Measurement and Control System
 This is a design for my graduation project. A total of three parts.
 
-## I. Environment
-How to:
+## I. Environment:
+all you need is:
 1. sudo apt install python3.6
 2. python(any version) -m pip install django django-el-pagination
 3. As for IAR, see other Internet blogs.
