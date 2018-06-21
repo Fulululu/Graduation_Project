@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
     'index.apps.IndexConfig',
     'el_pagination',
 ]
@@ -129,6 +128,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sina.com'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'ygfulululu@sina.com'
-EMAIL_HOST_PASSWORD = 'qwerasdf1234'
+EMAIL_HOST_USER = 'you@youremail'
+EMAIL_HOST_PASSWORD = 'youremailpassword'
 

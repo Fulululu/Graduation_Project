@@ -3,9 +3,12 @@ This is a design for my graduation project. A total of three parts.
 
 ## I. Environment:
 all you need is:
-1. sudo apt install python3.6
-2. python(any version) -m pip install django django-el-pagination
-3. As for IAR, see other Internet blogs.
+1. copy server directory to your server.
+2. sudo apt install python3.6 (on your server)
+3. python(any version) -m pip install django django-el-pagination.(on your server)
+4. copy raspi directory to your raspberry pi
+5. pip install pyserial (on your raspberry pi)(note that pip is a softlink to python2.7 default)
+6. As for zigbee sensor environment, see other Internet blogs.
 
 #### Wireless Sensor network
 ZStack2.5.1 on CC2530 board with BH1750,SHT10,DS18B20 and GY-69 using IAR Embedded Workbench7.3 for 8051.
@@ -30,14 +33,18 @@ Please follow this main startup step: Web service->myserver_asy->myclient->Zigbe
 
 #### TCP Communication Detail
 Server:
-1. python3.6 myserver_asy.py
+1. cd server/socket/
+2. python3.6 myserver_asy.py
 
 Client:
-1. python myclient.py
-2. type your account and password that register in Web server
+1. cd raspi/
+2. python myclient.py
+3. type your account and password that register in Web server
 
 #### Web Service Detail
-1. python manage runserver yourserverip:yourserverport
-2. open your browser and type the url(ip:port)
-3. using "python keygen_client.py" to generate an invitation code
-4. register an account and login to use.
+1. add your E-mail to EMAIL_HOST_USER and EMAIL_HOST_PASSWORD in server/mysite/mysite/setting.py
+2. cd server/mysite/
+3. python manage runserver yourserverip:yourserverport
+4. open your browser and type the url(ip:port)
+5. using "python keygen_client.py" to generate an invitation code
+6. register an account and login to use.
