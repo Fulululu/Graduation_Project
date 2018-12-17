@@ -23,27 +23,27 @@ Linux on Cloud Platform using Django2.0.4 with django-el-pagination plugin.
 Please follow this main startup step: Web service->myserver_asy->myclient->Zigbee Nodes
 
 #### Wireless Sensor Network Detail
-1. Open project file
-2. Click Menu Project->Edit_Configurations, choose "EndDeviceEB" for Sensor device(choose "CoordinatorEB" for coordinator device)
-2. Click Menu Project->clean
-3. Click Menu Project->Rebuild_all
-4. Click Menu Project->Download_and_Debug
-5. Let it run
+    1. Open project file
+    2. Click Menu Project->Edit_Configurations, choose "EndDeviceEB" for Sensor device(choose "CoordinatorEB" for coordinator device)
+    2. Click Menu Project->clean
+    3. Click Menu Project->Rebuild_all
+    4. Click Menu Project->Download_and_Debug
+    5. Let it run
 
 #### TCP Communication Detail
-Server:
-1. cd server/socket/
-2. python3.6 myserver_asy.py
+    Server:
+    1. cd server/socket/
+    2. python3.6 myserver_asy.py
 
-Client:
-1. cd raspi/
-2. python myclient.py
-3. type your account and password that register in Web server
+    Client:
+    1. cd raspi/
+    2. python myclient.py
+    3. type your account and password that register in Web server
 
 #### Web Service Detail
-1. add your E-mail to EMAIL_HOST_USER and EMAIL_HOST_PASSWORD in server/mysite/mysite/setting.py
-2. cd server/mysite/
-3. python manage runserver yourserverip:yourserverport
-4. open your browser and type the url(ip:port)
-5. using "python keygen_client.py" to generate an invitation code
-6. register an account and login to use.
+    1. add your E-mail to EMAIL_HOST_USER and EMAIL_HOST_PASSWORD in server/mysite/mysite/setting.py
+    2. cd server/mysite/
+    3. python manage runserver yourserverip:yourserverport
+    4. open your browser and type the url(ip:port)
+    5. using "python keygen_client.py" to generate an invitation code
+    6. register an account and login to use.
