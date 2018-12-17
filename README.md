@@ -5,18 +5,18 @@ This project is my graduation design. A total of three parts.
 #### Wireless Sensor network
 ZStack2.5.1 on CC2530 board with BH1750,SHT10,DS18B20 and GY-69 using IAR Embedded Workbench7.3 for 8051.
 #### TCP Communication
-Server: Linux on Cloud Platform using python3.6.
+Server: Linux on Cloud Platform using python3.6.<br>
 Client: Raspbian on Raspberry_Pi_3B+ using Python with pyserial modules.
 #### Web Service
 Linux on Cloud Platform using Django2.0.4 with django-el-pagination plugin.
 
-  WHAT YOU NEED IS:
-  1. copy server directory to your server.
-  2. sudo apt install python3.6 (on your server)
-  3. python(any version) -m pip install django django-el-pagination.(on your server)
-  4. copy raspi directory to your raspberry pi
-  5. pip install pyserial (on your raspberry pi)(note that pip is a softlink to python2.7 default)
-  6. As for zigbee sensor environment, see other Internet blogs.
+    WHAT YOU NEED IS:
+    1. copy server directory to your server.
+    2. sudo apt install python3.6 (on your server)
+    3. python(any version) -m pip install django django-el-pagination.(on your server)
+    4. copy raspi directory to your raspberry pi
+    5. pip install pyserial (on your raspberry pi)(note that pip is a softlink to python2.7 default)
+    6. As for zigbee sensor environment, see other Internet blogs.
 
 
 ## II. Start to Use
